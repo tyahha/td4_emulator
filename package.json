@@ -1,0 +1,24 @@
+{
+  "name": "td4_emulator",
+  "version": "1.0.0",
+  "description": "「CPUの創り方(https://www.amazon.co.jp/dp/4839909865)」で製作する4bit CPUのブラウザで動くエミュレータです",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tyahha/td4_emulator.git"
+  },
+  "author": "tyahhahha@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tyahha/td4_emulator/issues"
+  },
+  "homepage": "https://github.com/tyahha/td4_emulator#readme",
+  "devDependencies": {
+    "knockout": "^3.4.2",
+    "webpack": "^3.7.1"
+  }
+}
