@@ -1,2 +1,9 @@
+#build js
+public/js/
+
 # Dependency directories
 node_modules/
+
+# Vim Temporary
+.netrwhist
+*~
