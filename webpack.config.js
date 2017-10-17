@@ -18,6 +18,15 @@ module.exports = {
           }
         ]
       },
+      {
+        test: /\.scss/,
+        loaders: [
+          'style-loader',
+          {
+            loader: 'css-loader?-url&minimize&sourceMap!sass-loader',
+          }
+        ]
+      },
     ],
   },
 };
