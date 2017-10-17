@@ -6,4 +6,18 @@ module.exports = {
     filename: 'bundle.js',
     path: path.join(__dirname, 'public/js'),
   },
+  module: {
+    rules: [
+      {
+        test: /\.css/,
+        loaders: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {urs: false},
+          }
+        ]
+      },
+    ],
+  },
 };

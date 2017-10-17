@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
   <title>TD4 Emulator</title>
+  <head>
+    <meta charset="utf-8" />
+  </head>
   <body>
     <h1>TD4 Emulator</h1>
     <h2>Program Memory</h2>
@@ -8,7 +11,10 @@
     <div>
       Address <span data-bind="text: address.display"></span>
       <!-- ko foreach: memories -->
-      <input type="checkbox" data-bind="checked: value" />
+      <label>
+        <input type="checkbox" class="memory-checkbox" data-bind="checked: value" />
+        <span class="memory-icon"></span>
+      </label>
       <!-- /ko -->
     </div>
     <!-- /ko -->
