@@ -1,5 +1,6 @@
-#build js
+#builds
 public/js/
+public/css/
 
 # Dependency directories
 node_modules/

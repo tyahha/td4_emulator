@@ -19,6 +19,7 @@
   "homepage": "https://github.com/tyahha/td4_emulator#readme",
   "devDependencies": {
     "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
     "knockout": "^3.4.2",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
