@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1>TD4 Emulator</h1>
+    <h1 class="title">TD4 Emulator</h1>
     <div>
       <p>RegistorA <span>0000</span></p>
       <p>RegistorB <span>0000</span></p>
@@ -26,18 +26,18 @@
         <input type="checkbox">
         <input type="checkbox">
       </p>
-      <div>
+      <div class="clock-generator">
         <h3>Clock Generator</h3>
-        <p><input type="radio" name="clock-generator">1Hz</p>
-        <p><input type="radio" name="clock-generator">10Hz</p>
-        <p><input type="radio" name="clock-generator" checked>Manual <button>Clock</button></p>
-        <p><botton>Reset</botton></p>
+        <p><input type="radio" name="clock-generator" value="1Hz" data-bind="checked: mode">1Hz</p>
+        <p><input type="radio" name="clock-generator" value="10Hz" data-bind="checked: mode">10Hz</p>
+        <p><input type="radio" name="clock-generator" value="Manual" data-bind="checked: mode">Manual <button data-bind="click: clock">Clock</button></p>
+        <p><button data-bind="click: reset">Reset</button></p>
       </div>
     </div>
-    <div>
-      <h2>Program Memory</h2>
+    <div class="program-memory">
+      <h3 class="title">Program Memory</h3>
       <!-- ko foreach: lines -->
-      <div>
+      <div class="rom-line" data-bind="css: {current: current}">
         Address <span data-bind="text: address.display"></span>
         <!-- ko foreach: memories -->
         <label>
