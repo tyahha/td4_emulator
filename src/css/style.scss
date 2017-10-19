@@ -1,0 +1,36 @@
+.title {
+    border-bottom: solid;
+}
+
+.program-memory {
+    top: 82px;
+    position: absolute;
+    left: 226px;
+    border: solid;
+    padding: 10px 10px;
+    border-width: thin;
+
+    .title {
+        margin-top: 0px;
+        margin-bottom: 10px;
+        border-bottom: solid;
+        border-width: thin;
+    }
+}
+
+.rom-line {
+    &.current {
+        color: red;
+    }
+}
+
+.memory-checkbox {
+    display: none;
+    $icon_after: ".memory-icon:after";
+    & + #{$icon_after} {
+        content: '□';
+    }
+    &:checked + #{$icon_after} {
+        content: '■';
+    }
+}
