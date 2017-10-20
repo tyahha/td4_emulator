@@ -7,9 +7,8 @@ const ClockMode = {
 }
 
 export default class ClockGeneratorVM {
-  constructor(clockHandler, resetHandler) {
+  constructor(clockHandler) {
     this.clockHandler = clockHandler
-    this.resetHandler = resetHandler
     this.mode = ko.observable(ClockMode.Manual)
 
     setInterval(() => {
@@ -45,9 +44,5 @@ export default class ClockGeneratorVM {
     if (this.isManual()) {
       this.clockHandler()
     }
-  }
-
-  reset() {
-    this.resetHandler()
   }
 }
