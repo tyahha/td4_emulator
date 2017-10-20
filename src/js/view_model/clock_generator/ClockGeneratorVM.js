@@ -7,7 +7,10 @@ const ClockMode = {
 }
 
 export default class ClockGeneratorVM {
-  constructor(clockHandler) {
+  clockHandler: () => void
+  mode: any
+
+  constructor(clockHandler: () => void ) {
     this.clockHandler = clockHandler
     this.mode = ko.observable(ClockMode.Manual)
 

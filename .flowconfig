@@ -1,0 +1,14 @@
+[ignore]
+.*/node_modules/.*
+.*/public/.*
+.*/webpack\.config\.js
+
+[include]
+
+[libs]
+./src/decls
+
+[lints]
+
+[options]
+all=true

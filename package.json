@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/tyahha/td4_emulator#readme",
   "devDependencies": {
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.1",
+    "flow-bin": "^0.57.3",
     "knockout": "^3.4.2",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",

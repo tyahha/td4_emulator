@@ -1,6 +1,8 @@
 import RomLineVM from "./RomLineVM"
 
 export default class RomVM {
+    currentLine: number
+    lines: Array<RomLineVM>
     constructor() {
         this.lines = [];
         for (let i = 0; i < 16; i++) {

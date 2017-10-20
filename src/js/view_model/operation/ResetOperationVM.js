@@ -1,7 +1,8 @@
 import ko from 'knockout'
 
 export default class ResetOperationVM {
-    constructor(resetHandler) {
+    resetHandler: () => void
+    constructor(resetHandler: () => void) {
         this.resetHandler = resetHandler
     }
 

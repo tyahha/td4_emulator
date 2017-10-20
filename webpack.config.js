@@ -8,6 +8,14 @@ module.exports = [
       filename: 'bundle.js',
       path: path.join(__dirname, 'public/js'),
     },
+    module: {
+        loaders:[
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+            }
+        ],
+    },
   },
   {
     entry: {
@@ -25,7 +33,6 @@ module.exports = [
             }
         ]
     },
-    devtool: 'source-map',
     plugins: [
         new ExtractTextPlugin('[name].css')
     ]

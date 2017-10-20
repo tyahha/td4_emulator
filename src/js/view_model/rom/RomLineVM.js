@@ -3,7 +3,10 @@ import RomCellVM from './RomCellVM'
 import RomLineAddress from './RomLineAddress'
 
 export default class RomLineVM {
-    constructor(address) {
+    current: any
+    address: RomLineAddress
+    memories: Array<RomCellVM>
+    constructor(address: number) {
         this.current = ko.observable(false)
         this.address = new RomLineAddress(address)
         let memories = [];
