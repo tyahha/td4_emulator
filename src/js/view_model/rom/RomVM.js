@@ -18,12 +18,10 @@ export default class RomVM {
         this.lines[0].current(true)
     }
 
-    nextStep() {
+    nextStep(nextLine: number) {
+        nextLine = nextLine % this.lines.length 
         this.lines[this.currentLine].current(false)
-        this.currentLine++
-        if (this.currentLine >= this.lines.length) {
-            this.currentLine = 0
-        }
+        this.currentLine = nextLine
         this.lines[this.currentLine].current(true)
     }
 }

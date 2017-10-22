@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <title>TD4 Emulator</title>
   <head>
+    <title>TD4 Emulator</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -12,7 +12,7 @@
         <p>RegistorA <span>0000</span></p>
         <p>RegistorB <span>0000</span></p>
         <p>C Flag <span>0</span></p>
-        <p>Program Counter <span>0000</span></p>
+        <p>Program Counter <span data-bind="text: programCounter.display">0000</span></p>
         <p>
           output
           <input type="checkbox">
@@ -54,4 +54,4 @@
     </div>
   </body>
   <script type="text/javascript" src="js/bundle.js"></script>
-  </html>
+</html>

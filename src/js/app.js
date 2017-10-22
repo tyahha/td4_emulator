@@ -1,4 +1,5 @@
 import ko from "knockout"
+import RegisterAggregationVM from "./view_model/register/RegisterAggregationVM"
 import RomVM from "./view_model/rom/RomVM"
 import ClockGeneratorVM from "./view_model/clock_generator/ClockGeneratorVM"
 import ResetOperationVM from "./view_model/operation/ResetOperationVM"
@@ -7,9 +8,17 @@ const romVM = new RomVM()
 const romDom = document.querySelector('.program-memory')
 ko.applyBindings(romVM, romDom)
 
+const registerAggregationVM = new RegisterAggregationVM((newProgramCount) => {
+  romVM.nextStep(newProgramCount)
+})
+const registerDom = document.querySelector('.register')
+ko.applyBindings(registerAggregationVM, registerDom)
+
+let clockCount = 0
 const clockGeneratorDom = document.querySelector('.clock-generator')
 const clockGeneratorVM = new ClockGeneratorVM(() => {
-  romVM.nextStep()
+  clockCount++
+  registerAggregationVM.programCounter.setValue(clockCount)
 })
 ko.applyBindings(clockGeneratorVM, clockGeneratorDom)
 
