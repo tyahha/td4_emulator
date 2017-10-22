@@ -8,7 +8,7 @@
   <body>
     <h1 class="title">TD4 Emulator</h1>
     <div class="control-panel">
-      <div>
+      <div class="register">
         <p>RegistorA <span>0000</span></p>
         <p>RegistorB <span>0000</span></p>
         <p>C Flag <span>0</span></p>
@@ -27,15 +27,16 @@
           <input type="checkbox">
           <input type="checkbox">
         </p>
-        <div class="clock-generator">
-          <h3>Clock Generator</h3>
-          <p><input type="radio" name="clock-generator" value="1Hz" data-bind="checked: mode">1Hz</p>
-          <p><input type="radio" name="clock-generator" value="10Hz" data-bind="checked: mode">10Hz</p>
-          <p><input type="radio" name="clock-generator" value="Manual" data-bind="checked: mode">Manual <button data-bind="click: clock">Clock</button></p>
-        </div>
-        <div class="reset-button">
-          <button data-bind="click: reset">Reset</button>
-        </div>
+      </div>
+      <div class="clock-generator">
+        <h3 class="title">Clock Generator</h3>
+        <p><input type="radio" name="clock-generator" value="1Hz" data-bind="checked: mode">1Hz</p>
+        <p><input type="radio" name="clock-generator" value="10Hz" data-bind="checked: mode">10Hz</p>
+        <p><input type="radio" name="clock-generator" value="Manual" data-bind="checked: mode">Manual <button data-bind="click: clock">Clock</button></p>
+      </div>
+      <div>
+        <button class="reset-button" data-bind="click: reset">Reset</button>
+      </div>
     </div>
     <div class="program-memory">
       <h3 class="title">Program Memory</h3>

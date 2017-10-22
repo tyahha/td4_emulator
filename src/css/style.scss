@@ -2,19 +2,52 @@
     border-bottom: solid;
 }
 
+%subtitle {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border-bottom: solid;
+    border-width: thin;
+}
+
+%subcontent {
+    border: solid;
+    padding: 10px;
+    border-width: thin;
+}
+
+.control-panel p {
+    margin: 10px 10px;
+}
+
+.register {
+    width: 200px;
+}
+
+.clock-generator {
+    @extend %subcontent;
+
+    width: 165px;
+    
+    .title {
+        @extend %subtitle;
+    }
+}
+
+.reset-button {
+    margin-top: 10px;
+    width: 185px;
+    height: 30px;
+}
+
 .program-memory {
+    @extend %subcontent;
+
     top: 82px;
     position: absolute;
     left: 226px;
-    border: solid;
-    padding: 10px 10px;
-    border-width: thin;
 
     .title {
-        margin-top: 0px;
-        margin-bottom: 10px;
-        border-bottom: solid;
-        border-width: thin;
+        @extend %subtitle;
     }
 }
 
