@@ -46,7 +46,7 @@
 |0000|ADD A,Im|A<-A+Im(算術)|
 |0101|ADD B,Im|B<-B+Im(算術)|
 |0011|MOV A,Im|A<-Im(データ転送)|
-|0101|MOV B,Im|B<-Im(データ転送)|
+|0111|MOV B,Im|B<-Im(データ転送)|
 |0001|MOV A,B|A<-B(データ転送)|
 |0100|MOV B,A|B<-A(データ転送)|
 |1111|JPM Im|Imのアドレスへジャンプ|

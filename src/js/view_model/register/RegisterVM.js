@@ -1,10 +1,12 @@
 import ko from 'knockout'
 
 export default class RegisterVM {
+  name: string
   value: any
   display: any
 
-  constructor(value: number, subscriber: ?(newValue: number) => void) {
+  constructor(name: string, value: number, subscriber: ?(newValue: number) => void) {
+    this.name = name
     this.value = ko.observable(value)
     if (subscriber) {
       this.value.subscribe(subscriber)
@@ -14,7 +16,13 @@ export default class RegisterVM {
     }, this)
   }
 
-  setValue(value: number): void {
-    this.value(value % 16)
+  getValue(): number {
+    return this.value()
+  }
+
+  setValue(v: number): void {
+    if (v !== this.value()) {
+      this.value(v % 16)
+    }
   }
 }

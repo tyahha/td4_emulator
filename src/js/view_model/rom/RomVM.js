@@ -1,27 +1,31 @@
 import RomLineVM from "./RomLineVM"
 
 export default class RomVM {
-    currentLine: number
+    currentLineNumber: number
     lines: Array<RomLineVM>
     constructor() {
         this.lines = [];
         for (let i = 0; i < 16; i++) {
             this.lines.push(new RomLineVM(i))
         }
-        this.currentLine = 0
+        this.currentLineNumber = 0
         this.lines[0].current(true)
     }
 
     reset() {
-        this.lines[this.currentLine].current(false)
-        this.currentLine = 0
+        this.lines[this.currentLineNumber].current(false)
+        this.currentLineNumber = 0
         this.lines[0].current(true)
     }
 
     nextStep(nextLine: number) {
         nextLine = nextLine % this.lines.length 
-        this.lines[this.currentLine].current(false)
-        this.currentLine = nextLine
-        this.lines[this.currentLine].current(true)
+        this.currentLine().current(false)
+        this.currentLineNumber = nextLine
+        this.currentLine().current(true)
+    }
+
+    currentLine(): RomLineVM {
+        return this.lines[this.currentLineNumber]
     }
 }
