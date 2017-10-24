@@ -1,6 +1,7 @@
 import ko from 'knockout'
+import type {ClockMode} from '../../domain/ClockMode'
 
-const ClockMode = {
+const mode = {
   _1Hz: '1Hz',
   _10Hz: '10Hz',
   Manual: 'Manual',
@@ -12,7 +13,7 @@ export default class ClockGeneratorVM {
 
   constructor(clockHandler: () => void ) {
     this.clockHandler = clockHandler
-    this.mode = ko.observable(ClockMode.Manual)
+    this.mode = ko.observable(mode.Manual)
 
     setInterval(() => {
       if (this.is1Hz()) {
@@ -47,5 +48,9 @@ export default class ClockGeneratorVM {
     if (this.isManual()) {
       this.clockHandler()
     }
+  }
+
+  setClockMode(mode: ClockMode) {
+    this.mode(mode)
   }
 }
