@@ -9,23 +9,25 @@ const mode = {
 
 export default class ClockGeneratorVM {
   clockHandler: () => void
+  clockTimer: number
   mode: any
 
   constructor(clockHandler: () => void ) {
     this.clockHandler = clockHandler
+    this.clockTimer = 0
     this.mode = ko.observable(mode.Manual)
-
-    setInterval(() => {
-      if (this.is1Hz()) {
-        this.clockHandler()
+    this.mode.subscribe((newMode) => {
+      if (this.clockTimer) {
+        clearInterval(this.clockTimer)
+        this.clockTimer = 0
       }
-    }, 1000)
-
-    setInterval(() => {
-      if (this.is10Hz()) {
-        this.clockHandler()
+      if (newMode !== mode.Manual) {
+        const interval = newMode === mode._1Hz ? 1000 : 100
+        this.clockTimer = setInterval(() => {
+          this.clockHandler()
+        }, interval)
       }
-    }, 100)
+    })
   }
 
   currentMode() {
@@ -33,15 +35,15 @@ export default class ClockGeneratorVM {
   }
 
   is1Hz() {
-    return this.currentMode() === ClockMode._1Hz
+    return this.currentMode() === mode._1Hz
   }
 
-  is10Hz() {
-    return this.currentMode() === ClockMode._10Hz
+  is10Hz() {  
+    return this.currentMode() === mode._10Hz
   }
 
   isManual() {
-    return this.currentMode() === ClockMode.Manual
+    return this.currentMode() === mode.Manual
   }
 
   clock() {
