@@ -84,23 +84,31 @@ function parseFile(input: string): Array<boolean> {
   return [true]
 }
 
-const domLoadFile = document.getElementById("load-file")
-if (domLoadFile) {
-  domLoadFile.addEventListener("change", (evt) => {
-    const target = evt.target
-    if (target instanceof HTMLInputElement) {
-      const file = target.files[0]
-      if (file) {
-        const reader = new FileReader()
-        reader.readAsText(file)
-        reader.onload = (ev) => {
-          if (typeof reader.result === 'string') {
-            parseFile(reader.result)
+function setFileLoadEventListener() {
+  const domLoadFile = document.getElementById("load-file")
+  if (domLoadFile) {
+    domLoadFile.addEventListener("change", (evt) => {
+      const target = evt.target
+      if (target instanceof HTMLInputElement) {
+        const file = target.files[0]
+        if (file) {
+          const reader = new FileReader()
+          reader.readAsText(file)
+          reader.onload = (ev) => {
+            if (typeof reader.result === 'string') {
+              parseFile(reader.result)
+            }
+            const parent = target.parentNode
+            if (parent instanceof HTMLElement) {
+              parent.innerHTML = parent.innerHTML
+            }
+            // DOMを再生成・再設定することによりファイルをクリアするのでListenerがなくなるので再度登録する
+            // TODO: リセットボタンもViewModelにしてListenerの再登録が不要にする
+            setFileLoadEventListener()
           }
-          // TODO: 選択したファイルのクリア
-          target.innerHTML = target.innerHTML
         }
       }
-    }
-  });
+    });
+  }
 }
+setFileLoadEventListener()
