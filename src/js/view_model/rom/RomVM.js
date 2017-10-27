@@ -28,4 +28,10 @@ export default class RomVM {
     currentLine(): RomLineVM {
         return this.lines[this.currentLineNumber]
     }
+
+    set(flags: Array<boolean>): void {
+        for (let i = 0; i < this.lines.length; i++) {
+            this.lines[i].set(flags.slice(i * 8, i * 8 + 8))
+        }
+    }
 }

@@ -34,4 +34,10 @@ export default class RomLineVM {
     getImmediateData(): number {
         return parseMemoryToNumber(this.memories.slice().reverse().slice(0, 4))
     }
+
+    set(flags: Array<boolean>): void {
+        for (let i = 0; i < this.memories.length; i++) {
+            this.memories[i].value(flags[i])
+        }
+    }
 }

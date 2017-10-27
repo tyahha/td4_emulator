@@ -8,6 +8,9 @@ import Register from "./domain/Register"
 import Add from "./domain/Add"
 import ImmediateData from "./domain/ImmediateData"
 
+import FileParser from './parser/FileParser'
+import Setting from './domain/Setting'
+
 const romVM = new RomVM()
 const romDom = document.querySelector('.program-memory')
 ko.applyBindings(romVM, romDom)
@@ -50,39 +53,6 @@ const resetOperationVM = new ResetOperationVM(() => {
 })
 ko.applyBindings(resetOperationVM, resetOperationDom)
 
-function parseFile(input: string): Array<boolean> {
-  const lines = input.trim().split("\n").map(s => s.trim())
-  const expectLineCount = 132
-  
-  if (lines.length != expectLineCount) {
-    alert(`Input file expected line count is ${expectLineCount}, your file line count is ${lines.length}`)
-  }
-  else {
-    const Hz1Index = 128
-    const Hz10Index = 129
-    const HzManualIndex = 130
-    const HzFlagFalse = '#FALSE#'
-    const HzFlagTrue = '#TRUE#'
-    const hzSelectorFlagStrings = lines.slice(Hz1Index, HzManualIndex + 1)
-    const unExpectedLine = hzSelectorFlagStrings.find(s => s !== HzFlagFalse && s !== HzFlagTrue)
-    if (unExpectedLine) {
-      alert(`line ${Hz1Index + 1} - ${HzManualIndex + 1} must be ${HzFlagTrue} or ${HzFlagFalse}`)
-    }
-    else {
-      const hzSelectorFlags = hzSelectorFlagStrings.map(s => s === HzFlagTrue)
-      const trueFlags = hzSelectorFlags.filter(b => b)
-      if (trueFlags.length !== 1) {
-        alert(`line ${Hz1Index + 1} - ${HzManualIndex + 1} must contain #TRUE# only one line`)
-      }
-      else {
-        const trueIndex = hzSelectorFlags.indexOf(true)
-        const hzMode = trueIndex === 0 ? '1Hz' : trueIndex === 1 ? '10Hz' : 'Manual'
-        clockGeneratorVM.setClockMode(hzMode)
-      }
-    }
-  }
-  return [true]
-}
 
 function setFileLoadEventListener() {
   const domLoadFile = document.getElementById("load-file")
@@ -96,7 +66,18 @@ function setFileLoadEventListener() {
           reader.readAsText(file)
           reader.onload = (ev) => {
             if (typeof reader.result === 'string') {
-              parseFile(reader.result)
+              const parseResult = FileParser.parse(reader.result)
+              if (typeof parseResult === 'string') {
+                alert(parseResult)
+              }
+              else if (parseResult instanceof Setting) {
+                clockGeneratorVM.setClockMode(parseResult.clockMode)
+                romVM.set(parseResult.memories)
+              }
+              else {
+                // unreachable
+                alert("parse error!")
+              }
             }
             const parent = target.parentNode
             if (parent instanceof HTMLElement) {
