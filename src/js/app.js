@@ -5,7 +5,9 @@ import ClockGeneratorVM from "./view_model/clock_generator/ClockGeneratorVM"
 import ResetOperationVM from "./view_model/operation/ResetOperationVM"
 
 import Register from "./domain/Register"
+import type {Operation} from "./domain/Operation"
 import Add from "./domain/Add"
+import Move from "./domain/Move"
 import ImmediateData from "./domain/ImmediateData"
 
 import FileParser from './parser/FileParser'
@@ -21,34 +23,32 @@ const registerAggregationVM = new RegisterAggregationVM((newProgramCount) => {
 const registerDom = document.querySelector('.register')
 ko.applyBindings(registerAggregationVM, registerDom)
 
-const addA = new Add(registerAggregationVM.registerA)
-const addB = new Add(registerAggregationVM.registerB)
+const operations: Map<number, Operation> = new Map()
+operations.set(0, new Add(registerAggregationVM.registerA))
+operations.set(5, new Add(registerAggregationVM.registerB))
+operations.set(3, new Move(registerAggregationVM.registerA))
+operations.set(7, new Move(registerAggregationVM.registerB))
 
 let clockCount = 0
 const clockGeneratorDom = document.querySelector('.clock-generator')
 const clockGeneratorVM = new ClockGeneratorVM(() => {
   clockCount++
   const currentLine = romVM.currentLine()
-  const operation = currentLine.getOperationData()
+  const operation = operations.get(currentLine.getOperationData())
   const immediateData = new ImmediateData(currentLine.getImmediateData())
-
-  let carry = false
-  if (operation === 0) {
-    carry = addA.run(immediateData)
-  }
-  else if (operation === 5) {
-    carry = addB.run(immediateData)
-  }
-
+  const carry = operation ? operation.run(immediateData) : false
   registerAggregationVM.carryFlag(carry)
-
   registerAggregationVM.programCounter.setValue(clockCount)
 })
 ko.applyBindings(clockGeneratorVM, clockGeneratorDom)
 
 const resetOperationDom = document.querySelector('.reset-button')
 const resetOperationVM = new ResetOperationVM(() => {
-  // TODO: reset Register
+  clockCount = 0
+  registerAggregationVM.carryFlag(false)
+  registerAggregationVM.registerA.setValue(0)
+  registerAggregationVM.registerB.setValue(0)
+  registerAggregationVM.programCounter.setValue(clockCount)
   romVM.reset()
 })
 ko.applyBindings(resetOperationVM, resetOperationDom)
