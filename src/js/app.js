@@ -7,8 +7,8 @@ import ResetOperationVM from "./view_model/operation/ResetOperationVM"
 import OperationAggregation from "./domain/operation/OperationAggregation"
 import OperationInput from "./domain/operation/OperationInput"
 
-import FileParser from './parser/FileParser'
-import Setting from './domain/Setting'
+import FileParser from './storage/parser/FileParser'
+import Setting from './storage/Setting'
 
 const romVM = new RomVM()
 const romDom = document.querySelector('.program-memory')
@@ -62,7 +62,7 @@ function setFileLoadEventListener() {
           reader.readAsText(file)
           reader.onload = (ev) => {
             if (typeof reader.result === 'string') {
-              const parseResult = FileParser.parse(reader.result)
+              const parseResult = FileParser.fileToSetting(reader.result)
               if (typeof parseResult === 'string') {
                 alert(parseResult)
               }

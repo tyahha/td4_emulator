@@ -1,4 +1,4 @@
-import type {ClockMode} from './ClockMode'
+import type {ClockMode} from '../domain/ClockMode'
 
 export default class Setting {
   clockMode: ClockMode

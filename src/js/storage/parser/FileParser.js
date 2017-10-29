@@ -1,5 +1,5 @@
-import Setting from '../domain/Setting'
-import type {ClockMode} from '../domain/ClockMode'
+import Setting from '../Setting'
+import type {ClockMode} from '../../domain/ClockMode'
 
 function parseLines(input: string): Array<string> {
   return input.trim().split("\n").map(s => s.trim())
@@ -38,7 +38,7 @@ function convertFlagLine(line: string): boolean {
 }
 
 export default {
-  parse: (input: string) => {
+  fileToSetting: (input: string) => {
     const lines = parseLines(input)
     
     if (lines.length !== LineCount) {
