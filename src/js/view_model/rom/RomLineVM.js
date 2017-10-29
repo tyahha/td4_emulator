@@ -1,6 +1,7 @@
 import ko from 'knockout'
 import RomCellVM from './RomCellVM'
 import RomLineAddress from './RomLineAddress'
+import ImmediateData from '../../domain/ImmediateData'
 
 function parseMemoryCellToNumber(cell: RomCellVM): number {
     return cell ? cell.value() ? 1 : 0 : 0
@@ -31,8 +32,10 @@ export default class RomLineVM {
         return parseMemoryToNumber(this.memories.slice().reverse().slice(4, 8))
     }
 
-    getImmediateData(): number {
-        return parseMemoryToNumber(this.memories.slice().reverse().slice(0, 4))
+    getImmediateData(): ImmediateData {
+        return new ImmediateData(
+            parseMemoryToNumber(this.memories.slice().reverse().slice(0, 4))
+        )
     }
 
     set(flags: Array<boolean>): void {

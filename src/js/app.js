@@ -4,11 +4,8 @@ import RomVM from "./view_model/rom/RomVM"
 import ClockGeneratorVM from "./view_model/clock_generator/ClockGeneratorVM"
 import ResetOperationVM from "./view_model/operation/ResetOperationVM"
 
-import Register from "./domain/Register"
-import type {Operation} from "./domain/Operation"
-import Add from "./domain/Add"
-import Move from "./domain/Move"
-import ImmediateData from "./domain/ImmediateData"
+import OperationAggregation from "./domain/operation/OperationAggregation"
+import OperationInput from "./domain/operation/OperationInput"
 
 import FileParser from './parser/FileParser'
 import Setting from './domain/Setting'
@@ -23,43 +20,33 @@ const registerAggregationVM = new RegisterAggregationVM((newProgramCount) => {
 const registerDom = document.querySelector('.register')
 ko.applyBindings(registerAggregationVM, registerDom)
 
-const operations: Map<number, Operation> = new Map()
-const moveToA = new Move(registerAggregationVM.registerA)
-const moveToB = new Move(registerAggregationVM.registerB)
-operations.set(0, new Add(registerAggregationVM.registerA))
-operations.set(5, new Add(registerAggregationVM.registerB))
-operations.set(3, moveToA)
-operations.set(7, moveToB)
-operations.set(1, moveToA)
-operations.set(4, moveToB)
+const operations = new OperationAggregation(
+  registerAggregationVM.registerA,
+  registerAggregationVM.registerB,
+)
 
-let clockCount = 0
 const clockGeneratorDom = document.querySelector('.clock-generator')
 const clockGeneratorVM = new ClockGeneratorVM(() => {
-  clockCount++
   const currentLine = romVM.currentLine()
-  const operationCode = currentLine.getOperationData()
-  const operation = operations.get(operationCode)
-  const data =
-    operationCode === 1 ?
-      registerAggregationVM.registerB.getValue() :
-    operationCode === 4 ? 
-      registerAggregationVM.registerA.getValue() :
-      currentLine.getImmediateData()
-  const immediateData = new ImmediateData(data)
-  const carry = operation ? operation.run(immediateData) : false
-  registerAggregationVM.carryFlag(carry)
-  registerAggregationVM.programCounter.setValue(clockCount)
+  const output = operations.run(
+    currentLine.getOperationData(),
+    new OperationInput(
+      registerAggregationVM.carryFlag(),
+      registerAggregationVM.programCounter.getValue(),
+      currentLine.getImmediateData(),
+    )
+  )
+  registerAggregationVM.carryFlag(output.carry)
+  registerAggregationVM.programCounter.setValue(output.clockCount)
 })
 ko.applyBindings(clockGeneratorVM, clockGeneratorDom)
 
 const resetOperationDom = document.querySelector('.reset-button')
 const resetOperationVM = new ResetOperationVM(() => {
-  clockCount = 0
   registerAggregationVM.carryFlag(false)
   registerAggregationVM.registerA.setValue(0)
   registerAggregationVM.registerB.setValue(0)
-  registerAggregationVM.programCounter.setValue(clockCount)
+  registerAggregationVM.programCounter.setValue(0)
   romVM.reset()
 })
 ko.applyBindings(resetOperationVM, resetOperationDom)
