@@ -24,18 +24,29 @@ const registerDom = document.querySelector('.register')
 ko.applyBindings(registerAggregationVM, registerDom)
 
 const operations: Map<number, Operation> = new Map()
+const moveToA = new Move(registerAggregationVM.registerA)
+const moveToB = new Move(registerAggregationVM.registerB)
 operations.set(0, new Add(registerAggregationVM.registerA))
 operations.set(5, new Add(registerAggregationVM.registerB))
-operations.set(3, new Move(registerAggregationVM.registerA))
-operations.set(7, new Move(registerAggregationVM.registerB))
+operations.set(3, moveToA)
+operations.set(7, moveToB)
+operations.set(1, moveToA)
+operations.set(4, moveToB)
 
 let clockCount = 0
 const clockGeneratorDom = document.querySelector('.clock-generator')
 const clockGeneratorVM = new ClockGeneratorVM(() => {
   clockCount++
   const currentLine = romVM.currentLine()
-  const operation = operations.get(currentLine.getOperationData())
-  const immediateData = new ImmediateData(currentLine.getImmediateData())
+  const operationCode = currentLine.getOperationData()
+  const operation = operations.get(operationCode)
+  const data =
+    operationCode === 1 ?
+      registerAggregationVM.registerB.getValue() :
+    operationCode === 4 ? 
+      registerAggregationVM.registerA.getValue() :
+      currentLine.getImmediateData()
+  const immediateData = new ImmediateData(data)
   const carry = operation ? operation.run(immediateData) : false
   registerAggregationVM.carryFlag(carry)
   registerAggregationVM.programCounter.setValue(clockCount)
