@@ -18,19 +18,17 @@
         <p>RegistorB <span data-bind="text: registerB.display">0000</span></p>
         <p>C Flag <span data-bind="text: Number(carryFlag())">0</span></p>
         <p>Program Counter <span data-bind="text: programCounter.display">0000</span></p>
-        <p>
+        <p class="output">
           output
-          <input type="checkbox">
-          <input type="checkbox">
-          <input type="checkbox">
-          <input type="checkbox">
+          <!-- ko foreach: output.memories -->
+          <input type="checkbox" data-bind="checked: $data">
+          <!-- /ko -->
         </p>
-        <p>
+        <p class="input">
           input
-          <input type="checkbox">
-          <input type="checkbox">
-          <input type="checkbox">
-          <input type="checkbox">
+          <!-- ko foreach: input.memories -->
+          <input type="checkbox" data-bind="checked: $data">
+          <!-- /ko -->
         </p>
       </div>
       <div class="clock-generator">
