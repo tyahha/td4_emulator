@@ -39,8 +39,9 @@ export default class RomLineVM {
     }
 
     set(flags: Array<boolean>): void {
-        for (let i = 0; i < this.memories.length; i++) {
-            this.memories[i].value(flags[i])
+        const length = this.memories.length
+        for (let i = 0; i < length; i++) {
+            this.memories[length - i - 1].value(flags[i])
         }
     }
 }
