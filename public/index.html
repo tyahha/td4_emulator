@@ -21,13 +21,13 @@
         <p class="output">
           output
           <!-- ko foreach: output.memories -->
-          <input type="checkbox" data-bind="checked: $data">
+          <input type="checkbox" data-bind="checked: value">
           <!-- /ko -->
         </p>
         <p class="input">
           input
           <!-- ko foreach: input.memories -->
-          <input type="checkbox" data-bind="checked: $data">
+          <input type="checkbox" data-bind="checked: value">
           <!-- /ko -->
         </p>
       </div>

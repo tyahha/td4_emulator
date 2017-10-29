@@ -18,4 +18,12 @@ export default class RegisterAggregationVM {
     this.input = new IOVM()
     this.output = new IOVM()
   }
+
+  reset(): void {
+    this.carryFlag(false)
+    this.registerA.setValue(0)
+    this.registerB.setValue(0)
+    this.programCounter.setValue(0)
+    this.output.setValue(0)
+  }
 }

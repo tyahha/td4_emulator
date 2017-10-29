@@ -23,6 +23,8 @@ ko.applyBindings(registerAggregationVM, registerDom)
 const operations = new OperationAggregation(
   registerAggregationVM.registerA,
   registerAggregationVM.registerB,
+  registerAggregationVM.input,
+  registerAggregationVM.output,
 )
 
 const clockGeneratorDom = document.querySelector('.clock-generator')
@@ -43,14 +45,10 @@ ko.applyBindings(clockGeneratorVM, clockGeneratorDom)
 
 const resetOperationDom = document.querySelector('.reset-button')
 const resetOperationVM = new ResetOperationVM(() => {
-  registerAggregationVM.carryFlag(false)
-  registerAggregationVM.registerA.setValue(0)
-  registerAggregationVM.registerB.setValue(0)
-  registerAggregationVM.programCounter.setValue(0)
+  registerAggregationVM.reset()
   romVM.reset()
 })
 ko.applyBindings(resetOperationVM, resetOperationDom)
-
 
 function setFileLoadEventListener() {
   const domLoadFile = document.getElementById("load-file")

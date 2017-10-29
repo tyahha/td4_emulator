@@ -10,7 +10,12 @@ import JumpIfNoCarry from "./JumpIfNoCarry"
 
 export default class OperationAggregation {
   operations: Map<number, Operation>
-  constructor(registerA: Register, registerB: Register) {
+  constructor(
+    registerA: Register,
+    registerB: Register,
+    input: Register,
+    output: Register,
+  ) {
     this.operations = new Map()
     this.operations.set(0, new Add(registerA))
     this.operations.set(5, new Add(registerB))
@@ -20,6 +25,10 @@ export default class OperationAggregation {
     this.operations.set(4, new MoveFromRegister(registerB, registerA))
     this.operations.set(15, new Jump())
     this.operations.set(14, new JumpIfNoCarry())
+    this.operations.set(2, new MoveFromRegister(registerA, input))
+    this.operations.set(6, new MoveFromRegister(registerB, input))
+    this.operations.set(9, new MoveFromRegister(output, registerB))
+    this.operations.set(11, new Move(output))
   }
 
   run(operationCode: number, input: OperationInput): OperationOutput {
