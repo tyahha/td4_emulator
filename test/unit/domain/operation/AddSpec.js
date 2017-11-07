@@ -25,7 +25,7 @@ describe('domain Add', () => {
       const targetRegister = new RegisterMock(0)
       const add = new Add(targetRegister)
       const output = add.run(new OperationInput(false, 0, new ImmediateData(15)))
-      assert(output.carry === true)
+      assert(output.carry === false)
     })
   })
 })
