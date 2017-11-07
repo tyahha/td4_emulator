@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "「CPUの創り方(https://www.amazon.co.jp/dp/4839909865)」で製作する4bit CPUのブラウザで動くエミュレータです",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha",
-    "webpack": "webpack"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tyahha/td4_emulator.git"
@@ -34,9 +30,15 @@
     "mocha": "^4.0.1",
     "mocha-webpack": "^1.0.1",
     "node-sass": "^4.5.3",
+    "npm-run-all": "^4.1.2",
     "power-assert": "^1.4.4",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
     "webpack": "^3.7.1"
+  },
+  "scripts": {
+    "test": "karma start",
+    "webpack": "webpack",
+    "build": "run-s test webpack"
   }
 }
