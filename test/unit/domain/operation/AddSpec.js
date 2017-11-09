@@ -3,20 +3,7 @@ import Add from '../../../../src/js/domain/operation/Add'
 import OperationInput from '../../../../src/js/domain/operation/OperationInput'
 import OperationOutput from '../../../../src/js/domain/operation/OperationOutput'
 import ImmediateData from '../../../../src/js/domain/ImmediateData'
-import type {Register} from '../../../../src/js/domain/Register'
-
-class RegisterMock implements Register {
-  value: number
-  constructor(value: number) {
-    this.value = value
-  }
-  getValue(): number {
-    return this.value
-  }
-  setValue(value: number): void {
-    this.value = value
-  }
-}
+import {RegisterMock} from './OperationTestUtil'
 
 describe('operation Add', () => {
   describe('#run', () => {
