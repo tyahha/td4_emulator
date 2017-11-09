@@ -26,9 +26,8 @@ describe('operation Jump', () => {
       doAllCase((i, o) => o.carry === false)
     })
 
-    // TODO
-    // it('should always output.clockCount === input.ImmediateData', () => {
-    //   doAllCase((i, o) => o.clockCount === i.data)
-    // })
+    it('should always output.clockCount === input.data.value', () => {
+      doAllCase((input, output) => output.clockCount === input.data.value)
+    })
   })
 })
