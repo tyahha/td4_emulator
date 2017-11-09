@@ -37,8 +37,10 @@
     "webpack": "^3.7.1"
   },
   "scripts": {
-    "test": "karma start",
+    "flow": "flow check",
     "webpack": "webpack",
+    "karma": "karma start",
+    "test": "run-s flow karma",
     "build": "run-s test webpack"
   }
 }
