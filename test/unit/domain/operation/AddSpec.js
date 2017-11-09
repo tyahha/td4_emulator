@@ -1,10 +1,9 @@
+import assert from 'power-assert'
 import Add from '../../../../src/js/domain/operation/Add'
 import OperationInput from '../../../../src/js/domain/operation/OperationInput'
 import OperationOutput from '../../../../src/js/domain/operation/OperationOutput'
 import ImmediateData from '../../../../src/js/domain/ImmediateData'
 import type {Register} from '../../../../src/js/domain/Register'
-
-import assert from 'power-assert'
 
 class RegisterMock implements Register {
   value: number
@@ -19,7 +18,7 @@ class RegisterMock implements Register {
   }
 }
 
-describe('domain Add', () => {
+describe('operation Add', () => {
   describe('#run', () => {
     it('should return carry false when add result under 16', () => {
       const targetRegister0 = new RegisterMock(0)
