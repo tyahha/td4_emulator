@@ -30,3 +30,23 @@ export function runAllInputPattern(operation: Operation, check: (OperationInput,
   loopAllcase(true)
   loopAllcase(false)
 }
+
+export function runAllInputPatternWithRegister(
+  register: Register,
+  operation: Operation,
+  check: (number, OperationInput, OperationOutput) => boolean
+) {
+  function loopAllcase(inputCarry: boolean): void {
+    for (let i = 0; i < 16; i++) {
+      for (let j = 0; j < 16; j++) {
+        for (let k = 0; k < 16; k++) {
+          register.setValue(k)
+          const input = new OperationInput(inputCarry, i, new ImmediateData(j))
+          assert(check(k, input, operation.run(input)))
+        }
+      }
+    }
+  }
+  loopAllcase(true)
+  loopAllcase(false)
+}
