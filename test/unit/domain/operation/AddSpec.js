@@ -1,7 +1,4 @@
-import assert from 'power-assert'
 import Add from '../../../../src/js/domain/operation/Add'
-import OperationInput from '../../../../src/js/domain/operation/OperationInput'
-import OperationOutput from '../../../../src/js/domain/operation/OperationOutput'
 import ImmediateData from '../../../../src/js/domain/ImmediateData'
 import {RegisterMock, runAllInputPatternWithRegister} from './OperationTestUtil'
 
