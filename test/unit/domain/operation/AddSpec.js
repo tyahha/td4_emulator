@@ -4,18 +4,20 @@ import {RegisterMock, runAllInputPatternWithRegister} from './OperationTestUtil'
 
 describe('operation Add', () => {
   describe('#run', () => {
-    it('should return carry false when add result under 16 or true, and should incliment clockCount', () => {
+    it('should return carry false when add result under 16 or true, and incliment clockCount and register value after run === register value before run + input.data.value', () => {
       const targetRegister = new RegisterMock(0)
       runAllInputPatternWithRegister(
         targetRegister,
         new Add(targetRegister),
-        (registerValue, i, o) => {
+        (beforeRegister, i, o) => {
           return (
-            registerValue + i.data.value >= 16
+            beforeRegister + i.data.value >= 16
               ? o.carry
               : !o.carry
           ) && (
             i.clockCount + 1 === o.clockCount
+          ) && (
+            targetRegister.getValue() === beforeRegister + i.data.value
           )
         }
       )
