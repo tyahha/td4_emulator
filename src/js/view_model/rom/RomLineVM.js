@@ -7,7 +7,7 @@ function parseMemoryCellToNumber(cell: RomCellVM): number {
     return cell ? cell.value() ? 1 : 0 : 0
 }
 
-function parseMemoryToNumber(memories: Array<RomCellVM>): number {
+export function parseMemoryToNumber(memories: Array<RomCellVM>): number {
     return parseMemoryCellToNumber(memories[3]) << 3 |
            parseMemoryCellToNumber(memories[2]) << 2 |
            parseMemoryCellToNumber(memories[1]) << 1 |
