@@ -8,7 +8,7 @@ function constructRomCellVMs(a: Array<number>) {
 
 describe('RomLineVM', () => {
   describe('parseMemoryToNumber', () => {
-    it('shold parse memory', () => {
+    it('shoud parse memory', () => {
       assert(parseMemoryToNumber(constructRomCellVMs([0, 0, 0, 0])) === 0)
       assert(parseMemoryToNumber(constructRomCellVMs([1, 0, 0, 0])) === 1)
       assert(parseMemoryToNumber(constructRomCellVMs([0, 1, 0, 0])) === 2)
@@ -25,6 +25,14 @@ describe('RomLineVM', () => {
       assert(parseMemoryToNumber(constructRomCellVMs([1, 0, 1, 1])) === 13)
       assert(parseMemoryToNumber(constructRomCellVMs([0, 1, 1, 1])) === 14)
       assert(parseMemoryToNumber(constructRomCellVMs([1, 1, 1, 1])) === 15)
+    })
+
+    it('shoud treat undefined as 0', () => {
+      assert(parseMemoryToNumber([]) === 0)
+      assert(parseMemoryToNumber([new RomCellVM(true, 0, 0)]) === 1)
+      const a = new Array(4)
+      a[1] = new RomCellVM(true, 0, 0)
+      assert(parseMemoryToNumber(a) === 2)
     })
   })
 })
