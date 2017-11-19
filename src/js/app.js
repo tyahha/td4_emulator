@@ -89,3 +89,16 @@ function setFileLoadEventListener() {
   }
 }
 setFileLoadEventListener()
+
+function setSaveFileEventListener() {
+  const domSaveFile = document.getElementById('save-file')
+  if (domSaveFile) {
+    domSaveFile.addEventListener('click', (evt: MouseEvent) => {
+      const target = evt.target
+      if (target instanceof HTMLElement) {
+        target.setAttribute('href', `data:text/plain,${encodeURIComponent('TODO')}`)
+      }
+    }, false)
+  }
+}
+setSaveFileEventListener()
