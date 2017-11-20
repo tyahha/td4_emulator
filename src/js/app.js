@@ -43,11 +43,12 @@ const clockGeneratorVM = new ClockGeneratorVM(() => {
 })
 ko.applyBindings(clockGeneratorVM, clockGeneratorDom)
 
-const resetOperationDom = document.querySelector('.reset-button')
-const resetOperationVM = new ResetOperationVM(() => {
+function reset() {
   registerAggregationVM.reset()
   romVM.reset()
-})
+}
+const resetOperationDom = document.querySelector('.reset-button')
+const resetOperationVM = new ResetOperationVM(reset)
 ko.applyBindings(resetOperationVM, resetOperationDom)
 
 function setFileLoadEventListener() {
@@ -69,6 +70,7 @@ function setFileLoadEventListener() {
               else if (parseResult instanceof Setting) {
                 clockGeneratorVM.setClockMode(parseResult.clockMode)
                 romVM.set(parseResult.memories)
+                reset()
               }
               else {
                 // unreachable
@@ -96,7 +98,14 @@ function setSaveFileEventListener() {
     domSaveFile.addEventListener('click', (evt: MouseEvent) => {
       const target = evt.target
       if (target instanceof HTMLElement) {
-        target.setAttribute('href', `data:text/plain,${encodeURIComponent('TODO')}`)
+        const saveString = FileParser.settingToFile(
+          new Setting(
+            clockGeneratorVM.currentMode(),
+            false,
+            romVM.get()
+          )
+        )
+        target.setAttribute('href', `data:text/plain,${encodeURIComponent(saveString)}`)
       }
     }, false)
   }

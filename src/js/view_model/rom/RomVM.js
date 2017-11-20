@@ -34,4 +34,8 @@ export default class RomVM {
             this.lines[i].set(flags.slice(i * 8, i * 8 + 8))
         }
     }
+
+    get(): Array<boolean> {
+        return this.lines.map(e => e.get()).reduce((prev, cur) => prev.concat(cur))
+    }
 }

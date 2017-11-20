@@ -44,4 +44,8 @@ export default class RomLineVM {
             this.memories[length - i - 1].value(flags[i])
         }
     }
+
+    get(): Array<boolean> {
+        return this.memories.map(m => m.value()).reverse()
+    }
 }

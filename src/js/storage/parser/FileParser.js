@@ -73,6 +73,17 @@ export default {
     const beep = convertFlagLine(beepString)
 
     return new Setting(hzMode, beep, memories)
-  }
+  },
+
+  settingToFile: (setting: Setting) => {
+    const memoryStrings = setting.memories.map(m => m ? Flag.ON : Flag.OFF)
+    const helzValues = setting.clockMode === '1Hz'
+                         ?  [HzFlag.True, HzFlag.False, HzFlag.False]
+                         : setting.clockMode === '10Hz'
+                           ?  [HzFlag.False, HzFlag.True, HzFlag.False]
+                           :  [HzFlag.False, HzFlag.False, HzFlag.True]
+    const beepString = setting.beep ? Flag.ON : Flag.OFF
+    return memoryStrings.concat(helzValues).concat([beepString]).join("\r\n")
+  },
 }
 
