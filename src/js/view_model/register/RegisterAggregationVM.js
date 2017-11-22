@@ -1,6 +1,7 @@
 import ko from 'knockout'
 import RegisterVM from './RegisterVM'
 import IOVM from './IOVM'
+import BeepVM from './BeepVM'
 
 export default class RegisterAggregationVM {
   registerA: RegisterVM
@@ -9,6 +10,7 @@ export default class RegisterAggregationVM {
   programCounter: RegisterVM
   input: IOVM
   output: IOVM
+  beep: BeepVM 
   
   constructor(programCounterSbscriver: (newValue: number) => void) {
     this.registerA = new RegisterVM('A', 0)
@@ -17,6 +19,7 @@ export default class RegisterAggregationVM {
     this.programCounter = new RegisterVM('PC', 0, programCounterSbscriver)
     this.input = new IOVM()
     this.output = new IOVM()
+    this.beep = new BeepVM()
   }
 
   reset(): void {
@@ -25,5 +28,11 @@ export default class RegisterAggregationVM {
     this.registerB.setValue(0)
     this.programCounter.setValue(0)
     this.output.setValue(0)
+  }
+
+  tryBeep(): void {
+    if (this.output.memories[0].value()) {
+      this.beep.beep()
+    }
   }
 }

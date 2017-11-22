@@ -40,6 +40,7 @@ const clockGeneratorVM = new ClockGeneratorVM(() => {
   )
   registerAggregationVM.carryFlag(output.carry)
   registerAggregationVM.programCounter.setValue(output.clockCount)
+  registerAggregationVM.tryBeep()
 })
 ko.applyBindings(clockGeneratorVM, clockGeneratorDom)
 
