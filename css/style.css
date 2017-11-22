@@ -1,0 +1,70 @@
+@charset "UTF-8";
+.title {
+  border-bottom: solid; }
+
+.square_btn {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #00bcd4;
+  transition: .4s; }
+
+.square_btn:hover {
+  background: #1ec7bb;
+  cursor: pointer; }
+
+.clock-generator .title, .program-memory .title {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  border-bottom: solid;
+  border-width: thin; }
+
+.clock-generator, .program-memory {
+  border: solid;
+  padding: 10px;
+  border-width: thin; }
+
+.control-panel p {
+  margin: 10px 10px; }
+
+.control-panel p.beep-line {
+  width: 30px;
+  height: 20px;
+  border-bottom: solid;
+  border-left: solid;
+  border-width: thin;
+  margin: -25px 10px 10px 75px; }
+
+.control-panel p.beep-string {
+  margin: -23px 10px 10px 105px; }
+  .control-panel p.beep-string input {
+    margin-right: -5px; }
+
+.register {
+  width: 200px; }
+
+.clock-generator {
+  width: 165px; }
+
+.reset-button {
+  margin-top: 10px;
+  width: 185px;
+  height: 30px; }
+
+.program-memory {
+  top: 135px;
+  position: absolute;
+  left: 226px; }
+
+.rom-line.current {
+  color: red; }
+
+.memory-checkbox {
+  display: none; }
+  .memory-checkbox + .memory-icon:after {
+    content: '\25A1'; }
+  .memory-checkbox:checked + .memory-icon:after {
+    content: '\25A0'; }

@@ -6,7 +6,7 @@ module.exports = [
     entry: './src/js/app.js',
     output: {
       filename: 'bundle.js',
-      path: path.join(__dirname, 'public/js'),
+      path: path.join(__dirname, 'js'),
     },
     module: {
         loaders:[
@@ -22,7 +22,7 @@ module.exports = [
         style: './src/css/style.scss'
     },
     output: {
-        path: path.join(__dirname, 'public/css'),
+        path: path.join(__dirname, 'css'),
         filename: '[name].css'
     },
     module: {
