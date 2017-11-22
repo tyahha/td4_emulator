@@ -31,8 +31,28 @@
     border-width: thin;
 }
 
-.control-panel p {
-    margin: 10px 10px;
+.control-panel {
+    p {
+        margin: 10px 10px;
+    }
+
+    p.beep-line {
+        width: 30px;
+        height: 20px;
+        border-bottom: solid;
+        border-left: solid;
+        border-width: thin;
+        margin: -25px 10px 10px 75px;
+
+    }
+    
+    p.beep-string {
+        margin: -23px 10px 10px 105px;
+
+        input {
+            margin-right: -5px;
+        }
+    }
 }
 
 .register {
