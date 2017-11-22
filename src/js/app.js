@@ -71,6 +71,7 @@ function setFileLoadEventListener() {
               else if (parseResult instanceof Setting) {
                 clockGeneratorVM.setClockMode(parseResult.clockMode)
                 romVM.set(parseResult.memories)
+                registerAggregationVM.beep.value(parseResult.beep)
                 reset()
               }
               else {
@@ -102,7 +103,7 @@ function setSaveFileEventListener() {
         const saveString = FileParser.settingToFile(
           new Setting(
             clockGeneratorVM.currentMode(),
-            false,
+            registerAggregationVM.beep.value(),
             romVM.get()
           )
         )

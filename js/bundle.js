@@ -5982,6 +5982,7 @@ function setFileLoadEventListener() {
               } else if (parseResult instanceof __WEBPACK_IMPORTED_MODULE_8__storage_Setting__["a" /* default */]) {
                 clockGeneratorVM.setClockMode(parseResult.clockMode);
                 romVM.set(parseResult.memories);
+                registerAggregationVM.beep.value(parseResult.beep);
                 reset();
               } else {
                 // unreachable
@@ -6009,7 +6010,7 @@ function setSaveFileEventListener() {
     domSaveFile.addEventListener('click', evt => {
       const target = evt.target;
       if (target instanceof HTMLElement) {
-        const saveString = __WEBPACK_IMPORTED_MODULE_7__storage_parser_FileParser__["a" /* default */].settingToFile(new __WEBPACK_IMPORTED_MODULE_8__storage_Setting__["a" /* default */](clockGeneratorVM.currentMode(), false, romVM.get()));
+        const saveString = __WEBPACK_IMPORTED_MODULE_7__storage_parser_FileParser__["a" /* default */].settingToFile(new __WEBPACK_IMPORTED_MODULE_8__storage_Setting__["a" /* default */](clockGeneratorVM.currentMode(), registerAggregationVM.beep.value(), romVM.get()));
         target.setAttribute('href', `data:text/plain,${encodeURIComponent(saveString)}`);
       }
     }, false);
