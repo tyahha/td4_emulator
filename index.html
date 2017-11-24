@@ -21,9 +21,9 @@
         <p>C Flag <span data-bind="text: Number(carryFlag())">0</span></p>
         <p>Program Counter <span data-bind="text: programCounter.display">0000</span></p>
         <p class="output">
-          output
+          <span class="label">output</span>
           <!-- ko foreach: output.memories -->
-          <input type="checkbox" data-bind="checked: value">
+          <img data-bind="attr: {src: value() ? 'img/on.png' : 'img/off.png'}">
           <!-- /ko -->
         </p>
         <p class="beep-line"></p>

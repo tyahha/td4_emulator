@@ -30,6 +30,12 @@
 .control-panel p {
   margin: 10px 10px; }
 
+.control-panel p.output {
+  margin: 10px 10px; }
+  .control-panel p.output .label {
+    position: relative;
+    top: -3px; }
+
 .control-panel p.beep-line {
   width: 30px;
   height: 20px;

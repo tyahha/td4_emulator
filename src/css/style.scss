@@ -36,6 +36,14 @@
         margin: 10px 10px;
     }
 
+    p.output {
+        margin: 10px 10px;
+        .label {
+            position: relative;
+            top: -3px;
+        }
+    }
+
     p.beep-line {
         width: 30px;
         height: 20px;
