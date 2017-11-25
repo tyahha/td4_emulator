@@ -7,7 +7,7 @@
 [include]
 
 [libs]
-./ko/src/decls
+./src/decls
 
 [lints]
 

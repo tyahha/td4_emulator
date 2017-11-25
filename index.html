@@ -1,67 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <title>TD4 Emulator</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="utf-8">
+    <title>TD4 emurator</title>
   </head>
-  <body>
-    <h1 class="title">TD4 Emulator</h1>
-    <div>
-      <label for="load-file" class="square_btn">
-        Load Program
-        <input type="file" id="load-file" style="display:none;" accept=".td4">
-      </label>
-      <a download="program.td4" class="square_btn" id="save-file" href="#">Save Program</a>
-    </div>
-    <div class="control-panel">
-      <div class="register">
-        <p>RegistorA <span data-bind="text: registerA.display">0000</span></p>
-        <p>RegistorB <span data-bind="text: registerB.display">0000</span></p>
-        <p>C Flag <span data-bind="text: Number(carryFlag())">0</span></p>
-        <p>Program Counter <span data-bind="text: programCounter.display">0000</span></p>
-        <p class="output">
-          <span class="label">output</span>
-          <!-- ko foreach: output.memories -->
-          <img data-bind="attr: {src: value() ? 'img/on.png' : 'img/off.png'}">
-          <!-- /ko -->
-        </p>
-        <p class="beep-line"></p>
-        <p class="beep-string">
-          <input type="checkbox" data-bind="checked: beep.value">
-          Beep
-        </p>
-        <p class="input">
-          input
-          <!-- ko foreach: input.memories -->
-          <input type="checkbox" data-bind="checked: value">
-          <!-- /ko -->
-        </p>
-      </div>
-      <div class="clock-generator">
-        <h3 class="title">Clock Generator</h3>
-        <p><input type="radio" name="clock-generator" value="1Hz" data-bind="checked: mode">1Hz</p>
-        <p><input type="radio" name="clock-generator" value="10Hz" data-bind="checked: mode">10Hz</p>
-        <p><input type="radio" name="clock-generator" value="Manual" data-bind="checked: mode">Manual <button data-bind="click: clock">Clock</button></p>
-      </div>
-      <div>
-        <button class="reset-button" data-bind="click: reset">Reset</button>
-      </div>
-    </div>
-    <div class="program-memory">
-      <h3 class="title">Program Memory</h3>
-      <!-- ko foreach: lines -->
-      <div class="rom-line" data-bind="css: {current: current}">
-        Address <span data-bind="text: address.display"></span>
-        <!-- ko foreach: memories -->
-        <label>
-          <input type="checkbox" class="memory-checkbox" data-bind="checked: value" />
-          <span class="memory-icon"></span>
-        </label>
-        <!-- /ko -->
-      </div>
-      <!-- /ko -->
-    </div>
-  </body>
-  <script type="text/javascript" src="js/bundle.js"></script>
+  <h1>TD4 Emulator</h1>
+  <a href="ko/index.html">implemented with knockout.js</a>
 </html>

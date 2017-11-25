@@ -1,9 +1,9 @@
 #builds
-public/js/
-public/css/
+ko/public/js/
+ko/public/css/
 
 # Dependency directories
-node_modules/
+ko/node_modules/
 
 # Vim Temporary
 .netrwhist
