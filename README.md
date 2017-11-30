@@ -64,9 +64,10 @@ NOP命令はないが、命令「0000 0000(2進数)」は事実上のNOP
 - ESLintの導入
 - フォーマッタ―の導入
 - ブラウザキャッシュ対策
+- yarnの導入
 - knockout.js以外での実装を追加
- - Vue.js
- - React.js
- - React.js + flux
- - React.js + Redux
- - Angular.js
+  - Vue.js
+  - React.js
+  - React.js + flux
+  - React.js + Redux
+  - Angular.js
