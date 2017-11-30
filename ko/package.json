@@ -38,8 +38,10 @@
   },
   "scripts": {
     "flow": "flow check",
-    "webpack": "webpack",
+    "webpack:css": "webpack --config webpack.css.config.js",
+    "webpack:js": "webpack --config webpack.js.config.js",
     "karma": "karma start",
+    "webpack": "run-s webpack:css webpack:js",
     "test": "run-s flow karma",
     "build": "run-s test webpack"
   }

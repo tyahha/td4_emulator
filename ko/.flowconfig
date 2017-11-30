@@ -1,7 +1,7 @@
 [ignore]
 .*/node_modules/.*
 .*/js/bundle.js
-.*/webpack\.config\.js
+.*/webpack.*\.config\.js
 .*/karma\.conf\.js
 
 [include]
