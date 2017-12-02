@@ -3,7 +3,7 @@
   <head>
     <title>TD4 Emulator implemented with knockout.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
   </head>
   <body>
     <h1 class="title">TD4 Emulator</h1>
@@ -24,7 +24,7 @@
         <p class="output">
           <span class="label">output</span>
           <!-- ko foreach: output.memories -->
-          <img data-bind="attr: {src: value() ? 'img/on.png' : 'img/off.png'}">
+          <img data-bind="attr: {src: value() ? '../img/on.png' : '../img/off.png'}">
           <!-- /ko -->
         </p>
         <p class="beep-line"></p>

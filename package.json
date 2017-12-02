@@ -37,12 +37,12 @@
     "webpack": "^3.7.1"
   },
   "scripts": {
-    "flow": "flow check",
+    "webpack:ko.js": "webpack --config webpack.ko.js.config.js",
+    "karma:ko": "cd ko & karma start & cd ..",
     "webpack:css": "webpack --config webpack.css.config.js",
-    "webpack:js": "webpack --config webpack.js.config.js",
-    "karma": "karma start",
-    "webpack": "run-s webpack:css webpack:js",
-    "test": "run-s flow karma",
+    "flow": "flow check",
+    "webpack": "run-s webpack:css webpack:ko.js",
+    "test": "run-s flow karma:ko",
     "build": "run-s test webpack"
   }
 }
