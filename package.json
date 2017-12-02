@@ -39,10 +39,14 @@
   "scripts": {
     "webpack:ko.js": "webpack --config webpack.ko.js.config.js",
     "karma:ko": "cd ko & karma start & cd ..",
+    "build:elm": "elm-make elm/src/TD4Emurator.elm --output elm/elm.js",
     "webpack:css": "webpack --config webpack.css.config.js",
     "flow": "flow check",
     "webpack": "run-s webpack:css webpack:ko.js",
     "test": "run-s flow karma:ko",
-    "build": "run-s test webpack"
+    "build": "run-s test webpack build:elm"
+  },
+  "dependencies": {
+    "elm": "^0.18.0"
   }
 }

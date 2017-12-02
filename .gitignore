@@ -1,6 +1,7 @@
 
 # Dependency directories
 node_modules/
+elm-stuff/
 
 # Vim Temporary
 .netrwhist
