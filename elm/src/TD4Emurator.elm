@@ -1,5 +1,8 @@
-import Html exposing (..)
-import Html.Attributes exposing (..)
+import Html exposing (beginnerProgram)
+
+import Models exposing (model)
+import View exposing (view)
+import Update exposing (update)
 
 main =
   Html.beginnerProgram
@@ -7,28 +10,3 @@ main =
     , view = view
     , update = update
     }
-
--- Model
-type alias Model = String
-
-model: Model
-model = "Hello world"
-
--- Update
-type Msg = TODO
-
-update: Msg -> Model -> Model
-update msg model = model
-
--- View
-view: Model -> Html Msg
-view model =
-  div []
-    [ h1 [ class "title" ] [ text "TD4 Emulator" ]
-    , p []
-      [ text "implemented with elm "
-      , a [ href "../index.html" ]
-        [ text "TOP"
-        ]
-      ]
-    ]

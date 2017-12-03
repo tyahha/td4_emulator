@@ -4,7 +4,8 @@
     "repository": "https://github.com/tyahha/td4-emulator.git",
     "license": "MIT",
     "source-directories": [
-        "./elm/src"
+        "./elm/src",
+        "./elm/src/view"
     ],
     "exposed-modules": [],
     "dependencies": {
