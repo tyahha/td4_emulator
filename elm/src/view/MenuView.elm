@@ -9,7 +9,7 @@ import Messages exposing (..)
 
 menu: Model -> Html Msg
 menu model =
-  div []
+  div [ class "menu" ]
     [ label [ for "load-file", class "square_btn"]
         [ text "Load Program"
         , input

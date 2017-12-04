@@ -2,15 +2,22 @@
 .title {
   border-bottom: solid; }
 
+.menu {
+  font-size: 0; }
+
 .square_btn {
   position: relative;
   display: inline-block;
+  font-size: 15px;
   font-weight: bold;
   padding: 0.25em 0.5em;
   text-decoration: none;
   color: #FFF;
   background: #00bcd4;
   transition: .4s; }
+
+a.square_btn {
+  margin-left: 5px; }
 
 .square_btn:hover {
   background: #1ec7bb;

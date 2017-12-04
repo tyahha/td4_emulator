@@ -8268,7 +8268,11 @@ var _tyahha$td4_emulator$Messages$LoadFile = {ctor: 'LoadFile'};
 var _tyahha$td4_emulator$MenuView$menu = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('menu'),
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: A2(
