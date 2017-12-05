@@ -7,6 +7,7 @@ import Models exposing (..)
 import Messages exposing (..)
 
 import MenuView exposing (menu)
+import ControlPanelView exposing (controlPanel)
 
 view: Model -> Html Msg
 view model =
@@ -19,5 +20,6 @@ view model =
         ]
       ]
     , MenuView.menu model
+    , controlPanel model
     ]
 

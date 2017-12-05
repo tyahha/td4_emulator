@@ -41,7 +41,8 @@ a.square_btn {
   margin: 10px 10px; }
   .control-panel p.output .label {
     position: relative;
-    top: -3px; }
+    top: -3px;
+    margin-right: 7px; }
 
 .control-panel p.beep-line {
   width: 30px;
@@ -53,8 +54,6 @@ a.square_btn {
 
 .control-panel p.beep-string {
   margin: -23px 10px 10px 105px; }
-  .control-panel p.beep-string input {
-    margin-right: -5px; }
 
 .register {
   width: 200px; }

@@ -2675,6 +2675,28 @@ var _elm_lang$core$Array$repeat = F2(
 	});
 var _elm_lang$core$Array$Array = {ctor: 'Array'};
 
+var _elm_lang$core$Native_Bitwise = function() {
+
+return {
+	and: F2(function and(a, b) { return a & b; }),
+	or: F2(function or(a, b) { return a | b; }),
+	xor: F2(function xor(a, b) { return a ^ b; }),
+	complement: function complement(a) { return ~a; },
+	shiftLeftBy: F2(function(offset, a) { return a << offset; }),
+	shiftRightBy: F2(function(offset, a) { return a >> offset; }),
+	shiftRightZfBy: F2(function(offset, a) { return a >>> offset; })
+};
+
+}();
+
+var _elm_lang$core$Bitwise$shiftRightZfBy = _elm_lang$core$Native_Bitwise.shiftRightZfBy;
+var _elm_lang$core$Bitwise$shiftRightBy = _elm_lang$core$Native_Bitwise.shiftRightBy;
+var _elm_lang$core$Bitwise$shiftLeftBy = _elm_lang$core$Native_Bitwise.shiftLeftBy;
+var _elm_lang$core$Bitwise$complement = _elm_lang$core$Native_Bitwise.complement;
+var _elm_lang$core$Bitwise$xor = _elm_lang$core$Native_Bitwise.xor;
+var _elm_lang$core$Bitwise$or = _elm_lang$core$Native_Bitwise.or;
+var _elm_lang$core$Bitwise$and = _elm_lang$core$Native_Bitwise.and;
+
 //import Native.Utils //
 
 var _elm_lang$core$Native_Char = function() {
@@ -8260,10 +8282,310 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _tyahha$td4_emulator$Models$model = 'Hello world';
+var _tyahha$td4_emulator$Models$Model = F7(
+	function (a, b, c, d, e, f, g) {
+		return {registorA: a, registorB: b, carry: c, programCountor: d, output: e, beep: f, input: g};
+	});
+var _tyahha$td4_emulator$Models$model = A7(_tyahha$td4_emulator$Models$Model, 0, 0, false, 0, 0, false, 0);
 
 var _tyahha$td4_emulator$Messages$SaveFile = {ctor: 'SaveFile'};
 var _tyahha$td4_emulator$Messages$LoadFile = {ctor: 'LoadFile'};
+
+var _tyahha$td4_emulator$Util$andToBool = F2(
+	function (target, bit) {
+		return _elm_lang$core$Native_Utils.eq(target & bit, bit);
+	});
+var _tyahha$td4_emulator$Util$boolToHexChar = function (b) {
+	return b ? _elm_lang$core$Native_Utils.chr('1') : _elm_lang$core$Native_Utils.chr('0');
+};
+var _tyahha$td4_emulator$Util$boolToHexString = function (b) {
+	return _elm_lang$core$String$fromChar(
+		_tyahha$td4_emulator$Util$boolToHexChar(b));
+};
+var _tyahha$td4_emulator$Util$intToHexString = function (num) {
+	return A2(
+		_elm_lang$core$String$cons,
+		_tyahha$td4_emulator$Util$boolToHexChar(
+			A2(_tyahha$td4_emulator$Util$andToBool, num, 8)),
+		A2(
+			_elm_lang$core$String$cons,
+			_tyahha$td4_emulator$Util$boolToHexChar(
+				A2(_tyahha$td4_emulator$Util$andToBool, num, 4)),
+			A2(
+				_elm_lang$core$String$cons,
+				_tyahha$td4_emulator$Util$boolToHexChar(
+					A2(_tyahha$td4_emulator$Util$andToBool, num, 2)),
+				A2(
+					_elm_lang$core$String$cons,
+					_tyahha$td4_emulator$Util$boolToHexChar(
+						A2(_tyahha$td4_emulator$Util$andToBool, num, 1)),
+					''))));
+};
+
+var _tyahha$td4_emulator$RegistorView$andToBitImg = F2(
+	function (num, mask) {
+		var b = A2(_tyahha$td4_emulator$Util$andToBool, num, mask);
+		return A2(
+			_elm_lang$html$Html$img,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$src(
+					b ? '../img/on.png' : '../img/off.png'),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'});
+	});
+var _tyahha$td4_emulator$RegistorView$registor = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('registor'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$p,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('RegistorA '),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							_tyahha$td4_emulator$Util$intToHexString(model.registorA)),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$p,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('RegistorB '),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(
+								_tyahha$td4_emulator$Util$intToHexString(model.registorB)),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$p,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('C Flag '),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(
+									_tyahha$td4_emulator$Util$boolToHexString(model.carry)),
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$p,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Program Counter '),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										_tyahha$td4_emulator$Util$intToHexString(model.programCountor)),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$p,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('output'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$span,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('label'),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('output'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(_tyahha$td4_emulator$RegistorView$andToBitImg, model.output, 8),
+										_1: {
+											ctor: '::',
+											_0: A2(_tyahha$td4_emulator$RegistorView$andToBitImg, model.output, 4),
+											_1: {
+												ctor: '::',
+												_0: A2(_tyahha$td4_emulator$RegistorView$andToBitImg, model.output, 2),
+												_1: {
+													ctor: '::',
+													_0: A2(_tyahha$td4_emulator$RegistorView$andToBitImg, model.output, 1),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$p,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('beep-line'),
+										_1: {ctor: '[]'}
+									},
+									{ctor: '[]'}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$p,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('beep-string'),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$input,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$checked(model.beep),
+														_1: {ctor: '[]'}
+													}
+												},
+												{ctor: '[]'}),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Beep'),
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$p,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('input'),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('input'),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$input,
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$checked(
+																	A2(_tyahha$td4_emulator$Util$andToBool, model.input, 8)),
+																_1: {ctor: '[]'}
+															}
+														},
+														{ctor: '[]'}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$input,
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$checked(
+																		A2(_tyahha$td4_emulator$Util$andToBool, model.input, 4)),
+																	_1: {ctor: '[]'}
+																}
+															},
+															{ctor: '[]'}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_elm_lang$html$Html$input,
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$checked(
+																			A2(_tyahha$td4_emulator$Util$andToBool, model.input, 2)),
+																		_1: {ctor: '[]'}
+																	}
+																},
+																{ctor: '[]'}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$input,
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Attributes$checked(
+																				A2(_tyahha$td4_emulator$Util$andToBool, model.input, 1)),
+																			_1: {ctor: '[]'}
+																		}
+																	},
+																	{ctor: '[]'}),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+
+var _tyahha$td4_emulator$ControlPanelView$controlPanel = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('control-panel'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _tyahha$td4_emulator$RegistorView$registor(model),
+			_1: {ctor: '[]'}
+		});
+};
 
 var _tyahha$td4_emulator$MenuView$menu = function (model) {
 	return A2(
@@ -8404,7 +8726,11 @@ var _tyahha$td4_emulator$View$view = function (model) {
 				_1: {
 					ctor: '::',
 					_0: _tyahha$td4_emulator$MenuView$menu(model),
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: _tyahha$td4_emulator$ControlPanelView$controlPanel(model),
+						_1: {ctor: '[]'}
+					}
 				}
 			}
 		});
