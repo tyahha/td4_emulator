@@ -14,3 +14,5 @@ update msg model =
     SaveFile ->
       -- TODO: SaveFile
       log "SaveFile" model
+    ChangeClockMode mode ->
+      { model | clockMode = log "ChangeClockMode" mode }

@@ -8282,14 +8282,127 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _tyahha$td4_emulator$Models$Model = F7(
-	function (a, b, c, d, e, f, g) {
-		return {registorA: a, registorB: b, carry: c, programCountor: d, output: e, beep: f, input: g};
+var _tyahha$td4_emulator$Models$Model = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {registorA: a, registorB: b, carry: c, programCountor: d, output: e, beep: f, input: g, clockMode: h};
 	});
-var _tyahha$td4_emulator$Models$model = A7(_tyahha$td4_emulator$Models$Model, 0, 0, false, 0, 0, false, 0);
+var _tyahha$td4_emulator$Models$Manual = {ctor: 'Manual'};
+var _tyahha$td4_emulator$Models$model = A8(_tyahha$td4_emulator$Models$Model, 0, 0, false, 0, 0, false, 0, _tyahha$td4_emulator$Models$Manual);
+var _tyahha$td4_emulator$Models$TenHz = {ctor: 'TenHz'};
+var _tyahha$td4_emulator$Models$OneHz = {ctor: 'OneHz'};
 
+var _tyahha$td4_emulator$Messages$ChangeClockMode = function (a) {
+	return {ctor: 'ChangeClockMode', _0: a};
+};
 var _tyahha$td4_emulator$Messages$SaveFile = {ctor: 'SaveFile'};
 var _tyahha$td4_emulator$Messages$LoadFile = {ctor: 'LoadFile'};
+
+var _tyahha$td4_emulator$ClockGeneratorView$radio = F2(
+	function (src, check) {
+		return A2(
+			_elm_lang$html$Html$input,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$type_('radio'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$name('clock-generator'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Events$onClick(
+							_tyahha$td4_emulator$Messages$ChangeClockMode(check)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$checked(
+								_elm_lang$core$Native_Utils.eq(src, check)),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			},
+			{ctor: '[]'});
+	});
+var _tyahha$td4_emulator$ClockGeneratorView$clockGenerator = function (clockMode) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('clock-generator'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$h3,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('title'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Clock Generator'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$p,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, clockMode, _tyahha$td4_emulator$Models$OneHz),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('1Hz'),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$p,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, clockMode, _tyahha$td4_emulator$Models$TenHz),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('10Hz'),
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$p,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, clockMode, _tyahha$td4_emulator$Models$Manual),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Manual '),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$button,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Clock'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
 
 var _tyahha$td4_emulator$Util$andToBool = F2(
 	function (target, bit) {
@@ -8583,7 +8696,33 @@ var _tyahha$td4_emulator$ControlPanelView$controlPanel = function (model) {
 		{
 			ctor: '::',
 			_0: _tyahha$td4_emulator$RegistorView$registor(model),
-			_1: {ctor: '[]'}
+			_1: {
+				ctor: '::',
+				_0: _tyahha$td4_emulator$ClockGeneratorView$clockGenerator(model.clockMode),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$button,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('reset-button'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Reset'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}
 		});
 };
 
@@ -8739,10 +8878,17 @@ var _tyahha$td4_emulator$View$view = function (model) {
 var _tyahha$td4_emulator$Update$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		if (_p0.ctor === 'LoadFile') {
-			return A2(_elm_lang$core$Debug$log, 'LoadFile', model);
-		} else {
-			return A2(_elm_lang$core$Debug$log, 'SaveFile', model);
+		switch (_p0.ctor) {
+			case 'LoadFile':
+				return A2(_elm_lang$core$Debug$log, 'LoadFile', model);
+			case 'SaveFile':
+				return A2(_elm_lang$core$Debug$log, 'SaveFile', model);
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						clockMode: A2(_elm_lang$core$Debug$log, 'ChangeClockMode', _p0._0)
+					});
 		}
 	});
 
