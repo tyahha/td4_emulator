@@ -42,13 +42,7 @@
       <h3 class="title">Program Memory</h3>
       <!-- ko foreach: lines -->
       <div class="rom-line" data-bind="css: {current: current}">
-        Address <span data-bind="text: address.display"></span>
-        <!-- ko foreach: memories -->
-        <label>
-          <input type="checkbox" class="memory-checkbox" data-bind="checked: value" />
-          <span class="memory-icon"></span>
-        </label>
-        <!-- /ko -->
+        Address <span data-bind="text: address.display"></span><!-- ko foreach: memories --><label><input type="checkbox" class="memory-checkbox" data-bind="checked: value" /><span class="memory-icon"></span></label><!-- /ko -->
       </div>
       <!-- /ko -->
     </div>

@@ -8,6 +8,7 @@ import Messages exposing (..)
 
 import MenuView exposing (menu)
 import ControlPanelView exposing (controlPanel)
+import ProgramMemoryView exposing (programMemoryView)
 
 view: Model -> Html Msg
 view model =
@@ -21,5 +22,6 @@ view model =
       ]
     , MenuView.menu model
     , controlPanel model
+    , programMemoryView model
     ]
 
