@@ -6,3 +6,5 @@ type Msg
   = LoadFile
   | SaveFile
   | ChangeClockMode ClockMode
+  | ManualClock
+  | Clock

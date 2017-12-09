@@ -13,6 +13,22 @@ type alias ProgramMemoryLines = List ProgramMemoryLine
 initProgramMemoryLine : Int -> ProgramMemoryLine
 initProgramMemoryLine address = ProgramMemoryLine address 0 0
 
+currentLine : Model -> ProgramMemoryLine
+currentLine model =
+  let filtered =
+    List.filter ( \p -> p.address == model.programCountor ) model.programMemoryLines
+  in
+    case List.head filtered of
+      Just line -> line
+      Nothing -> Debug.log "error currentLine" ( ProgramMemoryLine 0 0 0 )
+
+nextAddress : ProgramMemoryLine -> Int
+nextAddress line =
+  if line.address == 15 then
+    0
+  else
+    line.address + 1
+
 updateProgramMemoryLine : ProgramMemoryLine -> ProgramMemoryLine -> ProgramMemoryLine
 updateProgramMemoryLine src target =
   if target.address == src.address then

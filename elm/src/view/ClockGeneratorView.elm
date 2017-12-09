@@ -16,21 +16,21 @@ radio src check =
     , checked (src == check) ]
     []
 
-clockGenerator : ClockMode -> Html Msg
-clockGenerator clockMode =
+clockGenerator : Model -> Html Msg
+clockGenerator model =
   div [ class "clock-generator" ]
     [ h3 [ class "title" ] [ text "Clock Generator" ]
     , p []
-        [ radio clockMode OneHz
+        [ radio model.clockMode OneHz
         , text "1Hz"
         ]
     , p []
-        [ radio clockMode TenHz
+        [ radio model.clockMode TenHz
         , text "10Hz"
         ]
     , p []
-        [ radio clockMode Manual
+        [ radio model.clockMode Manual
         , text "Manual "
-        , button [] [ text "Clock" ]
+        , button [ onClick ManualClock ] [ text "Clock" ]
         ]
     ]

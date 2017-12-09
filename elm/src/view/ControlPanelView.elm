@@ -13,7 +13,7 @@ controlPanel : Model -> Html Msg
 controlPanel model =
   div [ class "control-panel" ]
     [ registor model
-    , clockGenerator model.clockMode
+    , clockGenerator model
     , div []
         [ button [ class "reset-button"]
             [ text "Reset"

@@ -8293,12 +8293,32 @@ var _tyahha$td4_emulator$Models$updateProgramMemoryLines = F2(
 			_tyahha$td4_emulator$Models$updateProgramMemoryLine(src),
 			targets);
 	});
+var _tyahha$td4_emulator$Models$nextAddress = function (line) {
+	return _elm_lang$core$Native_Utils.eq(line.address, 15) ? 0 : (line.address + 1);
+};
 var _tyahha$td4_emulator$Models$ProgramMemoryLine = F3(
 	function (a, b, c) {
 		return {address: a, operator: b, operand: c};
 	});
 var _tyahha$td4_emulator$Models$initProgramMemoryLine = function (address) {
 	return A3(_tyahha$td4_emulator$Models$ProgramMemoryLine, address, 0, 0);
+};
+var _tyahha$td4_emulator$Models$currentLine = function (model) {
+	var filtered = A2(
+		_elm_lang$core$List$filter,
+		function (p) {
+			return _elm_lang$core$Native_Utils.eq(p.address, model.programCountor);
+		},
+		model.programMemoryLines);
+	var _p0 = _elm_lang$core$List$head(filtered);
+	if (_p0.ctor === 'Just') {
+		return _p0._0;
+	} else {
+		return A2(
+			_elm_lang$core$Debug$log,
+			'error currentLine',
+			A3(_tyahha$td4_emulator$Models$ProgramMemoryLine, 0, 0, 0));
+	}
 };
 var _tyahha$td4_emulator$Models$Model = F9(
 	function (a, b, c, d, e, f, g, h, i) {
@@ -8322,6 +8342,8 @@ var _tyahha$td4_emulator$Models$model = A9(
 var _tyahha$td4_emulator$Models$TenHz = {ctor: 'TenHz'};
 var _tyahha$td4_emulator$Models$OneHz = {ctor: 'OneHz'};
 
+var _tyahha$td4_emulator$Messages$Clock = {ctor: 'Clock'};
+var _tyahha$td4_emulator$Messages$ManualClock = {ctor: 'ManualClock'};
 var _tyahha$td4_emulator$Messages$ChangeClockMode = function (a) {
 	return {ctor: 'ChangeClockMode', _0: a};
 };
@@ -8353,7 +8375,7 @@ var _tyahha$td4_emulator$ClockGeneratorView$radio = F2(
 			},
 			{ctor: '[]'});
 	});
-var _tyahha$td4_emulator$ClockGeneratorView$clockGenerator = function (clockMode) {
+var _tyahha$td4_emulator$ClockGeneratorView$clockGenerator = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -8382,7 +8404,7 @@ var _tyahha$td4_emulator$ClockGeneratorView$clockGenerator = function (clockMode
 					{ctor: '[]'},
 					{
 						ctor: '::',
-						_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, clockMode, _tyahha$td4_emulator$Models$OneHz),
+						_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, model.clockMode, _tyahha$td4_emulator$Models$OneHz),
 						_1: {
 							ctor: '::',
 							_0: _elm_lang$html$Html$text('1Hz'),
@@ -8396,7 +8418,7 @@ var _tyahha$td4_emulator$ClockGeneratorView$clockGenerator = function (clockMode
 						{ctor: '[]'},
 						{
 							ctor: '::',
-							_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, clockMode, _tyahha$td4_emulator$Models$TenHz),
+							_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, model.clockMode, _tyahha$td4_emulator$Models$TenHz),
 							_1: {
 								ctor: '::',
 								_0: _elm_lang$html$Html$text('10Hz'),
@@ -8410,7 +8432,7 @@ var _tyahha$td4_emulator$ClockGeneratorView$clockGenerator = function (clockMode
 							{ctor: '[]'},
 							{
 								ctor: '::',
-								_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, clockMode, _tyahha$td4_emulator$Models$Manual),
+								_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, model.clockMode, _tyahha$td4_emulator$Models$Manual),
 								_1: {
 									ctor: '::',
 									_0: _elm_lang$html$Html$text('Manual '),
@@ -8418,7 +8440,11 @@ var _tyahha$td4_emulator$ClockGeneratorView$clockGenerator = function (clockMode
 										ctor: '::',
 										_0: A2(
 											_elm_lang$html$Html$button,
-											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onClick(_tyahha$td4_emulator$Messages$ManualClock),
+												_1: {ctor: '[]'}
+											},
 											{
 												ctor: '::',
 												_0: _elm_lang$html$Html$text('Clock'),
@@ -8729,7 +8755,7 @@ var _tyahha$td4_emulator$ControlPanelView$controlPanel = function (model) {
 			_0: _tyahha$td4_emulator$RegistorView$registor(model),
 			_1: {
 				ctor: '::',
-				_0: _tyahha$td4_emulator$ClockGeneratorView$clockGenerator(model.clockMode),
+				_0: _tyahha$td4_emulator$ClockGeneratorView$clockGenerator(model),
 				_1: {
 					ctor: '::',
 					_0: A2(
@@ -9068,11 +9094,31 @@ var _tyahha$td4_emulator$Update$update = F2(
 				return A2(_elm_lang$core$Debug$log, 'LoadFile', model);
 			case 'SaveFile':
 				return A2(_elm_lang$core$Debug$log, 'SaveFile', model);
-			default:
+			case 'ChangeClockMode':
 				return _elm_lang$core$Native_Utils.update(
 					model,
 					{
 						clockMode: A2(_elm_lang$core$Debug$log, 'ChangeClockMode', _p0._0)
+					});
+			case 'ManualClock':
+				return _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Models$Manual) ? _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						programCountor: A2(
+							_elm_lang$core$Debug$log,
+							'ManualClock',
+							_tyahha$td4_emulator$Models$nextAddress(
+								_tyahha$td4_emulator$Models$currentLine(model)))
+					}) : model;
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						programCountor: A2(
+							_elm_lang$core$Debug$log,
+							'Clock',
+							_tyahha$td4_emulator$Models$nextAddress(
+								_tyahha$td4_emulator$Models$currentLine(model)))
 					});
 		}
 	});
