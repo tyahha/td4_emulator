@@ -9086,6 +9086,14 @@ var _tyahha$td4_emulator$View$view = function (model) {
 		});
 };
 
+var _tyahha$td4_emulator$Update$clock = function (model) {
+	return _elm_lang$core$Native_Utils.update(
+		model,
+		{
+			programCountor: _tyahha$td4_emulator$Models$nextAddress(
+				_tyahha$td4_emulator$Models$currentLine(model))
+		});
+};
 var _tyahha$td4_emulator$Update$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
@@ -9101,25 +9109,9 @@ var _tyahha$td4_emulator$Update$update = F2(
 						clockMode: A2(_elm_lang$core$Debug$log, 'ChangeClockMode', _p0._0)
 					});
 			case 'ManualClock':
-				return _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Models$Manual) ? _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						programCountor: A2(
-							_elm_lang$core$Debug$log,
-							'ManualClock',
-							_tyahha$td4_emulator$Models$nextAddress(
-								_tyahha$td4_emulator$Models$currentLine(model)))
-					}) : model;
+				return _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Models$Manual) ? _tyahha$td4_emulator$Update$clock(model) : model;
 			default:
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						programCountor: A2(
-							_elm_lang$core$Debug$log,
-							'Clock',
-							_tyahha$td4_emulator$Models$nextAddress(
-								_tyahha$td4_emulator$Models$currentLine(model)))
-					});
+				return _tyahha$td4_emulator$Update$clock(model);
 		}
 	});
 

@@ -5,6 +5,10 @@ import Models exposing (..)
 
 import Debug exposing (log)
 
+clock : Model -> Model
+clock model =
+  { model | programCountor = nextAddress ( currentLine model ) }
+
 update: Msg -> Model -> Model
 update msg model =
   case msg of
@@ -17,8 +21,7 @@ update msg model =
     ChangeClockMode mode ->
       { model | clockMode = log "ChangeClockMode" mode }
     ManualClock ->
-      if model.clockMode == Manual then
-        { model | programCountor = log "ManualClock" ( nextAddress ( currentLine model ) ) }
+      if model.clockMode == Manual then clock model
       else model
-    Clock ->
-      { model | programCountor = log "Clock" ( nextAddress ( currentLine model ) ) }
+    Clock -> clock model
+      
