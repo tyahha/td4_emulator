@@ -12,6 +12,14 @@ boolToHexString b = fromChar (boolToHexChar b)
 andToBool : Int -> Int -> Bool
 andToBool target bit = (and target bit) == bit
 
+intToBoolList : Int -> List Bool
+intToBoolList num =
+  (andToBool num 8) 
+    :: (andToBool num 4)
+    :: (andToBool num 2)
+    :: (andToBool num 1)
+    :: []
+
 intToHexString : Int -> String
 intToHexString num =
   cons (boolToHexChar (andToBool num 8)) (

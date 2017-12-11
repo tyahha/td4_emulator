@@ -8465,6 +8465,25 @@ var _tyahha$td4_emulator$Util$andToBool = F2(
 	function (target, bit) {
 		return _elm_lang$core$Native_Utils.eq(target & bit, bit);
 	});
+var _tyahha$td4_emulator$Util$intToBoolList = function (num) {
+	return {
+		ctor: '::',
+		_0: A2(_tyahha$td4_emulator$Util$andToBool, num, 8),
+		_1: {
+			ctor: '::',
+			_0: A2(_tyahha$td4_emulator$Util$andToBool, num, 4),
+			_1: {
+				ctor: '::',
+				_0: A2(_tyahha$td4_emulator$Util$andToBool, num, 2),
+				_1: {
+					ctor: '::',
+					_0: A2(_tyahha$td4_emulator$Util$andToBool, num, 1),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	};
+};
 var _tyahha$td4_emulator$Util$boolToHexChar = function (b) {
 	return b ? _elm_lang$core$Native_Utils.chr('1') : _elm_lang$core$Native_Utils.chr('0');
 };
