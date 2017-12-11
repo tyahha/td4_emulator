@@ -36,8 +36,9 @@ updateProgramMemoryLine src target =
   else
     target
 
-updateProgramMemoryLines : ProgramMemoryLines -> ProgramMemoryLine -> ProgramMemoryLines
-updateProgramMemoryLines targets src = List.map (updateProgramMemoryLine src) targets
+updateProgramMemoryLines : Model -> ProgramMemoryLine -> Model
+updateProgramMemoryLines model src =
+  { model | programMemoryLines = (List.map (updateProgramMemoryLine src) model.programMemoryLines)}
 
 type alias Model = {
   registorA : Int,

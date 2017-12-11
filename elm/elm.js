@@ -8287,11 +8287,15 @@ var _tyahha$td4_emulator$Models$updateProgramMemoryLine = F2(
 		return _elm_lang$core$Native_Utils.eq(target.address, src.address) ? src : target;
 	});
 var _tyahha$td4_emulator$Models$updateProgramMemoryLines = F2(
-	function (targets, src) {
-		return A2(
-			_elm_lang$core$List$map,
-			_tyahha$td4_emulator$Models$updateProgramMemoryLine(src),
-			targets);
+	function (model, src) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				programMemoryLines: A2(
+					_elm_lang$core$List$map,
+					_tyahha$td4_emulator$Models$updateProgramMemoryLine(src),
+					model.programMemoryLines)
+			});
 	});
 var _tyahha$td4_emulator$Models$nextAddress = function (line) {
 	return _elm_lang$core$Native_Utils.eq(line.address, 15) ? 0 : (line.address + 1);
@@ -8342,6 +8346,9 @@ var _tyahha$td4_emulator$Models$model = A9(
 var _tyahha$td4_emulator$Models$TenHz = {ctor: 'TenHz'};
 var _tyahha$td4_emulator$Models$OneHz = {ctor: 'OneHz'};
 
+var _tyahha$td4_emulator$Messages$ChangeProgramMemoryLine = function (a) {
+	return {ctor: 'ChangeProgramMemoryLine', _0: a};
+};
 var _tyahha$td4_emulator$Messages$Clock = {ctor: 'Clock'};
 var _tyahha$td4_emulator$Messages$ManualClock = {ctor: 'ManualClock'};
 var _tyahha$td4_emulator$Messages$ChangeClockMode = function (a) {
@@ -8895,42 +8902,77 @@ var _tyahha$td4_emulator$MenuView$menu = function (model) {
 		});
 };
 
-var _tyahha$td4_emulator$ProgramMemoryView$memoryCell = function (flag) {
-	return A2(
-		_elm_lang$html$Html$label,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$input,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('memory-checkbox'),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$checked(flag),
-							_1: {ctor: '[]'}
-						}
-					}
-				},
-				{ctor: '[]'}),
-			_1: {
+var _tyahha$td4_emulator$ProgramMemoryView$memoryCell = F2(
+	function (check, msg) {
+		return A2(
+			_elm_lang$html$Html$label,
+			{ctor: '[]'},
+			{
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$span,
+					_elm_lang$html$Html$input,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('memory-icon'),
-						_1: {ctor: '[]'}
+						_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('memory-checkbox'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$checked(check),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Events$onClick(msg),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
 					},
 					{ctor: '[]'}),
-				_1: {ctor: '[]'}
-			}
-		});
-};
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('memory-icon'),
+							_1: {ctor: '[]'}
+						},
+						{ctor: '[]'}),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _tyahha$td4_emulator$ProgramMemoryView$updateOP = F3(
+	function (current, bit, src) {
+		return current ? (src & (~bit)) : (src | bit);
+	});
+var _tyahha$td4_emulator$ProgramMemoryView$operatorMemoryCell = F2(
+	function (line, bit) {
+		var check = A2(_tyahha$td4_emulator$Util$andToBool, line.operator, bit);
+		return A2(
+			_tyahha$td4_emulator$ProgramMemoryView$memoryCell,
+			check,
+			_tyahha$td4_emulator$Messages$ChangeProgramMemoryLine(
+				_elm_lang$core$Native_Utils.update(
+					line,
+					{
+						operator: A3(_tyahha$td4_emulator$ProgramMemoryView$updateOP, check, bit, line.operator)
+					})));
+	});
+var _tyahha$td4_emulator$ProgramMemoryView$operandMemoryCell = F2(
+	function (line, bit) {
+		var check = A2(_tyahha$td4_emulator$Util$andToBool, line.operand, bit);
+		return A2(
+			_tyahha$td4_emulator$ProgramMemoryView$memoryCell,
+			check,
+			_tyahha$td4_emulator$Messages$ChangeProgramMemoryLine(
+				_elm_lang$core$Native_Utils.update(
+					line,
+					{
+						operand: A3(_tyahha$td4_emulator$ProgramMemoryView$updateOP, check, bit, line.operand)
+					})));
+	});
 var _tyahha$td4_emulator$ProgramMemoryView$addressToDisplay = function (address) {
 	return A2(
 		_elm_lang$core$String$right,
@@ -8962,53 +9004,47 @@ var _tyahha$td4_emulator$ProgramMemoryView$line = F2(
 		return A2(
 			_elm_lang$html$Html$div,
 			A2(_tyahha$td4_emulator$ProgramMemoryView$lineAttribute, programCounter, line.address),
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				{
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text(
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'Address ',
+						_tyahha$td4_emulator$ProgramMemoryView$addressToDisplay(line.address))),
+				_1: {
 					ctor: '::',
-					_0: _elm_lang$html$Html$text(
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'Address ',
-							_tyahha$td4_emulator$ProgramMemoryView$addressToDisplay(line.address))),
-					_1: {ctor: '[]'}
-				},
-				A2(
-					_elm_lang$core$List$map,
-					_tyahha$td4_emulator$ProgramMemoryView$memoryCell,
-					{
+					_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operatorMemoryCell, line, 8),
+					_1: {
 						ctor: '::',
-						_0: false,
+						_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operatorMemoryCell, line, 4),
 						_1: {
 							ctor: '::',
-							_0: false,
+							_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operatorMemoryCell, line, 2),
 							_1: {
 								ctor: '::',
-								_0: false,
+								_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operatorMemoryCell, line, 1),
 								_1: {
 									ctor: '::',
-									_0: false,
+									_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operandMemoryCell, line, 8),
 									_1: {
 										ctor: '::',
-										_0: false,
+										_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operandMemoryCell, line, 4),
 										_1: {
 											ctor: '::',
-											_0: false,
+											_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operandMemoryCell, line, 2),
 											_1: {
 												ctor: '::',
-												_0: false,
-												_1: {
-													ctor: '::',
-													_0: false,
-													_1: {ctor: '[]'}
-												}
+												_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operandMemoryCell, line, 1),
+												_1: {ctor: '[]'}
 											}
 										}
 									}
 								}
 							}
 						}
-					})));
+					}
+				}
+			});
 	});
 var _tyahha$td4_emulator$ProgramMemoryView$lines = function (model) {
 	return A2(
@@ -9129,8 +9165,13 @@ var _tyahha$td4_emulator$Update$update = F2(
 					});
 			case 'ManualClock':
 				return _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Models$Manual) ? _tyahha$td4_emulator$Update$clock(model) : model;
-			default:
+			case 'Clock':
 				return _tyahha$td4_emulator$Update$clock(model);
+			default:
+				return A2(
+					_tyahha$td4_emulator$Models$updateProgramMemoryLines,
+					model,
+					A2(_elm_lang$core$Debug$log, 'ChangeProgramMemoryLine', _p0._0));
 		}
 	});
 

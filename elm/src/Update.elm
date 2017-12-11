@@ -23,5 +23,10 @@ update msg model =
     ManualClock ->
       if model.clockMode == Manual then clock model
       else model
-    Clock -> clock model
+    Clock ->
+      clock model
+    ChangeProgramMemoryLine line ->
+      updateProgramMemoryLines model (log "ChangeProgramMemoryLine" line)
+    
+    
       

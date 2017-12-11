@@ -1,4 +1,4 @@
-module Util exposing (boolToHexChar, andToBool, boolToHexString, intToHexString)
+module Util exposing (boolToHexChar, andToBool, boolToHexString, intToBoolList, intToHexString)
 
 import String exposing (fromChar, cons)
 import Bitwise exposing (and)
