@@ -9142,12 +9142,11 @@ var _tyahha$td4_emulator$View$view = function (model) {
 };
 
 var _tyahha$td4_emulator$Update$clock = function (model) {
+	var pc = _tyahha$td4_emulator$Models$nextAddress(
+		_tyahha$td4_emulator$Models$currentLine(model));
 	return _elm_lang$core$Native_Utils.update(
 		model,
-		{
-			programCountor: _tyahha$td4_emulator$Models$nextAddress(
-				_tyahha$td4_emulator$Models$currentLine(model))
-		});
+		{programCountor: pc});
 };
 var _tyahha$td4_emulator$Update$update = F2(
 	function (msg, model) {
