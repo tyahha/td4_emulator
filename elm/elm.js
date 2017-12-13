@@ -8300,6 +8300,54 @@ var _tyahha$td4_emulator$Models$updateProgramMemoryLines = F2(
 var _tyahha$td4_emulator$Models$nextAddress = function (line) {
 	return _elm_lang$core$Native_Utils.eq(line.address, 15) ? 0 : (line.address + 1);
 };
+var _tyahha$td4_emulator$Models$operate = F2(
+	function (model, line) {
+		var _p0 = line.operator;
+		switch (_p0) {
+			case 0:
+				var addresult = model.registorA + line.operand;
+				var carry = _elm_lang$core$Native_Utils.cmp(addresult, 15) > 0;
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						carry: carry,
+						registorA: carry ? (addresult - 16) : addresult,
+						programCountor: _tyahha$td4_emulator$Models$nextAddress(line)
+					});
+			case 1:
+				return model;
+			case 2:
+				return model;
+			case 3:
+				return model;
+			case 4:
+				return model;
+			case 5:
+				return model;
+			case 6:
+				return model;
+			case 7:
+				return model;
+			case 8:
+				return model;
+			case 9:
+				return model;
+			case 10:
+				return model;
+			case 11:
+				return model;
+			case 12:
+				return model;
+			case 13:
+				return model;
+			case 14:
+				return model;
+			case 15:
+				return model;
+			default:
+				return model;
+		}
+	});
 var _tyahha$td4_emulator$Models$ProgramMemoryLine = F3(
 	function (a, b, c) {
 		return {address: a, operator: b, operand: c};
@@ -8314,9 +8362,9 @@ var _tyahha$td4_emulator$Models$currentLine = function (model) {
 			return _elm_lang$core$Native_Utils.eq(p.address, model.programCountor);
 		},
 		model.programMemoryLines);
-	var _p0 = _elm_lang$core$List$head(filtered);
-	if (_p0.ctor === 'Just') {
-		return _p0._0;
+	var _p1 = _elm_lang$core$List$head(filtered);
+	if (_p1.ctor === 'Just') {
+		return _p1._0;
 	} else {
 		return A2(
 			_elm_lang$core$Debug$log,
@@ -9142,11 +9190,10 @@ var _tyahha$td4_emulator$View$view = function (model) {
 };
 
 var _tyahha$td4_emulator$Update$clock = function (model) {
-	var pc = _tyahha$td4_emulator$Models$nextAddress(
-		_tyahha$td4_emulator$Models$currentLine(model));
-	return _elm_lang$core$Native_Utils.update(
+	return A2(
+		_tyahha$td4_emulator$Models$operate,
 		model,
-		{programCountor: pc});
+		_tyahha$td4_emulator$Models$currentLine(model));
 };
 var _tyahha$td4_emulator$Update$update = F2(
 	function (msg, model) {

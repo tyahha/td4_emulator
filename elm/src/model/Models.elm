@@ -22,6 +22,35 @@ currentLine model =
       Just line -> line
       Nothing -> Debug.log "error currentLine" ( ProgramMemoryLine 0 0 0 )
 
+operate : Model -> ProgramMemoryLine -> Model
+operate model line =
+  case line.operator of
+    0 ->
+      let
+        addresult = model.registorA + line.operand
+        carry = addresult > 15
+      in { model |
+        carry = carry,
+        registorA = if carry then addresult - 16 else addresult,
+        programCountor = nextAddress line
+      }
+    1 -> model
+    2 -> model
+    3 -> model
+    4 -> model
+    5 -> model
+    6 -> model
+    7 -> model
+    8 -> model
+    9 -> model
+    10 -> model
+    11 -> model
+    12 -> model
+    13 -> model
+    14 -> model
+    15 -> model
+    _ -> model
+
 nextAddress : ProgramMemoryLine -> Int
 nextAddress line =
   if line.address == 15 then

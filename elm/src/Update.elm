@@ -7,10 +7,9 @@ import Debug exposing (log)
 
 clock : Model -> Model
 clock model =
-  let pc = model
+  model
     |> currentLine
-    |> nextAddress
-  in { model | programCountor = pc }
+    |> operate model
 
 update: Msg -> Model -> Model
 update msg model =
