@@ -8323,7 +8323,15 @@ var _tyahha$td4_emulator$Models$operate = F2(
 			case 4:
 				return model;
 			case 5:
-				return model;
+				var addresult = model.registorB + line.operand;
+				var carry = _elm_lang$core$Native_Utils.cmp(addresult, 15) > 0;
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						carry: carry,
+						registorB: carry ? (addresult - 16) : addresult,
+						programCountor: _tyahha$td4_emulator$Models$nextAddress(line)
+					});
 			case 6:
 				return model;
 			case 7:

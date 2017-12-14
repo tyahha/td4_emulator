@@ -38,7 +38,15 @@ operate model line =
     2 -> model
     3 -> model
     4 -> model
-    5 -> model
+    5 ->
+      let
+        addresult = model.registorB + line.operand
+        carry = addresult > 15
+      in { model |
+        carry = carry,
+        registorB = if carry then addresult - 16 else addresult,
+        programCountor = nextAddress line
+      }
     6 -> model
     7 -> model
     8 -> model
