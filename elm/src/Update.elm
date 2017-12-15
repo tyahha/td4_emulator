@@ -5,12 +5,6 @@ import Models exposing (..)
 
 import Debug exposing (log)
 
-clock : Model -> Model
-clock model =
-  model
-    |> currentLine
-    |> operate model
-
 update: Msg -> Model -> Model
 update msg model =
   case msg of

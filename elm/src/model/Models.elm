@@ -22,31 +22,43 @@ currentLine model =
       Just line -> line
       Nothing -> Debug.log "error currentLine" ( ProgramMemoryLine 0 0 0 )
 
+clock : Model -> Model
+clock model =
+  model
+    |> currentLine
+    |> operate model
+
+addA : Model -> ProgramMemoryLine -> Model
+addA model line = 
+  let
+    addresult = model.registorA + line.operand
+    carry = addresult > 15
+  in { model |
+    carry = carry,
+    registorA = if carry then addresult - 16 else addresult,
+    programCountor = nextAddress line
+  }
+
+addB : Model -> ProgramMemoryLine -> Model
+addB model line = 
+  let
+    addresult = model.registorB + line.operand
+    carry = addresult > 15
+  in { model |
+    carry = carry,
+    registorB = if carry then addresult - 16 else addresult,
+    programCountor = nextAddress line
+  }
+
 operate : Model -> ProgramMemoryLine -> Model
 operate model line =
   case line.operator of
-    0 ->
-      let
-        addresult = model.registorA + line.operand
-        carry = addresult > 15
-      in { model |
-        carry = carry,
-        registorA = if carry then addresult - 16 else addresult,
-        programCountor = nextAddress line
-      }
+    0 -> addA model line
     1 -> model
     2 -> model
     3 -> model
     4 -> model
-    5 ->
-      let
-        addresult = model.registorB + line.operand
-        carry = addresult > 15
-      in { model |
-        carry = carry,
-        registorB = if carry then addresult - 16 else addresult,
-        programCountor = nextAddress line
-      }
+    5 -> addB model line
     6 -> model
     7 -> model
     8 -> model
@@ -75,19 +87,21 @@ updateProgramMemoryLine src target =
 
 updateProgramMemoryLines : Model -> ProgramMemoryLine -> Model
 updateProgramMemoryLines model src =
-  { model | programMemoryLines = (List.map (updateProgramMemoryLine src) model.programMemoryLines)}
+  { model
+  | programMemoryLines = List.map (updateProgramMemoryLine src) model.programMemoryLines
+  }
 
-type alias Model = {
-  registorA : Int,
-  registorB : Int,
-  carry : Bool,
-  programCountor : Int,
-  output : Int,
-  beep : Bool,
-  input : Int,
-  clockMode : ClockMode,
-  programMemoryLines: ProgramMemoryLines
-}
+type alias Model =
+  { registorA : Int
+  , registorB : Int
+  , carry : Bool
+  , programCountor : Int
+  , output : Int
+  , beep : Bool
+  , input : Int
+  , clockMode : ClockMode
+  , programMemoryLines: ProgramMemoryLines
+  }
 
 model: Model
 model = Model 0 0 False 0 0 False 0 Manual (List.map initProgramMemoryLine (List.range 0 15))
