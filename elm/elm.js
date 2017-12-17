@@ -8300,6 +8300,46 @@ var _tyahha$td4_emulator$Models$updateProgramMemoryLines = F2(
 var _tyahha$td4_emulator$Models$nextAddress = function (line) {
 	return _elm_lang$core$Native_Utils.eq(line.address, 15) ? 0 : (line.address + 1);
 };
+var _tyahha$td4_emulator$Models$moveBA = F2(
+	function (model, line) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				carry: false,
+				registorB: model.registorA,
+				programCountor: _tyahha$td4_emulator$Models$nextAddress(line)
+			});
+	});
+var _tyahha$td4_emulator$Models$moveAB = F2(
+	function (model, line) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				carry: false,
+				registorA: model.registorB,
+				programCountor: _tyahha$td4_emulator$Models$nextAddress(line)
+			});
+	});
+var _tyahha$td4_emulator$Models$moveB = F2(
+	function (model, line) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				carry: false,
+				registorB: line.operand,
+				programCountor: _tyahha$td4_emulator$Models$nextAddress(line)
+			});
+	});
+var _tyahha$td4_emulator$Models$moveA = F2(
+	function (model, line) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				carry: false,
+				registorA: line.operand,
+				programCountor: _tyahha$td4_emulator$Models$nextAddress(line)
+			});
+	});
 var _tyahha$td4_emulator$Models$addB = F2(
 	function (model, line) {
 		var addresult = model.registorB + line.operand;
@@ -8331,19 +8371,19 @@ var _tyahha$td4_emulator$Models$operate = F2(
 			case 0:
 				return A2(_tyahha$td4_emulator$Models$addA, model, line);
 			case 1:
-				return model;
+				return A2(_tyahha$td4_emulator$Models$moveAB, model, line);
 			case 2:
 				return model;
 			case 3:
-				return model;
+				return A2(_tyahha$td4_emulator$Models$moveA, model, line);
 			case 4:
-				return model;
+				return A2(_tyahha$td4_emulator$Models$moveBA, model, line);
 			case 5:
 				return A2(_tyahha$td4_emulator$Models$addB, model, line);
 			case 6:
 				return model;
 			case 7:
-				return model;
+				return A2(_tyahha$td4_emulator$Models$moveB, model, line);
 			case 8:
 				return model;
 			case 9:

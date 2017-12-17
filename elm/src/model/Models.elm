@@ -50,17 +50,49 @@ addB model line =
     programCountor = nextAddress line
   }
 
+moveA : Model -> ProgramMemoryLine -> Model
+moveA model line = 
+  { model |
+    carry = False,
+    registorA = line.operand,
+    programCountor = nextAddress line
+  }
+
+moveB : Model -> ProgramMemoryLine -> Model
+moveB model line = 
+  { model |
+    carry = False,
+    registorB = line.operand,
+    programCountor = nextAddress line
+  }
+
+moveAB : Model -> ProgramMemoryLine -> Model
+moveAB model line = 
+  { model |
+    carry = False,
+    registorA = model.registorB,
+    programCountor = nextAddress line
+  }
+
+moveBA : Model -> ProgramMemoryLine -> Model
+moveBA model line = 
+  { model |
+    carry = False,
+    registorB = model.registorA,
+    programCountor = nextAddress line
+  }
+
 operate : Model -> ProgramMemoryLine -> Model
 operate model line =
   case line.operator of
     0 -> addA model line
-    1 -> model
+    1 -> moveAB model line
     2 -> model
-    3 -> model
-    4 -> model
+    3 -> moveA model line
+    4 -> moveBA model line
     5 -> addB model line
     6 -> model
-    7 -> model
+    7 -> moveB model line
     8 -> model
     9 -> model
     10 -> model
