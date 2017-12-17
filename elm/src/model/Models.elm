@@ -82,6 +82,24 @@ moveBA model line =
     programCountor = nextAddress line
   }
 
+jump : Model -> ProgramMemoryLine -> Model
+jump model line = 
+  { model |
+    carry = False,
+    programCountor = line.operand
+  }
+
+jumpIf : Model -> ProgramMemoryLine -> Model
+jumpIf model line = 
+  { model |
+    carry = False,
+    programCountor =
+      if model.carry then
+        nextAddress line
+      else
+        line.operand
+  }
+
 operate : Model -> ProgramMemoryLine -> Model
 operate model line =
   case line.operator of
@@ -99,8 +117,8 @@ operate model line =
     11 -> model
     12 -> model
     13 -> model
-    14 -> model
-    15 -> model
+    14 -> jumpIf model line
+    15 -> jump model line
     _ -> model
 
 nextAddress : ProgramMemoryLine -> Int

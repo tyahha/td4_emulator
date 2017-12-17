@@ -8300,6 +8300,21 @@ var _tyahha$td4_emulator$Models$updateProgramMemoryLines = F2(
 var _tyahha$td4_emulator$Models$nextAddress = function (line) {
 	return _elm_lang$core$Native_Utils.eq(line.address, 15) ? 0 : (line.address + 1);
 };
+var _tyahha$td4_emulator$Models$jumpIf = F2(
+	function (model, line) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				carry: false,
+				programCountor: model.carry ? _tyahha$td4_emulator$Models$nextAddress(line) : line.operand
+			});
+	});
+var _tyahha$td4_emulator$Models$jump = F2(
+	function (model, line) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{carry: false, programCountor: line.operand});
+	});
 var _tyahha$td4_emulator$Models$moveBA = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
@@ -8397,9 +8412,9 @@ var _tyahha$td4_emulator$Models$operate = F2(
 			case 13:
 				return model;
 			case 14:
-				return model;
+				return A2(_tyahha$td4_emulator$Models$jumpIf, model, line);
 			case 15:
-				return model;
+				return A2(_tyahha$td4_emulator$Models$jump, model, line);
 			default:
 				return model;
 		}
