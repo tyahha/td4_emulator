@@ -8300,6 +8300,46 @@ var _tyahha$td4_emulator$Models$updateProgramMemoryLines = F2(
 var _tyahha$td4_emulator$Models$nextAddress = function (line) {
 	return _elm_lang$core$Native_Utils.eq(line.address, 15) ? 0 : (line.address + 1);
 };
+var _tyahha$td4_emulator$Models$outputData = F2(
+	function (model, line) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				carry: false,
+				output: line.operand,
+				programCountor: _tyahha$td4_emulator$Models$nextAddress(line)
+			});
+	});
+var _tyahha$td4_emulator$Models$outputB = F2(
+	function (model, line) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				carry: false,
+				output: model.registorB,
+				programCountor: _tyahha$td4_emulator$Models$nextAddress(line)
+			});
+	});
+var _tyahha$td4_emulator$Models$inputB = F2(
+	function (model, line) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				carry: false,
+				registorB: model.input,
+				programCountor: _tyahha$td4_emulator$Models$nextAddress(line)
+			});
+	});
+var _tyahha$td4_emulator$Models$inputA = F2(
+	function (model, line) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				carry: false,
+				registorA: model.input,
+				programCountor: _tyahha$td4_emulator$Models$nextAddress(line)
+			});
+	});
 var _tyahha$td4_emulator$Models$jumpIf = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
@@ -8388,7 +8428,7 @@ var _tyahha$td4_emulator$Models$operate = F2(
 			case 1:
 				return A2(_tyahha$td4_emulator$Models$moveAB, model, line);
 			case 2:
-				return model;
+				return A2(_tyahha$td4_emulator$Models$inputA, model, line);
 			case 3:
 				return A2(_tyahha$td4_emulator$Models$moveA, model, line);
 			case 4:
@@ -8396,17 +8436,17 @@ var _tyahha$td4_emulator$Models$operate = F2(
 			case 5:
 				return A2(_tyahha$td4_emulator$Models$addB, model, line);
 			case 6:
-				return model;
+				return A2(_tyahha$td4_emulator$Models$inputB, model, line);
 			case 7:
 				return A2(_tyahha$td4_emulator$Models$moveB, model, line);
 			case 8:
 				return model;
 			case 9:
-				return model;
+				return A2(_tyahha$td4_emulator$Models$outputB, model, line);
 			case 10:
 				return model;
 			case 11:
-				return model;
+				return A2(_tyahha$td4_emulator$Models$outputData, model, line);
 			case 12:
 				return model;
 			case 13:

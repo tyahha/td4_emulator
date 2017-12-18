@@ -10,23 +10,20 @@ type alias ProgramMemoryLine = {
 
 type alias ProgramMemoryLines = List ProgramMemoryLine
 
+type alias Model =
+  { registorA : Int
+  , registorB : Int
+  , carry : Bool
+  , programCountor : Int
+  , output : Int
+  , beep : Bool
+  , input : Int
+  , clockMode : ClockMode
+  , programMemoryLines: ProgramMemoryLines
+  }
+
 initProgramMemoryLine : Int -> ProgramMemoryLine
 initProgramMemoryLine address = ProgramMemoryLine address 0 0
-
-currentLine : Model -> ProgramMemoryLine
-currentLine model =
-  let filtered =
-    List.filter ( \p -> p.address == model.programCountor ) model.programMemoryLines
-  in
-    case List.head filtered of
-      Just line -> line
-      Nothing -> Debug.log "error currentLine" ( ProgramMemoryLine 0 0 0 )
-
-clock : Model -> Model
-clock model =
-  model
-    |> currentLine
-    |> operate model
 
 addA : Model -> ProgramMemoryLine -> Model
 addA model line = 
@@ -100,21 +97,68 @@ jumpIf model line =
         line.operand
   }
 
+inputA : Model -> ProgramMemoryLine -> Model
+inputA model line =
+  { model |
+    carry = False,
+    registorA = model.input,
+    programCountor = nextAddress line
+  }
+
+inputB : Model -> ProgramMemoryLine -> Model
+inputB model line =
+  { model |
+    carry = False,
+    registorB = model.input,
+    programCountor = nextAddress line
+  }
+
+outputB : Model -> ProgramMemoryLine -> Model
+outputB model line =
+  { model |
+    carry = False,
+    output = model.registorB,
+    programCountor = nextAddress line
+  }
+
+outputData : Model -> ProgramMemoryLine -> Model
+outputData model line =
+  { model |
+    carry = False,
+    output = line.operand,
+    programCountor = nextAddress line
+  }
+
+currentLine : Model -> ProgramMemoryLine
+currentLine model =
+  let filtered =
+    List.filter ( \p -> p.address == model.programCountor ) model.programMemoryLines
+  in
+    case List.head filtered of
+      Just line -> line
+      Nothing -> Debug.log "error currentLine" ( ProgramMemoryLine 0 0 0 )
+
+clock : Model -> Model
+clock model =
+  model
+    |> currentLine
+    |> operate model
+
 operate : Model -> ProgramMemoryLine -> Model
 operate model line =
   case line.operator of
     0 -> addA model line
     1 -> moveAB model line
-    2 -> model
+    2 -> inputA model line
     3 -> moveA model line
     4 -> moveBA model line
     5 -> addB model line
-    6 -> model
+    6 -> inputB model line
     7 -> moveB model line
     8 -> model
-    9 -> model
+    9 -> outputB model line
     10 -> model
-    11 -> model
+    11 -> outputData model line
     12 -> model
     13 -> model
     14 -> jumpIf model line
@@ -139,18 +183,6 @@ updateProgramMemoryLines : Model -> ProgramMemoryLine -> Model
 updateProgramMemoryLines model src =
   { model
   | programMemoryLines = List.map (updateProgramMemoryLine src) model.programMemoryLines
-  }
-
-type alias Model =
-  { registorA : Int
-  , registorB : Int
-  , carry : Bool
-  , programCountor : Int
-  , output : Int
-  , beep : Bool
-  , input : Int
-  , clockMode : ClockMode
-  , programMemoryLines: ProgramMemoryLines
   }
 
 model: Model
