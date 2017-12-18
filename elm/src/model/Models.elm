@@ -155,15 +155,18 @@ operate model line =
     5 -> addB model line
     6 -> inputB model line
     7 -> moveB model line
-    8 -> model
     9 -> outputB model line
-    10 -> model
     11 -> outputData model line
-    12 -> model
-    13 -> model
     14 -> jumpIf model line
     15 -> jump model line
-    _ -> model
+    _ ->
+      { model |
+        carry = False,
+        programCountor =
+          nextAddress
+            (Debug.log "unsupported operator" line)
+      }
+
 
 nextAddress : ProgramMemoryLine -> Int
 nextAddress line =

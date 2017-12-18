@@ -8439,24 +8439,22 @@ var _tyahha$td4_emulator$Models$operate = F2(
 				return A2(_tyahha$td4_emulator$Models$inputB, model, line);
 			case 7:
 				return A2(_tyahha$td4_emulator$Models$moveB, model, line);
-			case 8:
-				return model;
 			case 9:
 				return A2(_tyahha$td4_emulator$Models$outputB, model, line);
-			case 10:
-				return model;
 			case 11:
 				return A2(_tyahha$td4_emulator$Models$outputData, model, line);
-			case 12:
-				return model;
-			case 13:
-				return model;
 			case 14:
 				return A2(_tyahha$td4_emulator$Models$jumpIf, model, line);
 			case 15:
 				return A2(_tyahha$td4_emulator$Models$jump, model, line);
 			default:
-				return model;
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						carry: false,
+						programCountor: _tyahha$td4_emulator$Models$nextAddress(
+							A2(_elm_lang$core$Debug$log, 'unsupported operator', line))
+					});
 		}
 	});
 var _tyahha$td4_emulator$Models$ProgramMemoryLine = F3(
