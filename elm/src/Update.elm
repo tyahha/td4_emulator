@@ -2,6 +2,7 @@ module Update exposing (update)
 
 import Messages exposing (..)
 import Models exposing (..)
+import Operators exposing (..)
 
 import Debug exposing (log)
 
