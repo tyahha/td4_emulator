@@ -106,6 +106,15 @@ outputData model line =
     programCountor = nextAddress line
   }
 
+errorOperator : Model -> ProgramMemoryLine -> Model
+errorOperator model line =
+  { model |
+    carry = False,
+    programCountor =
+      nextAddress
+        (Debug.log "unsupported operator" line)
+  }
+
 currentLine : Model -> ProgramMemoryLine
 currentLine model =
   let filtered =
@@ -123,27 +132,25 @@ clock model =
 
 operate : Model -> ProgramMemoryLine -> Model
 operate model line =
-  case line.operator of
-    0 -> addA model line
-    1 -> moveAB model line
-    2 -> inputA model line
-    3 -> moveA model line
-    4 -> moveBA model line
-    5 -> addB model line
-    6 -> inputB model line
-    7 -> moveB model line
-    9 -> outputB model line
-    11 -> outputData model line
-    14 -> jumpIf model line
-    15 -> jump model line
-    _ ->
-      { model |
-        carry = False,
-        programCountor =
-          nextAddress
-            (Debug.log "unsupported operator" line)
-      }
+  let operator = getOperator line
+  in operator model line
 
+getOperator : ProgramMemoryLine -> (Model -> ProgramMemoryLine -> Model)
+getOperator line =
+  case line.operator of
+    0 -> addA
+    1 -> moveAB
+    2 -> inputA
+    3 -> moveA
+    4 -> moveBA
+    5 -> addB
+    6 -> inputB
+    7 -> moveB
+    9 -> outputB
+    11 -> outputData
+    14 -> jumpIf
+    15 -> jump
+    _ -> errorOperator
 
 nextAddress : ProgramMemoryLine -> Int
 nextAddress line =

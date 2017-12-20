@@ -9141,6 +9141,16 @@ var _tyahha$td4_emulator$Operators$currentLine = function (model) {
 			A3(_tyahha$td4_emulator$Models$ProgramMemoryLine, 0, 0, 0));
 	}
 };
+var _tyahha$td4_emulator$Operators$errorOperator = F2(
+	function (model, line) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				carry: false,
+				programCountor: _tyahha$td4_emulator$Operators$nextAddress(
+					A2(_elm_lang$core$Debug$log, 'unsupported operator', line))
+			});
+	});
 var _tyahha$td4_emulator$Operators$outputData = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
@@ -9260,43 +9270,41 @@ var _tyahha$td4_emulator$Operators$addA = F2(
 				programCountor: _tyahha$td4_emulator$Operators$nextAddress(line)
 			});
 	});
+var _tyahha$td4_emulator$Operators$getOperator = function (line) {
+	var _p1 = line.operator;
+	switch (_p1) {
+		case 0:
+			return _tyahha$td4_emulator$Operators$addA;
+		case 1:
+			return _tyahha$td4_emulator$Operators$moveAB;
+		case 2:
+			return _tyahha$td4_emulator$Operators$inputA;
+		case 3:
+			return _tyahha$td4_emulator$Operators$moveA;
+		case 4:
+			return _tyahha$td4_emulator$Operators$moveBA;
+		case 5:
+			return _tyahha$td4_emulator$Operators$addB;
+		case 6:
+			return _tyahha$td4_emulator$Operators$inputB;
+		case 7:
+			return _tyahha$td4_emulator$Operators$moveB;
+		case 9:
+			return _tyahha$td4_emulator$Operators$outputB;
+		case 11:
+			return _tyahha$td4_emulator$Operators$outputData;
+		case 14:
+			return _tyahha$td4_emulator$Operators$jumpIf;
+		case 15:
+			return _tyahha$td4_emulator$Operators$jump;
+		default:
+			return _tyahha$td4_emulator$Operators$errorOperator;
+	}
+};
 var _tyahha$td4_emulator$Operators$operate = F2(
 	function (model, line) {
-		var _p1 = line.operator;
-		switch (_p1) {
-			case 0:
-				return A2(_tyahha$td4_emulator$Operators$addA, model, line);
-			case 1:
-				return A2(_tyahha$td4_emulator$Operators$moveAB, model, line);
-			case 2:
-				return A2(_tyahha$td4_emulator$Operators$inputA, model, line);
-			case 3:
-				return A2(_tyahha$td4_emulator$Operators$moveA, model, line);
-			case 4:
-				return A2(_tyahha$td4_emulator$Operators$moveBA, model, line);
-			case 5:
-				return A2(_tyahha$td4_emulator$Operators$addB, model, line);
-			case 6:
-				return A2(_tyahha$td4_emulator$Operators$inputB, model, line);
-			case 7:
-				return A2(_tyahha$td4_emulator$Operators$moveB, model, line);
-			case 9:
-				return A2(_tyahha$td4_emulator$Operators$outputB, model, line);
-			case 11:
-				return A2(_tyahha$td4_emulator$Operators$outputData, model, line);
-			case 14:
-				return A2(_tyahha$td4_emulator$Operators$jumpIf, model, line);
-			case 15:
-				return A2(_tyahha$td4_emulator$Operators$jump, model, line);
-			default:
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						carry: false,
-						programCountor: _tyahha$td4_emulator$Operators$nextAddress(
-							A2(_elm_lang$core$Debug$log, 'unsupported operator', line))
-					});
-		}
+		var operator = _tyahha$td4_emulator$Operators$getOperator(line);
+		return A2(operator, model, line);
 	});
 var _tyahha$td4_emulator$Operators$clock = function (model) {
 	return A2(
