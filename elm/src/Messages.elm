@@ -8,4 +8,5 @@ type Msg
   | ChangeClockMode ClockMode
   | ManualClock
   | Clock
+  | Reset
   | ChangeProgramMemoryLine ProgramMemoryLine

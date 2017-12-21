@@ -22,6 +22,14 @@ update msg model =
       else model
     Clock ->
       clock model
+    Reset ->
+      { model
+      | programCountor = 0
+      , registorA = 0
+      , registorB = 0
+      , output = 0
+      , carry = False
+      }
     ChangeProgramMemoryLine line ->
       updateProgramMemoryLines model (log "ChangeProgramMemoryLine" line)
     

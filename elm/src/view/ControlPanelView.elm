@@ -2,6 +2,7 @@ module ControlPanelView exposing (controlPanel)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 
 import Models exposing (..)
 import Messages exposing (..)
@@ -15,7 +16,10 @@ controlPanel model =
     [ registor model
     , clockGenerator model
     , div []
-        [ button [ class "reset-button"]
+        [ button
+            [ class "reset-button"
+            , onClick Reset
+            ]
             [ text "Reset"
             ]
         ]

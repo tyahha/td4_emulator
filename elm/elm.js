@@ -8329,6 +8329,7 @@ var _tyahha$td4_emulator$Models$OneHz = {ctor: 'OneHz'};
 var _tyahha$td4_emulator$Messages$ChangeProgramMemoryLine = function (a) {
 	return {ctor: 'ChangeProgramMemoryLine', _0: a};
 };
+var _tyahha$td4_emulator$Messages$Reset = {ctor: 'Reset'};
 var _tyahha$td4_emulator$Messages$Clock = {ctor: 'Clock'};
 var _tyahha$td4_emulator$Messages$ManualClock = {ctor: 'ManualClock'};
 var _tyahha$td4_emulator$Messages$ChangeClockMode = function (a) {
@@ -8774,7 +8775,11 @@ var _tyahha$td4_emulator$ControlPanelView$controlPanel = function (model) {
 								{
 									ctor: '::',
 									_0: _elm_lang$html$Html_Attributes$class('reset-button'),
-									_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onClick(_tyahha$td4_emulator$Messages$Reset),
+										_1: {ctor: '[]'}
+									}
 								},
 								{
 									ctor: '::',
@@ -9331,6 +9336,10 @@ var _tyahha$td4_emulator$Update$update = F2(
 				return _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Models$Manual) ? _tyahha$td4_emulator$Operators$clock(model) : model;
 			case 'Clock':
 				return _tyahha$td4_emulator$Operators$clock(model);
+			case 'Reset':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{programCountor: 0, registorA: 0, registorB: 0, output: 0, carry: false});
 			default:
 				return A2(
 					_tyahha$td4_emulator$Models$updateProgramMemoryLines,
