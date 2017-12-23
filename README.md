@@ -67,6 +67,7 @@ NOP命令はないが、命令「0000 0000(2進数)」は事実上のNOP
 - yarnの導入
 - knockout.js以外での実装を追加
   - Vue.js
+  - Vue.js + Vuex.js
   - React.js
   - React.js + flux
   - React.js + Redux
