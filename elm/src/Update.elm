@@ -6,32 +6,46 @@ import Operators exposing (..)
 
 import Debug exposing (log)
 
-update: Msg -> Model -> Model
+update: Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
     LoadFile ->
       -- TODO: FilePaser
-      log "LoadFile" model
+      log "LoadFile" (model, Cmd.none)
     SaveFile ->
       -- TODO: SaveFile
-      log "SaveFile" model
+      log "SaveFile" (model, Cmd.none)
     ChangeClockMode mode ->
-      { model | clockMode = log "ChangeClockMode" mode }
+      let m = { model | clockMode = log "ChangeClockMode" mode }
+      in (m, Cmd.none)
+    Clock1Hz t ->
+      let m = if model.clockMode == OneHz then clock model
+        else model
+      in (m, Cmd.none)
+    Clock10Hz t ->
+      let m = if model.clockMode == TenHz then clock model
+        else model
+      in (m, Cmd.none)
     ManualClock ->
-      if model.clockMode == Manual then clock model
-      else model
+      let m = if model.clockMode == Manual then clock model
+        else model
+      in (m, Cmd.none)
     Clock ->
-      clock model
+      let m = clock model
+      in (m, Cmd.none)
     Reset ->
-      { model
-      | programCountor = 0
-      , registorA = 0
-      , registorB = 0
-      , output = 0
-      , carry = False
-      }
+      let m =
+        { model
+        | programCountor = 0
+        , registorA = 0
+        , registorB = 0
+        , output = 0
+        , carry = False
+        }
+      in (m, Cmd.none)
     ChangeProgramMemoryLine line ->
-      updateProgramMemoryLines model (log "ChangeProgramMemoryLine" line)
+      let m = updateProgramMemoryLines model (log "ChangeProgramMemoryLine" line)
+      in (m, Cmd.none)
     
     
       

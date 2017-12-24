@@ -1,12 +1,18 @@
-import Html exposing (beginnerProgram)
+import Html exposing (program)
 
-import Models exposing (model)
+import Models exposing (model, Model)
+import Messages exposing (Msg)
 import View exposing (view)
 import Update exposing (update)
+import Subscriptions exposing (subscriptions)
+
+init : (Model, Cmd Msg)
+init = (model, Cmd.none)
 
 main =
-  Html.beginnerProgram
-    { model = model
+  Html.program
+    { init = init
     , view = view
     , update = update
+    , subscriptions = subscriptions
     }
