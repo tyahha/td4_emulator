@@ -1,4 +1,4 @@
-module ControlPanelView exposing (controlPanel)
+module View.ControlPanel exposing (controlPanel)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -7,8 +7,8 @@ import Html.Events exposing (onClick)
 import Models exposing (..)
 import Messages exposing (..)
 
-import RegistorView exposing (registor)
-import ClockGeneratorView exposing (clockGenerator)
+import View.Registor exposing (registor)
+import View.ClockGenerator exposing (clockGenerator)
 
 controlPanel : Model -> Html Msg
 controlPanel model =

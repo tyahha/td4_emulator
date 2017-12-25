@@ -1,4 +1,4 @@
-module MenuView exposing (menu)
+module View.Menu exposing (menu)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

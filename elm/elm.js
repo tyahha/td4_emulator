@@ -8756,113 +8756,95 @@ var _tyahha$td4_emulator$Messages$ChangeClockMode = function (a) {
 var _tyahha$td4_emulator$Messages$SaveFile = {ctor: 'SaveFile'};
 var _tyahha$td4_emulator$Messages$LoadFile = {ctor: 'LoadFile'};
 
-var _tyahha$td4_emulator$ClockGeneratorView$radio = F2(
-	function (src, check) {
-		return A2(
-			_elm_lang$html$Html$input,
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$type_('radio'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$name('clock-generator'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html_Events$onClick(
-							_tyahha$td4_emulator$Messages$ChangeClockMode(check)),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$checked(
-								_elm_lang$core$Native_Utils.eq(src, check)),
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			},
-			{ctor: '[]'});
-	});
-var _tyahha$td4_emulator$ClockGeneratorView$clockGenerator = function (model) {
+var _tyahha$td4_emulator$View_Menu$menu = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('clock-generator'),
+			_0: _elm_lang$html$Html_Attributes$class('menu'),
 			_1: {ctor: '[]'}
 		},
 		{
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$h3,
+				_elm_lang$html$Html$label,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('title'),
-					_1: {ctor: '[]'}
+					_0: _elm_lang$html$Html_Attributes$for('load-file'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('square_btn'),
+						_1: {ctor: '[]'}
+					}
 				},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text('Clock Generator'),
-					_1: {ctor: '[]'}
+					_0: _elm_lang$html$Html$text('Load Program'),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$input,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$type_('file'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$id('load-file'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(
+											{
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'display', _1: 'none'},
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$accept('.td4'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onClick(_tyahha$td4_emulator$Messages$LoadFile),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {ctor: '[]'}
+					}
 				}),
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$p,
-					{ctor: '[]'},
+					_elm_lang$html$Html$a,
 					{
 						ctor: '::',
-						_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, model.clockMode, _tyahha$td4_emulator$Models$OneHz),
+						_0: _elm_lang$html$Html_Attributes$downloadAs('program.td4'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$html$Html$text('1Hz'),
-							_1: {ctor: '[]'}
-						}
-					}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$p,
-						{ctor: '[]'},
-						{
-							ctor: '::',
-							_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, model.clockMode, _tyahha$td4_emulator$Models$TenHz),
+							_0: _elm_lang$html$Html_Attributes$class('square_btn'),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('10Hz'),
-								_1: {ctor: '[]'}
-							}
-						}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$p,
-							{ctor: '[]'},
-							{
-								ctor: '::',
-								_0: A2(_tyahha$td4_emulator$ClockGeneratorView$radio, model.clockMode, _tyahha$td4_emulator$Models$Manual),
+								_0: _elm_lang$html$Html_Attributes$id('save-file'),
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$html$Html$text('Manual '),
+									_0: _elm_lang$html$Html_Attributes$href('#'),
 									_1: {
 										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$button,
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html_Events$onClick(_tyahha$td4_emulator$Messages$ManualClock),
-												_1: {ctor: '[]'}
-											},
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html$text('Clock'),
-												_1: {ctor: '[]'}
-											}),
+										_0: _elm_lang$html$Html_Events$onClick(_tyahha$td4_emulator$Messages$SaveFile),
 										_1: {ctor: '[]'}
 									}
 								}
-							}),
+							}
+						}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('Save Program'),
 						_1: {ctor: '[]'}
-					}
-				}
+					}),
+				_1: {ctor: '[]'}
 			}
 		});
 };
@@ -8917,7 +8899,7 @@ var _tyahha$td4_emulator$Util$intToHexString = function (num) {
 					''))));
 };
 
-var _tyahha$td4_emulator$RegistorView$andToBitImg = F2(
+var _tyahha$td4_emulator$View_Registor$andToBitImg = F2(
 	function (num, mask) {
 		var b = A2(_tyahha$td4_emulator$Util$andToBool, num, mask);
 		return A2(
@@ -8930,7 +8912,7 @@ var _tyahha$td4_emulator$RegistorView$andToBitImg = F2(
 			},
 			{ctor: '[]'});
 	});
-var _tyahha$td4_emulator$RegistorView$registor = function (model) {
+var _tyahha$td4_emulator$View_Registor$registor = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -9023,16 +9005,16 @@ var _tyahha$td4_emulator$RegistorView$registor = function (model) {
 										}),
 									_1: {
 										ctor: '::',
-										_0: A2(_tyahha$td4_emulator$RegistorView$andToBitImg, model.output, 8),
+										_0: A2(_tyahha$td4_emulator$View_Registor$andToBitImg, model.output, 8),
 										_1: {
 											ctor: '::',
-											_0: A2(_tyahha$td4_emulator$RegistorView$andToBitImg, model.output, 4),
+											_0: A2(_tyahha$td4_emulator$View_Registor$andToBitImg, model.output, 4),
 											_1: {
 												ctor: '::',
-												_0: A2(_tyahha$td4_emulator$RegistorView$andToBitImg, model.output, 2),
+												_0: A2(_tyahha$td4_emulator$View_Registor$andToBitImg, model.output, 2),
 												_1: {
 													ctor: '::',
-													_0: A2(_tyahha$td4_emulator$RegistorView$andToBitImg, model.output, 1),
+													_0: A2(_tyahha$td4_emulator$View_Registor$andToBitImg, model.output, 1),
 													_1: {ctor: '[]'}
 												}
 											}
@@ -9167,7 +9149,118 @@ var _tyahha$td4_emulator$RegistorView$registor = function (model) {
 		});
 };
 
-var _tyahha$td4_emulator$ControlPanelView$controlPanel = function (model) {
+var _tyahha$td4_emulator$View_ClockGenerator$radio = F2(
+	function (src, check) {
+		return A2(
+			_elm_lang$html$Html$input,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$type_('radio'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$name('clock-generator'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Events$onClick(
+							_tyahha$td4_emulator$Messages$ChangeClockMode(check)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$checked(
+								_elm_lang$core$Native_Utils.eq(src, check)),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			},
+			{ctor: '[]'});
+	});
+var _tyahha$td4_emulator$View_ClockGenerator$clockGenerator = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('clock-generator'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$h3,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('title'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Clock Generator'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$p,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(_tyahha$td4_emulator$View_ClockGenerator$radio, model.clockMode, _tyahha$td4_emulator$Models$OneHz),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('1Hz'),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$p,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(_tyahha$td4_emulator$View_ClockGenerator$radio, model.clockMode, _tyahha$td4_emulator$Models$TenHz),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('10Hz'),
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$p,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(_tyahha$td4_emulator$View_ClockGenerator$radio, model.clockMode, _tyahha$td4_emulator$Models$Manual),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Manual '),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$button,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onClick(_tyahha$td4_emulator$Messages$ManualClock),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Clock'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+
+var _tyahha$td4_emulator$View_ControlPanel$controlPanel = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -9177,10 +9270,10 @@ var _tyahha$td4_emulator$ControlPanelView$controlPanel = function (model) {
 		},
 		{
 			ctor: '::',
-			_0: _tyahha$td4_emulator$RegistorView$registor(model),
+			_0: _tyahha$td4_emulator$View_Registor$registor(model),
 			_1: {
 				ctor: '::',
-				_0: _tyahha$td4_emulator$ClockGeneratorView$clockGenerator(model),
+				_0: _tyahha$td4_emulator$View_ClockGenerator$clockGenerator(model),
 				_1: {
 					ctor: '::',
 					_0: A2(
@@ -9212,100 +9305,7 @@ var _tyahha$td4_emulator$ControlPanelView$controlPanel = function (model) {
 		});
 };
 
-var _tyahha$td4_emulator$MenuView$menu = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('menu'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$label,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$for('load-file'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('square_btn'),
-						_1: {ctor: '[]'}
-					}
-				},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text('Load Program'),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$input,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$type_('file'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$id('load-file'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$style(
-											{
-												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'display', _1: 'none'},
-												_1: {ctor: '[]'}
-											}),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$accept('.td4'),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$html$Html_Events$onClick(_tyahha$td4_emulator$Messages$LoadFile),
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}
-							},
-							{ctor: '[]'}),
-						_1: {ctor: '[]'}
-					}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$a,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$downloadAs('program.td4'),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('square_btn'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$id('save-file'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$href('#'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onClick(_tyahha$td4_emulator$Messages$SaveFile),
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					},
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html$text('Save Program'),
-						_1: {ctor: '[]'}
-					}),
-				_1: {ctor: '[]'}
-			}
-		});
-};
-
-var _tyahha$td4_emulator$ProgramMemoryView$memoryCell = F2(
+var _tyahha$td4_emulator$View_ProgramMemory$memoryCell = F2(
 	function (check, msg) {
 		return A2(
 			_elm_lang$html$Html$label,
@@ -9346,37 +9346,37 @@ var _tyahha$td4_emulator$ProgramMemoryView$memoryCell = F2(
 				}
 			});
 	});
-var _tyahha$td4_emulator$ProgramMemoryView$updateOP = F3(
+var _tyahha$td4_emulator$View_ProgramMemory$updateOP = F3(
 	function (current, bit, src) {
 		return current ? (src & (~bit)) : (src | bit);
 	});
-var _tyahha$td4_emulator$ProgramMemoryView$operatorMemoryCell = F2(
+var _tyahha$td4_emulator$View_ProgramMemory$operatorMemoryCell = F2(
 	function (line, bit) {
 		var check = A2(_tyahha$td4_emulator$Util$andToBool, line.operator, bit);
 		return A2(
-			_tyahha$td4_emulator$ProgramMemoryView$memoryCell,
+			_tyahha$td4_emulator$View_ProgramMemory$memoryCell,
 			check,
 			_tyahha$td4_emulator$Messages$ChangeProgramMemoryLine(
 				_elm_lang$core$Native_Utils.update(
 					line,
 					{
-						operator: A3(_tyahha$td4_emulator$ProgramMemoryView$updateOP, check, bit, line.operator)
+						operator: A3(_tyahha$td4_emulator$View_ProgramMemory$updateOP, check, bit, line.operator)
 					})));
 	});
-var _tyahha$td4_emulator$ProgramMemoryView$operandMemoryCell = F2(
+var _tyahha$td4_emulator$View_ProgramMemory$operandMemoryCell = F2(
 	function (line, bit) {
 		var check = A2(_tyahha$td4_emulator$Util$andToBool, line.operand, bit);
 		return A2(
-			_tyahha$td4_emulator$ProgramMemoryView$memoryCell,
+			_tyahha$td4_emulator$View_ProgramMemory$memoryCell,
 			check,
 			_tyahha$td4_emulator$Messages$ChangeProgramMemoryLine(
 				_elm_lang$core$Native_Utils.update(
 					line,
 					{
-						operand: A3(_tyahha$td4_emulator$ProgramMemoryView$updateOP, check, bit, line.operand)
+						operand: A3(_tyahha$td4_emulator$View_ProgramMemory$updateOP, check, bit, line.operand)
 					})));
 	});
-var _tyahha$td4_emulator$ProgramMemoryView$addressToDisplay = function (address) {
+var _tyahha$td4_emulator$View_ProgramMemory$addressToDisplay = function (address) {
 	return A2(
 		_elm_lang$core$String$right,
 		2,
@@ -9385,7 +9385,7 @@ var _tyahha$td4_emulator$ProgramMemoryView$addressToDisplay = function (address)
 			_elm_lang$core$Native_Utils.chr('0'),
 			_elm_lang$core$Basics$toString(address)));
 };
-var _tyahha$td4_emulator$ProgramMemoryView$lineAttribute = F2(
+var _tyahha$td4_emulator$View_ProgramMemory$lineAttribute = F2(
 	function (programCounter, address) {
 		var common = _elm_lang$html$Html_Attributes$class('rom-line');
 		return _elm_lang$core$Native_Utils.eq(programCounter, address) ? {
@@ -9402,42 +9402,42 @@ var _tyahha$td4_emulator$ProgramMemoryView$lineAttribute = F2(
 			_1: {ctor: '[]'}
 		};
 	});
-var _tyahha$td4_emulator$ProgramMemoryView$line = F2(
+var _tyahha$td4_emulator$View_ProgramMemory$line = F2(
 	function (programCounter, line) {
 		return A2(
 			_elm_lang$html$Html$div,
-			A2(_tyahha$td4_emulator$ProgramMemoryView$lineAttribute, programCounter, line.address),
+			A2(_tyahha$td4_emulator$View_ProgramMemory$lineAttribute, programCounter, line.address),
 			{
 				ctor: '::',
 				_0: _elm_lang$html$Html$text(
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						'Address ',
-						_tyahha$td4_emulator$ProgramMemoryView$addressToDisplay(line.address))),
+						_tyahha$td4_emulator$View_ProgramMemory$addressToDisplay(line.address))),
 				_1: {
 					ctor: '::',
-					_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operatorMemoryCell, line, 8),
+					_0: A2(_tyahha$td4_emulator$View_ProgramMemory$operatorMemoryCell, line, 8),
 					_1: {
 						ctor: '::',
-						_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operatorMemoryCell, line, 4),
+						_0: A2(_tyahha$td4_emulator$View_ProgramMemory$operatorMemoryCell, line, 4),
 						_1: {
 							ctor: '::',
-							_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operatorMemoryCell, line, 2),
+							_0: A2(_tyahha$td4_emulator$View_ProgramMemory$operatorMemoryCell, line, 2),
 							_1: {
 								ctor: '::',
-								_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operatorMemoryCell, line, 1),
+								_0: A2(_tyahha$td4_emulator$View_ProgramMemory$operatorMemoryCell, line, 1),
 								_1: {
 									ctor: '::',
-									_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operandMemoryCell, line, 8),
+									_0: A2(_tyahha$td4_emulator$View_ProgramMemory$operandMemoryCell, line, 8),
 									_1: {
 										ctor: '::',
-										_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operandMemoryCell, line, 4),
+										_0: A2(_tyahha$td4_emulator$View_ProgramMemory$operandMemoryCell, line, 4),
 										_1: {
 											ctor: '::',
-											_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operandMemoryCell, line, 2),
+											_0: A2(_tyahha$td4_emulator$View_ProgramMemory$operandMemoryCell, line, 2),
 											_1: {
 												ctor: '::',
-												_0: A2(_tyahha$td4_emulator$ProgramMemoryView$operandMemoryCell, line, 1),
+												_0: A2(_tyahha$td4_emulator$View_ProgramMemory$operandMemoryCell, line, 1),
 												_1: {ctor: '[]'}
 											}
 										}
@@ -9449,13 +9449,13 @@ var _tyahha$td4_emulator$ProgramMemoryView$line = F2(
 				}
 			});
 	});
-var _tyahha$td4_emulator$ProgramMemoryView$lines = function (model) {
+var _tyahha$td4_emulator$View_ProgramMemory$lines = function (model) {
 	return A2(
 		_elm_lang$core$List$map,
-		_tyahha$td4_emulator$ProgramMemoryView$line(model.programCountor),
+		_tyahha$td4_emulator$View_ProgramMemory$line(model.programCountor),
 		model.programMemoryLines);
 };
-var _tyahha$td4_emulator$ProgramMemoryView$programMemoryView = function (model) {
+var _tyahha$td4_emulator$View_ProgramMemory$programMemoryView = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -9481,10 +9481,10 @@ var _tyahha$td4_emulator$ProgramMemoryView$programMemoryView = function (model) 
 					}),
 				_1: {ctor: '[]'}
 			},
-			_tyahha$td4_emulator$ProgramMemoryView$lines(model)));
+			_tyahha$td4_emulator$View_ProgramMemory$lines(model)));
 };
 
-var _tyahha$td4_emulator$View$view = function (model) {
+var _tyahha$td4_emulator$View_Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
@@ -9529,13 +9529,13 @@ var _tyahha$td4_emulator$View$view = function (model) {
 					}),
 				_1: {
 					ctor: '::',
-					_0: _tyahha$td4_emulator$MenuView$menu(model),
+					_0: _tyahha$td4_emulator$View_Menu$menu(model),
 					_1: {
 						ctor: '::',
-						_0: _tyahha$td4_emulator$ControlPanelView$controlPanel(model),
+						_0: _tyahha$td4_emulator$View_ControlPanel$controlPanel(model),
 						_1: {
 							ctor: '::',
-							_0: _tyahha$td4_emulator$ProgramMemoryView$programMemoryView(model),
+							_0: _tyahha$td4_emulator$View_ProgramMemory$programMemoryView(model),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -9797,7 +9797,7 @@ var _tyahha$td4_emulator$Subscriptions$subscriptions = function (model) {
 
 var _tyahha$td4_emulator$Main$init = {ctor: '_Tuple2', _0: _tyahha$td4_emulator$Models$model, _1: _elm_lang$core$Platform_Cmd$none};
 var _tyahha$td4_emulator$Main$main = _elm_lang$html$Html$program(
-	{init: _tyahha$td4_emulator$Main$init, view: _tyahha$td4_emulator$View$view, update: _tyahha$td4_emulator$Update$update, subscriptions: _tyahha$td4_emulator$Subscriptions$subscriptions})();
+	{init: _tyahha$td4_emulator$Main$init, view: _tyahha$td4_emulator$View_Main$view, update: _tyahha$td4_emulator$Update$update, subscriptions: _tyahha$td4_emulator$Subscriptions$subscriptions})();
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};

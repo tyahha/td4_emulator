@@ -2,7 +2,7 @@ import Html exposing (program)
 
 import Models exposing (model, Model)
 import Messages exposing (Msg)
-import View exposing (view)
+import View.Main exposing (view)
 import Update exposing (update)
 import Subscriptions exposing (subscriptions)
 

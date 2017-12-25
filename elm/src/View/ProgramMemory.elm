@@ -1,4 +1,4 @@
-module ProgramMemoryView exposing (programMemoryView)
+module View.ProgramMemory exposing (programMemoryView)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

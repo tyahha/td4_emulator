@@ -1,4 +1,4 @@
-module RegistorView exposing (registor)
+module View.Registor exposing (registor)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

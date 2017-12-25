@@ -1,4 +1,4 @@
-module View exposing (..)
+module View.Main exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -6,9 +6,9 @@ import Html.Attributes exposing (..)
 import Models exposing (..)
 import Messages exposing (..)
 
-import MenuView exposing (menu)
-import ControlPanelView exposing (controlPanel)
-import ProgramMemoryView exposing (programMemoryView)
+import View.Menu
+import View.ControlPanel exposing (controlPanel)
+import View.ProgramMemory exposing (programMemoryView)
 
 view: Model -> Html Msg
 view model =
@@ -20,7 +20,7 @@ view model =
         [ text "TOP"
         ]
       ]
-    , MenuView.menu model
+    , View.Menu.menu model
     , controlPanel model
     , programMemoryView model
     ]

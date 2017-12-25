@@ -1,4 +1,4 @@
-module ClockGeneratorView exposing (clockGenerator)
+module View.ClockGenerator exposing (clockGenerator)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

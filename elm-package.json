@@ -5,7 +5,6 @@
     "license": "MIT",
     "source-directories": [
         "./elm/src",
-        "./elm/src/view",
         "./elm/src/model"
     ],
     "exposed-modules": [],
