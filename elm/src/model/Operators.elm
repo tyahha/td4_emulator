@@ -1,6 +1,6 @@
-module Operators exposing (..)
+module Model.Operators exposing (..)
 
-import Models exposing (..)
+import Model.Models exposing (..)
 
 addA : Model -> ProgramMemoryLine -> Model
 addA model line = 

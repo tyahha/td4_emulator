@@ -3,7 +3,7 @@ module View.Registor exposing (registor)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
-import Models exposing (..)
+import Model.Models exposing (..)
 import Messages exposing (..)
 
 import Util exposing (boolToHexChar, boolToHexString, andToBool, intToHexString)

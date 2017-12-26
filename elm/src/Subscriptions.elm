@@ -1,7 +1,7 @@
 module Subscriptions exposing (..)
 
 import Time exposing (Time, second, millisecond)
-import Models exposing (..)
+import Model.Models exposing (..)
 import Messages exposing (..)
 
 subscriptions : Model -> Sub Msg

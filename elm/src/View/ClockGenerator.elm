@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 
-import Models exposing (..)
+import Model.Models exposing (..)
 import Messages exposing (..)
 
 radio : ClockMode -> ClockMode -> Html Msg

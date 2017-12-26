@@ -8694,35 +8694,35 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _tyahha$td4_emulator$Models$updateProgramMemoryLine = F2(
+var _tyahha$td4_emulator$Model_Models$updateProgramMemoryLine = F2(
 	function (src, target) {
 		return _elm_lang$core$Native_Utils.eq(target.address, src.address) ? src : target;
 	});
-var _tyahha$td4_emulator$Models$updateProgramMemoryLines = F2(
+var _tyahha$td4_emulator$Model_Models$updateProgramMemoryLines = F2(
 	function (model, src) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{
 				programMemoryLines: A2(
 					_elm_lang$core$List$map,
-					_tyahha$td4_emulator$Models$updateProgramMemoryLine(src),
+					_tyahha$td4_emulator$Model_Models$updateProgramMemoryLine(src),
 					model.programMemoryLines)
 			});
 	});
-var _tyahha$td4_emulator$Models$ProgramMemoryLine = F3(
+var _tyahha$td4_emulator$Model_Models$ProgramMemoryLine = F3(
 	function (a, b, c) {
 		return {address: a, operator: b, operand: c};
 	});
-var _tyahha$td4_emulator$Models$initProgramMemoryLine = function (address) {
-	return A3(_tyahha$td4_emulator$Models$ProgramMemoryLine, address, 0, 0);
+var _tyahha$td4_emulator$Model_Models$initProgramMemoryLine = function (address) {
+	return A3(_tyahha$td4_emulator$Model_Models$ProgramMemoryLine, address, 0, 0);
 };
-var _tyahha$td4_emulator$Models$Model = F9(
+var _tyahha$td4_emulator$Model_Models$Model = F9(
 	function (a, b, c, d, e, f, g, h, i) {
 		return {registorA: a, registorB: b, carry: c, programCountor: d, output: e, beep: f, input: g, clockMode: h, programMemoryLines: i};
 	});
-var _tyahha$td4_emulator$Models$Manual = {ctor: 'Manual'};
-var _tyahha$td4_emulator$Models$model = A9(
-	_tyahha$td4_emulator$Models$Model,
+var _tyahha$td4_emulator$Model_Models$Manual = {ctor: 'Manual'};
+var _tyahha$td4_emulator$Model_Models$model = A9(
+	_tyahha$td4_emulator$Model_Models$Model,
 	0,
 	0,
 	false,
@@ -8730,13 +8730,13 @@ var _tyahha$td4_emulator$Models$model = A9(
 	0,
 	false,
 	0,
-	_tyahha$td4_emulator$Models$Manual,
+	_tyahha$td4_emulator$Model_Models$Manual,
 	A2(
 		_elm_lang$core$List$map,
-		_tyahha$td4_emulator$Models$initProgramMemoryLine,
+		_tyahha$td4_emulator$Model_Models$initProgramMemoryLine,
 		A2(_elm_lang$core$List$range, 0, 15)));
-var _tyahha$td4_emulator$Models$TenHz = {ctor: 'TenHz'};
-var _tyahha$td4_emulator$Models$OneHz = {ctor: 'OneHz'};
+var _tyahha$td4_emulator$Model_Models$TenHz = {ctor: 'TenHz'};
+var _tyahha$td4_emulator$Model_Models$OneHz = {ctor: 'OneHz'};
 
 var _tyahha$td4_emulator$Messages$ChangeProgramMemoryLine = function (a) {
 	return {ctor: 'ChangeProgramMemoryLine', _0: a};
@@ -9203,7 +9203,7 @@ var _tyahha$td4_emulator$View_ClockGenerator$clockGenerator = function (model) {
 					{ctor: '[]'},
 					{
 						ctor: '::',
-						_0: A2(_tyahha$td4_emulator$View_ClockGenerator$radio, model.clockMode, _tyahha$td4_emulator$Models$OneHz),
+						_0: A2(_tyahha$td4_emulator$View_ClockGenerator$radio, model.clockMode, _tyahha$td4_emulator$Model_Models$OneHz),
 						_1: {
 							ctor: '::',
 							_0: _elm_lang$html$Html$text('1Hz'),
@@ -9217,7 +9217,7 @@ var _tyahha$td4_emulator$View_ClockGenerator$clockGenerator = function (model) {
 						{ctor: '[]'},
 						{
 							ctor: '::',
-							_0: A2(_tyahha$td4_emulator$View_ClockGenerator$radio, model.clockMode, _tyahha$td4_emulator$Models$TenHz),
+							_0: A2(_tyahha$td4_emulator$View_ClockGenerator$radio, model.clockMode, _tyahha$td4_emulator$Model_Models$TenHz),
 							_1: {
 								ctor: '::',
 								_0: _elm_lang$html$Html$text('10Hz'),
@@ -9231,7 +9231,7 @@ var _tyahha$td4_emulator$View_ClockGenerator$clockGenerator = function (model) {
 							{ctor: '[]'},
 							{
 								ctor: '::',
-								_0: A2(_tyahha$td4_emulator$View_ClockGenerator$radio, model.clockMode, _tyahha$td4_emulator$Models$Manual),
+								_0: A2(_tyahha$td4_emulator$View_ClockGenerator$radio, model.clockMode, _tyahha$td4_emulator$Model_Models$Manual),
 								_1: {
 									ctor: '::',
 									_0: _elm_lang$html$Html$text('Manual '),
@@ -9544,10 +9544,10 @@ var _tyahha$td4_emulator$View_Main$view = function (model) {
 		});
 };
 
-var _tyahha$td4_emulator$Operators$nextAddress = function (line) {
+var _tyahha$td4_emulator$Model_Operators$nextAddress = function (line) {
 	return _elm_lang$core$Native_Utils.eq(line.address, 15) ? 0 : (line.address + 1);
 };
-var _tyahha$td4_emulator$Operators$currentLine = function (model) {
+var _tyahha$td4_emulator$Model_Operators$currentLine = function (model) {
 	var filtered = A2(
 		_elm_lang$core$List$filter,
 		function (p) {
@@ -9561,115 +9561,115 @@ var _tyahha$td4_emulator$Operators$currentLine = function (model) {
 		return A2(
 			_elm_lang$core$Debug$log,
 			'error currentLine',
-			A3(_tyahha$td4_emulator$Models$ProgramMemoryLine, 0, 0, 0));
+			A3(_tyahha$td4_emulator$Model_Models$ProgramMemoryLine, 0, 0, 0));
 	}
 };
-var _tyahha$td4_emulator$Operators$errorOperator = F2(
+var _tyahha$td4_emulator$Model_Operators$errorOperator = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{
 				carry: false,
-				programCountor: _tyahha$td4_emulator$Operators$nextAddress(
+				programCountor: _tyahha$td4_emulator$Model_Operators$nextAddress(
 					A2(_elm_lang$core$Debug$log, 'unsupported operator', line))
 			});
 	});
-var _tyahha$td4_emulator$Operators$outputData = F2(
+var _tyahha$td4_emulator$Model_Operators$outputData = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{
 				carry: false,
 				output: line.operand,
-				programCountor: _tyahha$td4_emulator$Operators$nextAddress(line)
+				programCountor: _tyahha$td4_emulator$Model_Operators$nextAddress(line)
 			});
 	});
-var _tyahha$td4_emulator$Operators$outputB = F2(
+var _tyahha$td4_emulator$Model_Operators$outputB = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{
 				carry: false,
 				output: model.registorB,
-				programCountor: _tyahha$td4_emulator$Operators$nextAddress(line)
+				programCountor: _tyahha$td4_emulator$Model_Operators$nextAddress(line)
 			});
 	});
-var _tyahha$td4_emulator$Operators$inputB = F2(
+var _tyahha$td4_emulator$Model_Operators$inputB = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{
 				carry: false,
 				registorB: model.input,
-				programCountor: _tyahha$td4_emulator$Operators$nextAddress(line)
+				programCountor: _tyahha$td4_emulator$Model_Operators$nextAddress(line)
 			});
 	});
-var _tyahha$td4_emulator$Operators$inputA = F2(
+var _tyahha$td4_emulator$Model_Operators$inputA = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{
 				carry: false,
 				registorA: model.input,
-				programCountor: _tyahha$td4_emulator$Operators$nextAddress(line)
+				programCountor: _tyahha$td4_emulator$Model_Operators$nextAddress(line)
 			});
 	});
-var _tyahha$td4_emulator$Operators$jumpIf = F2(
+var _tyahha$td4_emulator$Model_Operators$jumpIf = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{
 				carry: false,
-				programCountor: model.carry ? _tyahha$td4_emulator$Operators$nextAddress(line) : line.operand
+				programCountor: model.carry ? _tyahha$td4_emulator$Model_Operators$nextAddress(line) : line.operand
 			});
 	});
-var _tyahha$td4_emulator$Operators$jump = F2(
+var _tyahha$td4_emulator$Model_Operators$jump = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{carry: false, programCountor: line.operand});
 	});
-var _tyahha$td4_emulator$Operators$moveBA = F2(
+var _tyahha$td4_emulator$Model_Operators$moveBA = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{
 				carry: false,
 				registorB: model.registorA,
-				programCountor: _tyahha$td4_emulator$Operators$nextAddress(line)
+				programCountor: _tyahha$td4_emulator$Model_Operators$nextAddress(line)
 			});
 	});
-var _tyahha$td4_emulator$Operators$moveAB = F2(
+var _tyahha$td4_emulator$Model_Operators$moveAB = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{
 				carry: false,
 				registorA: model.registorB,
-				programCountor: _tyahha$td4_emulator$Operators$nextAddress(line)
+				programCountor: _tyahha$td4_emulator$Model_Operators$nextAddress(line)
 			});
 	});
-var _tyahha$td4_emulator$Operators$moveB = F2(
+var _tyahha$td4_emulator$Model_Operators$moveB = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{
 				carry: false,
 				registorB: line.operand,
-				programCountor: _tyahha$td4_emulator$Operators$nextAddress(line)
+				programCountor: _tyahha$td4_emulator$Model_Operators$nextAddress(line)
 			});
 	});
-var _tyahha$td4_emulator$Operators$moveA = F2(
+var _tyahha$td4_emulator$Model_Operators$moveA = F2(
 	function (model, line) {
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{
 				carry: false,
 				registorA: line.operand,
-				programCountor: _tyahha$td4_emulator$Operators$nextAddress(line)
+				programCountor: _tyahha$td4_emulator$Model_Operators$nextAddress(line)
 			});
 	});
-var _tyahha$td4_emulator$Operators$addB = F2(
+var _tyahha$td4_emulator$Model_Operators$addB = F2(
 	function (model, line) {
 		var addresult = model.registorB + line.operand;
 		var carry = _elm_lang$core$Native_Utils.cmp(addresult, 15) > 0;
@@ -9678,10 +9678,10 @@ var _tyahha$td4_emulator$Operators$addB = F2(
 			{
 				carry: carry,
 				registorB: carry ? (addresult - 16) : addresult,
-				programCountor: _tyahha$td4_emulator$Operators$nextAddress(line)
+				programCountor: _tyahha$td4_emulator$Model_Operators$nextAddress(line)
 			});
 	});
-var _tyahha$td4_emulator$Operators$addA = F2(
+var _tyahha$td4_emulator$Model_Operators$addA = F2(
 	function (model, line) {
 		var addresult = model.registorA + line.operand;
 		var carry = _elm_lang$core$Native_Utils.cmp(addresult, 15) > 0;
@@ -9690,50 +9690,50 @@ var _tyahha$td4_emulator$Operators$addA = F2(
 			{
 				carry: carry,
 				registorA: carry ? (addresult - 16) : addresult,
-				programCountor: _tyahha$td4_emulator$Operators$nextAddress(line)
+				programCountor: _tyahha$td4_emulator$Model_Operators$nextAddress(line)
 			});
 	});
-var _tyahha$td4_emulator$Operators$getOperator = function (line) {
+var _tyahha$td4_emulator$Model_Operators$getOperator = function (line) {
 	var _p1 = line.operator;
 	switch (_p1) {
 		case 0:
-			return _tyahha$td4_emulator$Operators$addA;
+			return _tyahha$td4_emulator$Model_Operators$addA;
 		case 1:
-			return _tyahha$td4_emulator$Operators$moveAB;
+			return _tyahha$td4_emulator$Model_Operators$moveAB;
 		case 2:
-			return _tyahha$td4_emulator$Operators$inputA;
+			return _tyahha$td4_emulator$Model_Operators$inputA;
 		case 3:
-			return _tyahha$td4_emulator$Operators$moveA;
+			return _tyahha$td4_emulator$Model_Operators$moveA;
 		case 4:
-			return _tyahha$td4_emulator$Operators$moveBA;
+			return _tyahha$td4_emulator$Model_Operators$moveBA;
 		case 5:
-			return _tyahha$td4_emulator$Operators$addB;
+			return _tyahha$td4_emulator$Model_Operators$addB;
 		case 6:
-			return _tyahha$td4_emulator$Operators$inputB;
+			return _tyahha$td4_emulator$Model_Operators$inputB;
 		case 7:
-			return _tyahha$td4_emulator$Operators$moveB;
+			return _tyahha$td4_emulator$Model_Operators$moveB;
 		case 9:
-			return _tyahha$td4_emulator$Operators$outputB;
+			return _tyahha$td4_emulator$Model_Operators$outputB;
 		case 11:
-			return _tyahha$td4_emulator$Operators$outputData;
+			return _tyahha$td4_emulator$Model_Operators$outputData;
 		case 14:
-			return _tyahha$td4_emulator$Operators$jumpIf;
+			return _tyahha$td4_emulator$Model_Operators$jumpIf;
 		case 15:
-			return _tyahha$td4_emulator$Operators$jump;
+			return _tyahha$td4_emulator$Model_Operators$jump;
 		default:
-			return _tyahha$td4_emulator$Operators$errorOperator;
+			return _tyahha$td4_emulator$Model_Operators$errorOperator;
 	}
 };
-var _tyahha$td4_emulator$Operators$operate = F2(
+var _tyahha$td4_emulator$Model_Operators$operate = F2(
 	function (model, line) {
-		var operator = _tyahha$td4_emulator$Operators$getOperator(line);
+		var operator = _tyahha$td4_emulator$Model_Operators$getOperator(line);
 		return A2(operator, model, line);
 	});
-var _tyahha$td4_emulator$Operators$clock = function (model) {
+var _tyahha$td4_emulator$Model_Operators$clock = function (model) {
 	return A2(
-		_tyahha$td4_emulator$Operators$operate,
+		_tyahha$td4_emulator$Model_Operators$operate,
 		model,
-		_tyahha$td4_emulator$Operators$currentLine(model));
+		_tyahha$td4_emulator$Model_Operators$currentLine(model));
 };
 
 var _tyahha$td4_emulator$Update$update = F2(
@@ -9758,16 +9758,16 @@ var _tyahha$td4_emulator$Update$update = F2(
 					});
 				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'Clock1Hz':
-				var m = _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Models$OneHz) ? _tyahha$td4_emulator$Operators$clock(model) : model;
+				var m = _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$OneHz) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model;
 				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'Clock10Hz':
-				var m = _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Models$TenHz) ? _tyahha$td4_emulator$Operators$clock(model) : model;
+				var m = _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$TenHz) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model;
 				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'ManualClock':
-				var m = _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Models$Manual) ? _tyahha$td4_emulator$Operators$clock(model) : model;
+				var m = _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$Manual) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model;
 				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'Clock':
-				var m = _tyahha$td4_emulator$Operators$clock(model);
+				var m = _tyahha$td4_emulator$Model_Operators$clock(model);
 				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'Reset':
 				var m = _elm_lang$core$Native_Utils.update(
@@ -9776,7 +9776,7 @@ var _tyahha$td4_emulator$Update$update = F2(
 				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
 			default:
 				var m = A2(
-					_tyahha$td4_emulator$Models$updateProgramMemoryLines,
+					_tyahha$td4_emulator$Model_Models$updateProgramMemoryLines,
 					model,
 					A2(_elm_lang$core$Debug$log, 'ChangeProgramMemoryLine', _p0._0));
 				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
@@ -9795,7 +9795,7 @@ var _tyahha$td4_emulator$Subscriptions$subscriptions = function (model) {
 	}
 };
 
-var _tyahha$td4_emulator$Main$init = {ctor: '_Tuple2', _0: _tyahha$td4_emulator$Models$model, _1: _elm_lang$core$Platform_Cmd$none};
+var _tyahha$td4_emulator$Main$init = {ctor: '_Tuple2', _0: _tyahha$td4_emulator$Model_Models$model, _1: _elm_lang$core$Platform_Cmd$none};
 var _tyahha$td4_emulator$Main$main = _elm_lang$html$Html$program(
 	{init: _tyahha$td4_emulator$Main$init, view: _tyahha$td4_emulator$View_Main$view, update: _tyahha$td4_emulator$Update$update, subscriptions: _tyahha$td4_emulator$Subscriptions$subscriptions})();
 

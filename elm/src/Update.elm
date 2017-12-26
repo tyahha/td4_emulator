@@ -1,8 +1,8 @@
 module Update exposing (update)
 
 import Messages exposing (..)
-import Models exposing (..)
-import Operators exposing (..)
+import Model.Models exposing (..)
+import Model.Operators exposing (..)
 
 import Debug exposing (log)
 

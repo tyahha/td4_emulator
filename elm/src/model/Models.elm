@@ -1,4 +1,4 @@
-module Models exposing (..)
+module Model.Models exposing (..)
 
 type ClockMode = OneHz | TenHz | Manual
 

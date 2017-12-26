@@ -1,6 +1,6 @@
 module Messages exposing (..)
 
-import Models exposing (..)
+import Model.Models exposing (..)
 import Time exposing (Time)
 
 type Msg

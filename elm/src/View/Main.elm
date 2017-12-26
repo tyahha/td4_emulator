@@ -3,7 +3,7 @@ module View.Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
-import Models exposing (..)
+import Model.Models exposing (..)
 import Messages exposing (..)
 
 import View.Menu
