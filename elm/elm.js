@@ -9742,44 +9742,58 @@ var _tyahha$td4_emulator$Update$update = F2(
 		switch (_p0.ctor) {
 			case 'LoadFile':
 				return A2(
-					_elm_lang$core$Debug$log,
-					'LoadFile',
-					{ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none});
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					A2(_elm_lang$core$Debug$log, 'LoadFile', model),
+					{ctor: '[]'});
 			case 'SaveFile':
 				return A2(
-					_elm_lang$core$Debug$log,
-					'SaveFile',
-					{ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none});
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					A2(_elm_lang$core$Debug$log, 'SaveFile', model),
+					{ctor: '[]'});
 			case 'ChangeClockMode':
-				var m = _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						clockMode: A2(_elm_lang$core$Debug$log, 'ChangeClockMode', _p0._0)
-					});
-				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							clockMode: A2(_elm_lang$core$Debug$log, 'ChangeClockMode', _p0._0)
+						}),
+					{ctor: '[]'});
 			case 'Clock1Hz':
-				var m = _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$OneHz) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model;
-				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$OneHz) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model,
+					{ctor: '[]'});
 			case 'Clock10Hz':
-				var m = _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$TenHz) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model;
-				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$TenHz) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model,
+					{ctor: '[]'});
 			case 'ManualClock':
-				var m = _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$Manual) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model;
-				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$Manual) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model,
+					{ctor: '[]'});
 			case 'Clock':
-				var m = _tyahha$td4_emulator$Model_Operators$clock(model);
-				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_tyahha$td4_emulator$Model_Operators$clock(model),
+					{ctor: '[]'});
 			case 'Reset':
-				var m = _elm_lang$core$Native_Utils.update(
-					model,
-					{programCountor: 0, registorA: 0, registorB: 0, output: 0, carry: false});
-				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{programCountor: 0, registorA: 0, registorB: 0, output: 0, carry: false}),
+					{ctor: '[]'});
 			default:
-				var m = A2(
-					_tyahha$td4_emulator$Model_Models$updateProgramMemoryLines,
-					model,
-					A2(_elm_lang$core$Debug$log, 'ChangeProgramMemoryLine', _p0._0));
-				return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					A2(
+						_tyahha$td4_emulator$Model_Models$updateProgramMemoryLines,
+						model,
+						A2(_elm_lang$core$Debug$log, 'ChangeProgramMemoryLine', _p0._0)),
+					{ctor: '[]'});
 		}
 	});
 
