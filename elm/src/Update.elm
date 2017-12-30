@@ -17,14 +17,16 @@ update msg model =
       (log "SaveFile" model) ! []
     ChangeClockMode mode ->
       { model | clockMode = log "ChangeClockMode" mode } ! []
+    ClickBeep ->
+      { model | beep = not model.beep } ! []
     Clock1Hz t ->
-      (if model.clockMode == OneHz then clock model else model) ! []
+      if model.clockMode == OneHz then clock model else model ! []
     Clock10Hz t ->
-      (if model.clockMode == TenHz then clock model else model) ! []
+      if model.clockMode == TenHz then clock model else model ! []
     ManualClock ->
-      (if model.clockMode == Manual then clock model else model) ! []
+      if model.clockMode == Manual then clock model else model ! []
     Clock ->
-      (clock model) ! []
+      clock model
     Reset ->
       { model
       | programCountor = 0

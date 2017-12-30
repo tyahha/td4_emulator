@@ -2,6 +2,7 @@ module View.Registor exposing (registor)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 
 import Model.Models exposing (..)
 import Messages exposing (..)
@@ -41,7 +42,11 @@ registor model =
         ]
     , p [ class "beep-line" ] []
     , p [ class "beep-string" ]
-        [ input [ type_ "checkbox", checked model.beep ] []
+        [ input
+            [ type_ "checkbox"
+            , checked model.beep
+            , onClick ClickBeep
+            ] []
         , text "Beep"
         ]
     , p [ class "input" ]

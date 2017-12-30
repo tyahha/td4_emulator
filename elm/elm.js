@@ -8694,6 +8694,9 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
+var _tyahha$td4_emulator$Model_Models$isBeepBitOn = function (model) {
+	return _elm_lang$core$Native_Utils.eq(model.output & 8, 8);
+};
 var _tyahha$td4_emulator$Model_Models$updateProgramMemoryLine = F2(
 	function (src, target) {
 		return _elm_lang$core$Native_Utils.eq(target.address, src.address) ? src : target;
@@ -8738,6 +8741,7 @@ var _tyahha$td4_emulator$Model_Models$model = A9(
 var _tyahha$td4_emulator$Model_Models$TenHz = {ctor: 'TenHz'};
 var _tyahha$td4_emulator$Model_Models$OneHz = {ctor: 'OneHz'};
 
+var _tyahha$td4_emulator$Messages$ClickBeep = {ctor: 'ClickBeep'};
 var _tyahha$td4_emulator$Messages$ChangeProgramMemoryLine = function (a) {
 	return {ctor: 'ChangeProgramMemoryLine', _0: a};
 };
@@ -9050,7 +9054,11 @@ var _tyahha$td4_emulator$View_Registor$registor = function (model) {
 													_1: {
 														ctor: '::',
 														_0: _elm_lang$html$Html_Attributes$checked(model.beep),
-														_1: {ctor: '[]'}
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onClick(_tyahha$td4_emulator$Messages$ClickBeep),
+															_1: {ctor: '[]'}
+														}
 													}
 												},
 												{ctor: '[]'}),
@@ -9729,11 +9737,28 @@ var _tyahha$td4_emulator$Model_Operators$operate = F2(
 		var operator = _tyahha$td4_emulator$Model_Operators$getOperator(line);
 		return A2(operator, model, line);
 	});
+var _tyahha$td4_emulator$Model_Operators$beep = _elm_lang$core$Native_Platform.outgoingPort(
+	'beep',
+	function (v) {
+		return null;
+	});
+var _tyahha$td4_emulator$Model_Operators$tryBeep = function (model) {
+	return (A2(_elm_lang$core$Debug$log, 'model.beep', model.beep) && A2(
+		_elm_lang$core$Debug$log,
+		'isBeepBitOn',
+		_tyahha$td4_emulator$Model_Models$isBeepBitOn(model))) ? _tyahha$td4_emulator$Model_Operators$beep(
+		{ctor: '_Tuple0'}) : _elm_lang$core$Platform_Cmd$none;
+};
 var _tyahha$td4_emulator$Model_Operators$clock = function (model) {
-	return A2(
+	var m = A2(
 		_tyahha$td4_emulator$Model_Operators$operate,
 		model,
 		_tyahha$td4_emulator$Model_Operators$currentLine(model));
+	return {
+		ctor: '_Tuple2',
+		_0: m,
+		_1: _tyahha$td4_emulator$Model_Operators$tryBeep(m)
+	};
 };
 
 var _tyahha$td4_emulator$Update$update = F2(
@@ -9759,26 +9784,30 @@ var _tyahha$td4_emulator$Update$update = F2(
 							clockMode: A2(_elm_lang$core$Debug$log, 'ChangeClockMode', _p0._0)
 						}),
 					{ctor: '[]'});
-			case 'Clock1Hz':
+			case 'ClickBeep':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
-					_elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$OneHz) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model,
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{beep: !model.beep}),
+					{ctor: '[]'});
+			case 'Clock1Hz':
+				return _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$OneHz) ? _tyahha$td4_emulator$Model_Operators$clock(model) : A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
 					{ctor: '[]'});
 			case 'Clock10Hz':
-				return A2(
+				return _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$TenHz) ? _tyahha$td4_emulator$Model_Operators$clock(model) : A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
-					_elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$TenHz) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model,
+					model,
 					{ctor: '[]'});
 			case 'ManualClock':
-				return A2(
+				return _elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$Manual) ? _tyahha$td4_emulator$Model_Operators$clock(model) : A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
-					_elm_lang$core$Native_Utils.eq(model.clockMode, _tyahha$td4_emulator$Model_Models$Manual) ? _tyahha$td4_emulator$Model_Operators$clock(model) : model,
+					model,
 					{ctor: '[]'});
 			case 'Clock':
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					_tyahha$td4_emulator$Model_Operators$clock(model),
-					{ctor: '[]'});
+				return _tyahha$td4_emulator$Model_Operators$clock(model);
 			case 'Reset':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],

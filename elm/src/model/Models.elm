@@ -1,5 +1,7 @@
 module Model.Models exposing (..)
 
+import Bitwise
+
 type ClockMode = OneHz | TenHz | Manual
 
 type alias ProgramMemoryLine = {
@@ -37,6 +39,10 @@ updateProgramMemoryLines model src =
   { model
   | programMemoryLines = List.map (updateProgramMemoryLine src) model.programMemoryLines
   }
+
+isBeepBitOn : Model -> Bool
+isBeepBitOn model =
+  (Bitwise.and model.output 8) == 8
 
 model: Model
 model = Model 0 0 False 0 0 False 0 Manual (List.map initProgramMemoryLine (List.range 0 15))

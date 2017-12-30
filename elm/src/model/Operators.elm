@@ -1,6 +1,16 @@
-module Model.Operators exposing (..)
+port module Model.Operators exposing (..)
 
 import Model.Models exposing (..)
+import Messages exposing (..)
+
+port beep : () -> Cmd msg
+
+tryBeep : Model -> Cmd msg
+tryBeep model =
+  if (Debug.log "model.beep" model.beep) && (Debug.log "isBeepBitOn" (isBeepBitOn model)) then
+     beep ()
+   else
+     Cmd.none
 
 addA : Model -> ProgramMemoryLine -> Model
 addA model line = 
@@ -124,11 +134,12 @@ currentLine model =
       Just line -> line
       Nothing -> Debug.log "error currentLine" ( ProgramMemoryLine 0 0 0 )
 
-clock : Model -> Model
+clock : Model -> (Model, Cmd Msg)
 clock model =
-  model
+  let m = model
     |> currentLine
     |> operate model
+  in (m, tryBeep m)
 
 operate : Model -> ProgramMemoryLine -> Model
 operate model line =

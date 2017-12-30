@@ -13,3 +13,4 @@ type Msg
   | Clock
   | Reset
   | ChangeProgramMemoryLine ProgramMemoryLine
+  | ClickBeep
