@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 
-const app = document.getElementById('app')
+import TD4Emurator from './component/TD4Emurator'
 
-ReactDom.render(<h1>TODO implementation</h1>, app)
+ReactDom.render(<TD4Emurator />, document.getElementById('app'))
