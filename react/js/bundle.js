@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,9 +71,9 @@
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(16);
-} else {
   module.exports = __webpack_require__(17);
+} else {
+  module.exports = __webpack_require__(18);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -307,9 +307,9 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(19);
+  module.exports = __webpack_require__(20);
 } else {
-  module.exports = __webpack_require__(22);
+  module.exports = __webpack_require__(23);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -623,7 +623,7 @@ module.exports = warning;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(6);
   var warning = __webpack_require__(7);
-  var ReactPropTypesSecret = __webpack_require__(18);
+  var ReactPropTypesSecret = __webpack_require__(19);
   var loggedTypeFailures = {};
 }
 
@@ -922,7 +922,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(20);
+var isTextNode = __webpack_require__(21);
 
 /*eslint-disable no-bitwise */
 
@@ -986,6 +986,22 @@ module.exports = focusNode;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  OneHz: 0,
+  TenHz: 1,
+  Manual: 2
+};
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -994,7 +1010,7 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _TD4Emurator = __webpack_require__(27);
+var _TD4Emurator = __webpack_require__(28);
 
 var _TD4Emurator2 = _interopRequireDefault(_TD4Emurator);
 
@@ -1003,7 +1019,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactDom2.default.render(_react2.default.createElement(_TD4Emurator2.default, null), document.getElementById('app'));
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1031,7 +1047,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2396,7 +2412,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2415,7 +2431,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2651,7 +2667,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2666,7 +2682,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(21);
+var isNode = __webpack_require__(22);
 
 /**
  * @param {*} object The object to check.
@@ -2679,7 +2695,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2707,7 +2723,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2741,8 +2757,8 @@ var containsNode = __webpack_require__(13);
 var focusNode = __webpack_require__(14);
 var emptyObject = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(8);
-var hyphenateStyleName = __webpack_require__(23);
-var camelizeStyleName = __webpack_require__(25);
+var hyphenateStyleName = __webpack_require__(24);
+var camelizeStyleName = __webpack_require__(26);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -18109,7 +18125,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18124,7 +18140,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(24);
+var hyphenate = __webpack_require__(25);
 
 var msPattern = /^ms-/;
 
@@ -18151,7 +18167,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18187,7 +18203,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18202,7 +18218,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(26);
+var camelize = __webpack_require__(27);
 
 var msPattern = /^-ms-/;
 
@@ -18230,7 +18246,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18265,7 +18281,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18274,7 +18290,8 @@ module.exports = camelize;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = TD4Emurator;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
@@ -18284,32 +18301,105 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Menu = __webpack_require__(28);
+var _Menu = __webpack_require__(29);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _ControlPanel = __webpack_require__(29);
+var _ControlPanel = __webpack_require__(30);
 
 var _ControlPanel2 = _interopRequireDefault(_ControlPanel);
 
-var _ProgramMemory = __webpack_require__(33);
+var _ProgramMemory = __webpack_require__(34);
 
 var _ProgramMemory2 = _interopRequireDefault(_ProgramMemory);
 
+var _ClockMode = __webpack_require__(15);
+
+var _ClockMode2 = _interopRequireDefault(_ClockMode);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function TD4Emurator(props) {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(_Menu2.default, null),
-    _react2.default.createElement(_ControlPanel2.default, null),
-    _react2.default.createElement(_ProgramMemory2.default, { currentAddress: 0 })
-  );
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TD4Emurator = function (_React$Component) {
+  _inherits(TD4Emurator, _React$Component);
+
+  function TD4Emurator(props) {
+    _classCallCheck(this, TD4Emurator);
+
+    var _this = _possibleConstructorReturn(this, (TD4Emurator.__proto__ || Object.getPrototypeOf(TD4Emurator)).call(this, props));
+
+    _this.timer = null;
+    _this.state = {
+      programCount: 0,
+      clockMode: _ClockMode2.default.Manual
+    };
+    return _this;
+  }
+
+  _createClass(TD4Emurator, [{
+    key: 'clock',
+    value: function clock() {
+      this.setState(Object.assign(this.state, {
+        programCount: (this.state.programCount + 1) % 16
+      }));
+    }
+  }, {
+    key: 'manualClock',
+    value: function manualClock() {
+      if (this.state.clockMode === _ClockMode2.default.Manual) {
+        this.clock();
+      }
+    }
+  }, {
+    key: 'onChangeClockMode',
+    value: function onChangeClockMode(clockMode) {
+      var _this2 = this;
+
+      if (this.timer) {
+        clearInterval(this.timer);
+        this.timer = null;
+      }
+
+      if (clockMode === _ClockMode2.default.OneHz || clockMode === _ClockMode2.default.TenHz) {
+        this.timer = setInterval(function () {
+          _this2.clock();
+        }, clockMode === _ClockMode2.default.OneHz ? 1000 : 100);
+      }
+
+      this.setState(Object.assign(this.state, {
+        clockMode: clockMode
+      }));
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_Menu2.default, null),
+        _react2.default.createElement(_ControlPanel2.default, {
+          onClock: this.manualClock.bind(this),
+          programCount: this.state.programCount,
+          clockMode: this.state.clockMode,
+          onChangeClockMode: this.onChangeClockMode.bind(this)
+        }),
+        _react2.default.createElement(_ProgramMemory2.default, { programCount: this.state.programCount })
+      );
+    }
+  }]);
+
+  return TD4Emurator;
+}(_react2.default.Component);
+
+exports.default = TD4Emurator;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18349,7 +18439,7 @@ function Menu(props) {
 }
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18368,15 +18458,15 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Registor = __webpack_require__(30);
+var _Registor = __webpack_require__(31);
 
 var _Registor2 = _interopRequireDefault(_Registor);
 
-var _ClockGenerator = __webpack_require__(31);
+var _ClockGenerator = __webpack_require__(32);
 
 var _ClockGenerator2 = _interopRequireDefault(_ClockGenerator);
 
-var _Reset = __webpack_require__(32);
+var _Reset = __webpack_require__(33);
 
 var _Reset2 = _interopRequireDefault(_Reset);
 
@@ -18386,14 +18476,18 @@ function ControlPanel(props) {
   return _react2.default.createElement(
     'div',
     { className: 'control-panel' },
-    _react2.default.createElement(_Registor2.default, null),
-    _react2.default.createElement(_ClockGenerator2.default, null),
+    _react2.default.createElement(_Registor2.default, { programCount: props.programCount }),
+    _react2.default.createElement(_ClockGenerator2.default, {
+      clockMode: props.clockMode,
+      onChangeClockMode: props.onChangeClockMode,
+      onClock: props.onClock
+    }),
     _react2.default.createElement(_Reset2.default, null)
   );
 }
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18413,6 +18507,11 @@ var _reactDom = __webpack_require__(2);
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function toBinaryNumber(src) {
+  var num = ((src & 8) === 8 ? 1000 : 0) + ((src & 4) === 4 ? 100 : 0) + ((src & 2) === 2 ? 10 : 0) + ((src & 1) === 1 ? 1 : 0);
+  return ('000' + num).slice(-4);
+}
 
 function Registor(props) {
   return _react2.default.createElement(
@@ -18436,7 +18535,8 @@ function Registor(props) {
     _react2.default.createElement(
       'p',
       null,
-      'Program Counter 0000'
+      'Program Counter ',
+      toBinaryNumber(props.programCount)
     ),
     _react2.default.createElement(
       'p',
@@ -18471,7 +18571,7 @@ function Registor(props) {
 }
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18490,9 +18590,31 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _ClockMode = __webpack_require__(15);
+
+var _ClockMode2 = _interopRequireDefault(_ClockMode);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ClockGenerator(props) {
+  function renderClockModeSelector(clockMode) {
+    var display = clockMode === _ClockMode2.default.OneHz ? '1Hz' : clockMode === _ClockMode2.default.TenHz ? '10Hz' : 'Manual';
+    return _react2.default.createElement(
+      'span',
+      null,
+      _react2.default.createElement('input', {
+        type: 'radio',
+        name: 'clock-generator',
+        value: display,
+        checked: props.clockMode === clockMode,
+        onChange: function onChange() {
+          return props.onChangeClockMode(clockMode);
+        }
+      }),
+      display
+    );
+  }
+
   return _react2.default.createElement(
     'div',
     { className: 'clock-generator' },
@@ -18504,23 +18626,20 @@ function ClockGenerator(props) {
     _react2.default.createElement(
       'p',
       null,
-      _react2.default.createElement('input', { type: 'radio', name: 'clock-generator', value: '1Hz' }),
-      '1Hz'
+      renderClockModeSelector(_ClockMode2.default.OneHz)
     ),
     _react2.default.createElement(
       'p',
       null,
-      _react2.default.createElement('input', { type: 'radio', name: 'clock-generator', value: '10Hz' }),
-      '10Hz'
+      renderClockModeSelector(_ClockMode2.default.TenHz)
     ),
     _react2.default.createElement(
       'p',
       null,
-      _react2.default.createElement('input', { type: 'radio', name: 'clock-generator', value: 'Manual' }),
-      'Manual ',
+      renderClockModeSelector(_ClockMode2.default.Manual),
       _react2.default.createElement(
         'button',
-        null,
+        { onClick: props.onClock },
         'Clock'
       )
     )
@@ -18528,7 +18647,7 @@ function ClockGenerator(props) {
 }
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18562,7 +18681,7 @@ function Reset(props) {
 }
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18581,7 +18700,7 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _ProgramMemoryLine = __webpack_require__(34);
+var _ProgramMemoryLine = __webpack_require__(35);
 
 var _ProgramMemoryLine2 = _interopRequireDefault(_ProgramMemoryLine);
 
@@ -18593,7 +18712,7 @@ function ProgramMemory(props) {
     lines.push(_react2.default.createElement(_ProgramMemoryLine2.default, {
       key: i,
       address: i,
-      currentAddress: props.currentAddress
+      programCount: props.programCount
     }));
   }
   return _react2.default.createElement(
@@ -18609,7 +18728,7 @@ function ProgramMemory(props) {
 }
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18635,7 +18754,7 @@ function displayAddress(address) {
 }
 
 function isCurrent(props) {
-  return props.address === props.currentAddress;
+  return props.address === props.programCount;
 }
 
 function ProgramMemoryLine(props) {

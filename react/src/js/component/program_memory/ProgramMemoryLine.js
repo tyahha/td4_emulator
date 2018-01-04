@@ -6,7 +6,7 @@ function displayAddress(address) {
 }
 
 function isCurrent(props) {
-  return props.address === props.currentAddress
+  return props.address === props.programCount
 }
 
 export default function ProgramMemoryLine(props) {

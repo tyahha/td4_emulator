@@ -10,7 +10,7 @@ export default function ProgramMemory(props) {
       <ProgramMemoryLine
         key={i}
         address={i}
-        currentAddress={props.currentAddress}
+        programCount={props.programCount}
       />
     )
   }
