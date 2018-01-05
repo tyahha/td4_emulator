@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 
 import ClockMode from '../../ClockMode'
+import ChangeEvent from '../../ChangeEvent'
 
 export default function ClockGenerator(props) {
   function renderClockModeSelector(clockMode) {
@@ -18,7 +19,7 @@ export default function ClockGenerator(props) {
           name="clock-generator"
           value={display}
           checked={props.clockMode === clockMode}
-          onChange={() => props.onChangeClockMode(clockMode)}
+          onChange={() => props.onChange(ChangeEvent.ClockMode, clockMode)}
         />
         {display}
       </span>

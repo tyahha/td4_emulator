@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,9 +71,9 @@
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(17);
-} else {
   module.exports = __webpack_require__(18);
+} else {
+  module.exports = __webpack_require__(19);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -307,9 +307,9 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(20);
+  module.exports = __webpack_require__(21);
 } else {
-  module.exports = __webpack_require__(23);
+  module.exports = __webpack_require__(24);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -611,6 +611,22 @@ module.exports = warning;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  Beep: 0,
+  Input: 1,
+  ClockMode: 2
+};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -623,7 +639,7 @@ module.exports = warning;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(6);
   var warning = __webpack_require__(7);
-  var ReactPropTypesSecret = __webpack_require__(19);
+  var ReactPropTypesSecret = __webpack_require__(20);
   var loggedTypeFailures = {};
 }
 
@@ -674,7 +690,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -713,7 +729,7 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -794,7 +810,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -836,7 +852,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -907,7 +923,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -922,7 +938,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(21);
+var isTextNode = __webpack_require__(22);
 
 /*eslint-disable no-bitwise */
 
@@ -950,7 +966,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -980,7 +996,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -996,7 +1012,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1010,7 +1026,7 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _TD4Emurator = __webpack_require__(28);
+var _TD4Emurator = __webpack_require__(29);
 
 var _TD4Emurator2 = _interopRequireDefault(_TD4Emurator);
 
@@ -1019,7 +1035,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactDom2.default.render(_react2.default.createElement(_TD4Emurator2.default, null), document.getElementById('app'));
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1047,7 +1063,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1073,7 +1089,7 @@ var emptyObject = __webpack_require__(5);
 var invariant = __webpack_require__(6);
 var warning = __webpack_require__(7);
 var emptyFunction = __webpack_require__(3);
-var checkPropTypes = __webpack_require__(8);
+var checkPropTypes = __webpack_require__(9);
 
 // TODO: this is special because it gets imported during build.
 
@@ -2412,7 +2428,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2431,7 +2447,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2447,7 +2463,7 @@ module.exports = ReactPropTypesSecret;
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),l=__webpack_require__(9),B=__webpack_require__(4),C=__webpack_require__(3),ba=__webpack_require__(10),da=__webpack_require__(11),ea=__webpack_require__(12),fa=__webpack_require__(13),ia=__webpack_require__(14),D=__webpack_require__(5);
+var aa=__webpack_require__(0),l=__webpack_require__(10),B=__webpack_require__(4),C=__webpack_require__(3),ba=__webpack_require__(11),da=__webpack_require__(12),ea=__webpack_require__(13),fa=__webpack_require__(14),ia=__webpack_require__(15),D=__webpack_require__(5);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -2667,7 +2683,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2682,7 +2698,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(22);
+var isNode = __webpack_require__(23);
 
 /**
  * @param {*} object The object to check.
@@ -2695,7 +2711,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2723,7 +2739,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2747,18 +2763,18 @@ if (process.env.NODE_ENV !== "production") {
 var React = __webpack_require__(0);
 var invariant = __webpack_require__(6);
 var warning = __webpack_require__(7);
-var ExecutionEnvironment = __webpack_require__(9);
+var ExecutionEnvironment = __webpack_require__(10);
 var _assign = __webpack_require__(4);
 var emptyFunction = __webpack_require__(3);
-var EventListener = __webpack_require__(10);
-var getActiveElement = __webpack_require__(11);
-var shallowEqual = __webpack_require__(12);
-var containsNode = __webpack_require__(13);
-var focusNode = __webpack_require__(14);
+var EventListener = __webpack_require__(11);
+var getActiveElement = __webpack_require__(12);
+var shallowEqual = __webpack_require__(13);
+var containsNode = __webpack_require__(14);
+var focusNode = __webpack_require__(15);
 var emptyObject = __webpack_require__(5);
-var checkPropTypes = __webpack_require__(8);
-var hyphenateStyleName = __webpack_require__(24);
-var camelizeStyleName = __webpack_require__(26);
+var checkPropTypes = __webpack_require__(9);
+var hyphenateStyleName = __webpack_require__(25);
+var camelizeStyleName = __webpack_require__(27);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -18125,7 +18141,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18140,7 +18156,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(25);
+var hyphenate = __webpack_require__(26);
 
 var msPattern = /^ms-/;
 
@@ -18167,7 +18183,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18203,7 +18219,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18218,7 +18234,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(27);
+var camelize = __webpack_require__(28);
 
 var msPattern = /^-ms-/;
 
@@ -18246,7 +18262,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18281,7 +18297,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18301,21 +18317,25 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Menu = __webpack_require__(29);
+var _Menu = __webpack_require__(30);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _ControlPanel = __webpack_require__(30);
+var _ControlPanel = __webpack_require__(31);
 
 var _ControlPanel2 = _interopRequireDefault(_ControlPanel);
 
-var _ProgramMemory = __webpack_require__(34);
+var _ProgramMemory = __webpack_require__(35);
 
 var _ProgramMemory2 = _interopRequireDefault(_ProgramMemory);
 
-var _ClockMode = __webpack_require__(15);
+var _ClockMode = __webpack_require__(16);
 
 var _ClockMode2 = _interopRequireDefault(_ClockMode);
+
+var _ChangeEvent = __webpack_require__(8);
+
+var _ChangeEvent2 = _interopRequireDefault(_ChangeEvent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18336,6 +18356,12 @@ var TD4Emurator = function (_React$Component) {
     _this.timer = null;
     _this.state = {
       programCount: 0,
+      registorA: 0,
+      registorB: 0,
+      carry: false,
+      input: 0,
+      output: 0,
+      enableBeep: false,
       clockMode: _ClockMode2.default.Manual
     };
     return _this;
@@ -18353,6 +18379,29 @@ var TD4Emurator = function (_React$Component) {
     value: function manualClock() {
       if (this.state.clockMode === _ClockMode2.default.Manual) {
         this.clock();
+      }
+    }
+  }, {
+    key: 'onChange',
+    value: function onChange(kind, param) {
+      console.log('onChange: ' + kind + ', ' + param);
+      switch (kind) {
+        case _ChangeEvent2.default.Beep:
+          this.setState(Object.assign(this.state, {
+            enableBeep: !this.state.enableBeep
+          }));
+          break;
+        case _ChangeEvent2.default.Input:
+          this.setState(Object.assign(this.state, {
+            input: this.state.input ^ param
+          }));
+          break;
+        case _ChangeEvent2.default.ClockMode:
+          this.onChangeClockMode(param);
+          break;
+        default:
+          console.error('unknown change event:' + kind + ', ' + param);
+          break;
       }
     }
   }, {
@@ -18385,8 +18434,14 @@ var TD4Emurator = function (_React$Component) {
         _react2.default.createElement(_ControlPanel2.default, {
           onClock: this.manualClock.bind(this),
           programCount: this.state.programCount,
+          registorA: this.state.registorA,
+          registorB: this.state.registorB,
+          carry: this.state.carry,
+          input: this.state.input,
+          output: this.state.output,
+          enableBeep: this.state.enableBeep,
           clockMode: this.state.clockMode,
-          onChangeClockMode: this.onChangeClockMode.bind(this)
+          onChange: this.onChange.bind(this)
         }),
         _react2.default.createElement(_ProgramMemory2.default, { programCount: this.state.programCount })
       );
@@ -18399,7 +18454,7 @@ var TD4Emurator = function (_React$Component) {
 exports.default = TD4Emurator;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18439,7 +18494,7 @@ function Menu(props) {
 }
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18458,15 +18513,15 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Registor = __webpack_require__(31);
+var _Registor = __webpack_require__(32);
 
 var _Registor2 = _interopRequireDefault(_Registor);
 
-var _ClockGenerator = __webpack_require__(32);
+var _ClockGenerator = __webpack_require__(33);
 
 var _ClockGenerator2 = _interopRequireDefault(_ClockGenerator);
 
-var _Reset = __webpack_require__(33);
+var _Reset = __webpack_require__(34);
 
 var _Reset2 = _interopRequireDefault(_Reset);
 
@@ -18476,10 +18531,19 @@ function ControlPanel(props) {
   return _react2.default.createElement(
     'div',
     { className: 'control-panel' },
-    _react2.default.createElement(_Registor2.default, { programCount: props.programCount }),
+    _react2.default.createElement(_Registor2.default, {
+      programCount: props.programCount,
+      registorA: props.registorA,
+      registorB: props.registorB,
+      carry: props.carry,
+      input: props.input,
+      output: props.output,
+      enableBeep: props.enableBeep,
+      onChange: props.onChange
+    }),
     _react2.default.createElement(_ClockGenerator2.default, {
       clockMode: props.clockMode,
-      onChangeClockMode: props.onChangeClockMode,
+      onChange: props.onChange,
       onClock: props.onClock
     }),
     _react2.default.createElement(_Reset2.default, null)
@@ -18487,7 +18551,7 @@ function ControlPanel(props) {
 }
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18506,6 +18570,10 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _ChangeEvent = __webpack_require__(8);
+
+var _ChangeEvent2 = _interopRequireDefault(_ChangeEvent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function toBinaryNumber(src) {
@@ -18513,24 +18581,45 @@ function toBinaryNumber(src) {
   return ('000' + num).slice(-4);
 }
 
+function maskNumberToBoolean(num, mask) {
+  return (num & mask) === mask ? true : false;
+}
+
+function maskNumberToOutputImage(num, mask) {
+  return '../img/' + (maskNumberToBoolean(num, mask) ? 'on' : 'off') + '.png';
+}
+
 function Registor(props) {
+  function renderInputCheckbox(mask) {
+    return _react2.default.createElement('input', {
+      type: 'checkbox',
+      checked: maskNumberToBoolean(props.input, mask),
+      onChange: function onChange() {
+        return props.onChange(_ChangeEvent2.default.Input, mask);
+      }
+    });
+  }
+
   return _react2.default.createElement(
     'div',
     { className: 'registor' },
     _react2.default.createElement(
       'p',
       null,
-      'RegistorA 0000'
+      'RegistorA ',
+      toBinaryNumber(props.registorA)
     ),
     _react2.default.createElement(
       'p',
       null,
-      'RegistorB 0000'
+      'RegistorB ',
+      toBinaryNumber(props.registorB)
     ),
     _react2.default.createElement(
       'p',
       null,
-      'C Flag 0'
+      'C Flag ',
+      props.carry ? '1' : '0'
     ),
     _react2.default.createElement(
       'p',
@@ -18546,32 +18635,38 @@ function Registor(props) {
         { className: 'label' },
         'output'
       ),
-      _react2.default.createElement('img', { src: '../img/off.png' }),
-      _react2.default.createElement('img', { src: '../img/off.png' }),
-      _react2.default.createElement('img', { src: '../img/off.png' }),
-      _react2.default.createElement('img', { src: '../img/off.png' })
+      _react2.default.createElement('img', { src: maskNumberToOutputImage(props.output, 8) }),
+      _react2.default.createElement('img', { src: maskNumberToOutputImage(props.output, 4) }),
+      _react2.default.createElement('img', { src: maskNumberToOutputImage(props.output, 2) }),
+      _react2.default.createElement('img', { src: maskNumberToOutputImage(props.output, 1) })
     ),
     _react2.default.createElement('p', { className: 'beep-line' }),
     _react2.default.createElement(
       'p',
       { className: 'beep-string' },
-      _react2.default.createElement('input', { type: 'checkbox' }),
+      _react2.default.createElement('input', {
+        type: 'checkbox',
+        checked: props.enableBeep,
+        onChange: function onChange() {
+          return props.onChange(_ChangeEvent2.default.Beep);
+        }
+      }),
       'Beep'
     ),
     _react2.default.createElement(
       'p',
       { className: 'input' },
       'input',
-      _react2.default.createElement('input', { type: 'checkbox' }),
-      _react2.default.createElement('input', { type: 'checkbox' }),
-      _react2.default.createElement('input', { type: 'checkbox' }),
-      _react2.default.createElement('input', { type: 'checkbox' })
+      renderInputCheckbox(8),
+      renderInputCheckbox(4),
+      renderInputCheckbox(2),
+      renderInputCheckbox(1)
     )
   );
 }
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18590,9 +18685,13 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _ClockMode = __webpack_require__(15);
+var _ClockMode = __webpack_require__(16);
 
 var _ClockMode2 = _interopRequireDefault(_ClockMode);
+
+var _ChangeEvent = __webpack_require__(8);
+
+var _ChangeEvent2 = _interopRequireDefault(_ChangeEvent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18608,7 +18707,7 @@ function ClockGenerator(props) {
         value: display,
         checked: props.clockMode === clockMode,
         onChange: function onChange() {
-          return props.onChangeClockMode(clockMode);
+          return props.onChange(_ChangeEvent2.default.ClockMode, clockMode);
         }
       }),
       display
@@ -18647,7 +18746,7 @@ function ClockGenerator(props) {
 }
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18681,7 +18780,7 @@ function Reset(props) {
 }
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18700,7 +18799,7 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _ProgramMemoryLine = __webpack_require__(35);
+var _ProgramMemoryLine = __webpack_require__(36);
 
 var _ProgramMemoryLine2 = _interopRequireDefault(_ProgramMemoryLine);
 
@@ -18728,7 +18827,7 @@ function ProgramMemory(props) {
 }
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

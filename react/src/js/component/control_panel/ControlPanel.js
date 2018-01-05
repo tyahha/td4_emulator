@@ -8,10 +8,19 @@ import Reset from './Reset'
 export default function ControlPanel(props) {
   return (
     <div className="control-panel">
-      <Registor programCount={props.programCount}/>
+      <Registor
+        programCount={props.programCount}
+        registorA={props.registorA}
+        registorB={props.registorB}
+        carry={props.carry}
+        input={props.input}
+        output={props.output}
+        enableBeep={props.enableBeep}
+        onChange={props.onChange}
+      />
       <ClockGenerator
         clockMode={props.clockMode}
-        onChangeClockMode={props.onChangeClockMode}
+        onChange={props.onChange}
         onClock={props.onClock}
       />
       <Reset />
