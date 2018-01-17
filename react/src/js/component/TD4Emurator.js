@@ -11,6 +11,11 @@ import ChangeEvent from '../ChangeEvent'
 export default class TD4Emurator extends React.Component {
   constructor(props) {
     super(props)
+
+    let memoryLines = []
+    for (let i = 0; i < 16; i++) {
+      memoryLines.push({operator: 0, operand: 0})
+    }
     this.timer = null
     this.state = {
       programCount: 0,
@@ -21,6 +26,7 @@ export default class TD4Emurator extends React.Component {
       output: 0,
       enableBeep: false,
       clockMode: ClockMode.Manual,
+      memoryLines,
     }
   }
 
@@ -50,6 +56,16 @@ export default class TD4Emurator extends React.Component {
         break
       case ChangeEvent.ClockMode:
         this.onChangeClockMode(param)
+        break
+      case ChangeEvent.Memory:
+        let newMemoryLines = this.state.memoryLines.concat()
+        newMemoryLines[param.address] = {
+          operator: param.operator,
+          operand: param.operand,
+        }
+        this.setState(Object.assign(this.state, {
+          memoryLines: newMemoryLines
+        }))
         break
       default:
         console.error(`unknown change event:${kind}, ${param}`)
@@ -90,7 +106,11 @@ export default class TD4Emurator extends React.Component {
           clockMode={this.state.clockMode}
           onChange={this.onChange.bind(this)}
         />
-        <ProgramMemory programCount={this.state.programCount} />
+        <ProgramMemory
+          programCount={this.state.programCount}
+          lines={this.state.memoryLines}
+          onChange={this.onChange.bind(this)}
+        />
       </div>
     )
   }

@@ -482,6 +482,23 @@ module.exports = emptyObject;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  Beep: 0,
+  Input: 1,
+  ClockMode: 2,
+  Memory: 3
+};
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -538,7 +555,7 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -607,22 +624,6 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  Beep: 0,
-  Input: 1,
-  ClockMode: 2
-};
-
-/***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -637,8 +638,8 @@ exports.default = {
 
 
 if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(6);
-  var warning = __webpack_require__(7);
+  var invariant = __webpack_require__(7);
+  var warning = __webpack_require__(8);
   var ReactPropTypesSecret = __webpack_require__(20);
   var loggedTypeFailures = {};
 }
@@ -1086,8 +1087,8 @@ if (process.env.NODE_ENV !== "production") {
 
 var _assign = __webpack_require__(4);
 var emptyObject = __webpack_require__(5);
-var invariant = __webpack_require__(6);
-var warning = __webpack_require__(7);
+var invariant = __webpack_require__(7);
+var warning = __webpack_require__(8);
 var emptyFunction = __webpack_require__(3);
 var checkPropTypes = __webpack_require__(9);
 
@@ -2761,8 +2762,8 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var React = __webpack_require__(0);
-var invariant = __webpack_require__(6);
-var warning = __webpack_require__(7);
+var invariant = __webpack_require__(7);
+var warning = __webpack_require__(8);
 var ExecutionEnvironment = __webpack_require__(10);
 var _assign = __webpack_require__(4);
 var emptyFunction = __webpack_require__(3);
@@ -18333,7 +18334,7 @@ var _ClockMode = __webpack_require__(16);
 
 var _ClockMode2 = _interopRequireDefault(_ClockMode);
 
-var _ChangeEvent = __webpack_require__(8);
+var _ChangeEvent = __webpack_require__(6);
 
 var _ChangeEvent2 = _interopRequireDefault(_ChangeEvent);
 
@@ -18353,6 +18354,10 @@ var TD4Emurator = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (TD4Emurator.__proto__ || Object.getPrototypeOf(TD4Emurator)).call(this, props));
 
+    var memoryLines = [];
+    for (var i = 0; i < 16; i++) {
+      memoryLines.push({ operator: 0, operand: 0 });
+    }
     _this.timer = null;
     _this.state = {
       programCount: 0,
@@ -18362,7 +18367,8 @@ var TD4Emurator = function (_React$Component) {
       input: 0,
       output: 0,
       enableBeep: false,
-      clockMode: _ClockMode2.default.Manual
+      clockMode: _ClockMode2.default.Manual,
+      memoryLines: memoryLines
     };
     return _this;
   }
@@ -18384,7 +18390,6 @@ var TD4Emurator = function (_React$Component) {
   }, {
     key: 'onChange',
     value: function onChange(kind, param) {
-      console.log('onChange: ' + kind + ', ' + param);
       switch (kind) {
         case _ChangeEvent2.default.Beep:
           this.setState(Object.assign(this.state, {
@@ -18398,6 +18403,16 @@ var TD4Emurator = function (_React$Component) {
           break;
         case _ChangeEvent2.default.ClockMode:
           this.onChangeClockMode(param);
+          break;
+        case _ChangeEvent2.default.Memory:
+          var newMemoryLines = this.state.memoryLines.concat();
+          newMemoryLines[param.address] = {
+            operator: param.operator,
+            operand: param.operand
+          };
+          this.setState(Object.assign(this.state, {
+            memoryLines: newMemoryLines
+          }));
           break;
         default:
           console.error('unknown change event:' + kind + ', ' + param);
@@ -18443,7 +18458,11 @@ var TD4Emurator = function (_React$Component) {
           clockMode: this.state.clockMode,
           onChange: this.onChange.bind(this)
         }),
-        _react2.default.createElement(_ProgramMemory2.default, { programCount: this.state.programCount })
+        _react2.default.createElement(_ProgramMemory2.default, {
+          programCount: this.state.programCount,
+          lines: this.state.memoryLines,
+          onChange: this.onChange.bind(this)
+        })
       );
     }
   }]);
@@ -18570,7 +18589,7 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _ChangeEvent = __webpack_require__(8);
+var _ChangeEvent = __webpack_require__(6);
 
 var _ChangeEvent2 = _interopRequireDefault(_ChangeEvent);
 
@@ -18689,7 +18708,7 @@ var _ClockMode = __webpack_require__(16);
 
 var _ClockMode2 = _interopRequireDefault(_ClockMode);
 
-var _ChangeEvent = __webpack_require__(8);
+var _ChangeEvent = __webpack_require__(6);
 
 var _ChangeEvent2 = _interopRequireDefault(_ChangeEvent);
 
@@ -18811,7 +18830,10 @@ function ProgramMemory(props) {
     lines.push(_react2.default.createElement(_ProgramMemoryLine2.default, {
       key: i,
       address: i,
-      programCount: props.programCount
+      programCount: props.programCount,
+      operator: props.lines[i].operator,
+      operand: props.lines[i].operand,
+      onChange: props.onChange
     }));
   }
   return _react2.default.createElement(
@@ -18846,6 +18868,10 @@ var _reactDom = __webpack_require__(2);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _ChangeEvent = __webpack_require__(6);
+
+var _ChangeEvent2 = _interopRequireDefault(_ChangeEvent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function displayAddress(address) {
@@ -18857,14 +18883,35 @@ function isCurrent(props) {
 }
 
 function ProgramMemoryLine(props) {
-  var memories = [];
-  for (var i = 0; i < 8; i++) {
-    memories.push(_react2.default.createElement(
+  function renderMemory(param, address, key, isOperator) {
+    var bit = 1 << 3 - address;
+    var checked = (param & bit) === bit;
+    function _onChange() {
+      props.onChange(_ChangeEvent2.default.Memory, isOperator ? { address: props.address, operator: props.operator ^ bit, operand: props.operand } : { address: props.address, operator: props.operator, operand: props.operand ^ bit });
+    }
+    return _react2.default.createElement(
       'label',
-      { key: i },
-      _react2.default.createElement('input', { type: 'checkbox', className: 'memory-checkbox' }),
+      { key: key },
+      _react2.default.createElement('input', {
+        type: 'checkbox',
+        className: 'memory-checkbox',
+        checked: checked,
+        onChange: function onChange() {
+          return _onChange();
+        }
+      }),
       _react2.default.createElement('span', { className: 'memory-icon' })
-    ));
+    );
+  }
+  function renderMemories() {
+    var memories = [];
+    for (var i = 0; i < 4; i++) {
+      memories.push(renderMemory(props.operator, i, i, true));
+    }
+    for (var _i = 0; _i < 4; _i++) {
+      memories.push(renderMemory(props.operand, _i, _i + 4, false));
+    }
+    return memories;
   }
   return _react2.default.createElement(
     'div',
@@ -18872,7 +18919,7 @@ function ProgramMemoryLine(props) {
     'Address ',
     displayAddress(props.address),
     ' ',
-    memories
+    renderMemories()
   );
 }
 

@@ -11,6 +11,9 @@ export default function ProgramMemory(props) {
         key={i}
         address={i}
         programCount={props.programCount}
+        operator={props.lines[i].operator}
+        operand={props.lines[i].operand}
+        onChange={props.onChange}
       />
     )
   }
