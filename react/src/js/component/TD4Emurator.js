@@ -7,6 +7,7 @@ import ProgramMemory from './program_memory/ProgramMemory'
 
 import ClockMode from '../ClockMode'
 import ChangeEvent from '../ChangeEvent'
+import {operate} from './Operation'
 
 export default class TD4Emurator extends React.Component {
   constructor(props) {
@@ -31,9 +32,7 @@ export default class TD4Emurator extends React.Component {
   }
 
   clock() {
-    this.setState(Object.assign(this.state,{
-      programCount: (this.state.programCount + 1) % 16
-    }))
+    this.setState(operate(this.state))
   }
 
   manualClock() {

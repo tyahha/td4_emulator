@@ -18338,6 +18338,8 @@ var _ChangeEvent = __webpack_require__(6);
 
 var _ChangeEvent2 = _interopRequireDefault(_ChangeEvent);
 
+var _Operation = __webpack_require__(37);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18376,9 +18378,7 @@ var TD4Emurator = function (_React$Component) {
   _createClass(TD4Emurator, [{
     key: 'clock',
     value: function clock() {
-      this.setState(Object.assign(this.state, {
-        programCount: (this.state.programCount + 1) % 16
-      }));
+      this.setState((0, _Operation.operate)(this.state));
     }
   }, {
     key: 'manualClock',
@@ -18921,6 +18921,82 @@ function ProgramMemoryLine(props) {
     ' ',
     renderMemories()
   );
+}
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.operate = operate;
+function operate(state) {
+  var currentLine = state.memoryLines[state.programCount];
+  var operatorNumber = currentLine && currentLine.operator;
+  var operator = getOperator(operatorNumber);
+  if (operator) {
+    var operand = currentLine && currentLine.operand;
+    var newState = operator(state, operand);
+    if (newState.programCount > 15) {
+      newState.programCount -= 16;
+    }
+    return newState;
+  } else {
+    return state;
+  }
+}
+
+function getOperator(operatorNumber) {
+  switch (operatorNumber) {
+    case 0:
+      return addA;
+    // case  1: return moveAB
+    // case  2: return inputA
+    // case  3: return moveA
+    // case  4: return moveBA
+    case 5:
+      return addB;
+    // case  6: return inputB
+    // case  7: return moveB
+    // case  9: return outputB
+    // case 11: return outputData
+    // case 14: return jumpIf
+    // case 15: return jump
+    default:
+      console.log("unsupported operator " + operatorNumber);
+      return unknown;
+  }
+}
+
+function unknown(state, operand) {
+  return Object.assign(state, {
+    programCount: state.programCount + 1,
+    carry: false
+  });
+}
+
+function addA(state, operand) {
+  var addResult = state.registorA + operand;
+  var carry = addResult > 15;
+  return Object.assign(state, {
+    programCount: state.programCount + 1,
+    carry: carry,
+    registorA: carry ? addResult - 16 : addResult
+  });
+}
+
+function addB(state, operand) {
+  var addResult = state.registorB + operand;
+  var carry = addResult > 15;
+  return Object.assign(state, {
+    programCount: state.programCount + 1,
+    carry: carry,
+    registorB: carry ? addResult - 16 : addResult
+  });
 }
 
 /***/ })
