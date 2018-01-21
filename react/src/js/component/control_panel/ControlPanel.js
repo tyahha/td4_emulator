@@ -23,7 +23,7 @@ export default function ControlPanel(props) {
         onChange={props.onChange}
         onClock={props.onClock}
       />
-      <Reset />
+      <Reset onReset={props.onReset} />
     </div>
   )
 }
