@@ -1033,7 +1033,12 @@ var _TD4Emurator2 = _interopRequireDefault(_TD4Emurator);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_TD4Emurator2.default, null), document.getElementById('app'));
+var app = document.getElementById('app');
+if (app) {
+  _reactDom2.default.render(_react2.default.createElement(_TD4Emurator2.default, null), app);
+} else {
+  console.error('fail to get app dom');
+}
 
 /***/ }),
 /* 18 */
@@ -19002,7 +19007,7 @@ function getOperator(operatorNumber) {
     case 15:
       return jump;
     default:
-      console.log("unknouwn operator " + operatorNumber);
+      console.log('unknouwn operator ' + operatorNumber);
       return unknown;
   }
 }

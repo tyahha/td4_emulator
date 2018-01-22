@@ -1,4 +1,6 @@
-export function operate(state) {
+import type {TD4State} from './TD4State'
+
+export function operate(state: TD4State): TD4State {
   const currentLine = state.memoryLines[state.programCount]
   const operatorNumber = currentLine && currentLine.operator
   const operator = getOperator(operatorNumber)
@@ -15,7 +17,7 @@ export function operate(state) {
   }
 }
 
-function getOperator(operatorNumber) {
+function getOperator(operatorNumber): (TD4State, number) => TD4State {
   switch (operatorNumber) {
     case  0: return addA
     case  1: return moveAB
@@ -35,14 +37,14 @@ function getOperator(operatorNumber) {
   }
 }
 
-function unknown(state, operand) {
+function unknown(state: TD4State, operand: number): TD4State {
   return Object.assign(state, {
     programCount: state.programCount + 1,
     carry: false,
   })
 }
 
-function addA(state, operand) {
+function addA(state: TD4State, operand: number): TD4State {
   const addResult = state.registorA + operand
   const carry = addResult > 15
   return Object.assign(state, {
@@ -52,7 +54,7 @@ function addA(state, operand) {
   })
 }
 
-function addB(state, operand) {
+function addB(state: TD4State, operand: number): TD4State {
   const addResult = state.registorB + operand
   const carry = addResult > 15
   return Object.assign(state, {
@@ -62,7 +64,7 @@ function addB(state, operand) {
   })
 }
 
-function moveAB(state, operand) {
+function moveAB(state: TD4State, operand: number): TD4State {
   return Object.assign(state, {
     programCount: state.programCount + 1,
     carry: false,
@@ -70,7 +72,7 @@ function moveAB(state, operand) {
   })
 }
 
-function moveBA(state, operand) {
+function moveBA(state: TD4State, operand: number): TD4State {
   return Object.assign(state, {
     programCount: state.programCount + 1,
     carry: false,
@@ -78,7 +80,7 @@ function moveBA(state, operand) {
   })
 }
 
-function moveA(state, operand) {
+function moveA(state: TD4State, operand: number): TD4State {
   return Object.assign(state, {
     programCount: state.programCount + 1,
     carry: false,
@@ -86,7 +88,7 @@ function moveA(state, operand) {
   })
 }
 
-function moveB(state, operand) {
+function moveB(state: TD4State, operand: number): TD4State {
   return Object.assign(state, {
     programCount: state.programCount + 1,
     carry: false,
@@ -94,7 +96,7 @@ function moveB(state, operand) {
   })
 }
 
-function inputA(state, operand) {
+function inputA(state: TD4State, operand: number): TD4State {
   return Object.assign(state, {
     programCount: state.programCount + 1,
     carry: false,
@@ -102,7 +104,7 @@ function inputA(state, operand) {
   })
 }
 
-function inputB(state, operand) {
+function inputB(state: TD4State, operand: number): TD4State {
   return Object.assign(state, {
     programCount: state.programCount + 1,
     carry: false,
@@ -110,7 +112,7 @@ function inputB(state, operand) {
   })
 }
 
-function outputB(state, operand) {
+function outputB(state: TD4State, operand: number): TD4State {
   return Object.assign(state, {
     programCount: state.programCount + 1,
     carry: false,
@@ -118,7 +120,7 @@ function outputB(state, operand) {
   })
 }
 
-function outputData(state, operand) {
+function outputData(state: TD4State, operand: number): TD4State {
   return Object.assign(state, {
     programCount: state.programCount + 1,
     carry: false,
@@ -126,14 +128,14 @@ function outputData(state, operand) {
   })
 }
 
-function jump(state, operand) {
+function jump(state: TD4State, operand: number): TD4State {
   return Object.assign(state, {
     programCount: operand,
     carry: false,
   })
 }
 
-function jumpIf(state, operand) {
+function jumpIf(state: TD4State, operand: number): TD4State {
   return Object.assign(state, {
     programCount: state.carry ? state.programCount + 1 : operand,
     carry: false,

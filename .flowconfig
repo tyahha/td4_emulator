@@ -3,6 +3,8 @@
 .*/js/bundle.js
 .*/webpack.*\.config\.js
 .*/karma\.conf\.js
+.*/elm/.*
+.*/elm-stuff/.*
 
 [include]
 

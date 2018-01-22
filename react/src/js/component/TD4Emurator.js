@@ -9,8 +9,12 @@ import ClockMode from '../ClockMode'
 import ChangeEvent from '../ChangeEvent'
 import {operate} from './Operation'
 
+import type {TD4State} from './TD4State'
+
 export default class TD4Emurator extends React.Component {
-  constructor(props) {
+  timer: ?number
+  state: TD4State
+  constructor(props: any) {
     super(props)
 
     let memoryLines = []
