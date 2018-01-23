@@ -1,3 +1,5 @@
+import ClockMode from '../ClockMode'
+
 export interface MemoryLine {
   operator: number;
   operand: number;
@@ -10,7 +12,7 @@ export interface TD4State {
   carry: boolean;
   input: number;
   output: number;
-  enableBeep: number;
-  clockMode: ClockMode.Manual;
+  enableBeep: boolean;
+  clockMode: $Keys<typeof ClockMode>;
   memoryLines: Array<MemoryLine>;
 }
